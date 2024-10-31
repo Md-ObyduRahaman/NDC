@@ -1,0 +1,370 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL:  SMS</title>
+    <link href="css/select2.min.css" rel="stylesheet" media="screen">
+
+</head>
+<div class="container-fluid">
+    <div class="block-header">
+        <span style="text-shadow: 2px 2px 2px #aaa;">INSTITUTE LIST</span>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="body table-responsive table-bordered">
+
+                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="instituteList">
+                        <thead>
+                        <tr>
+                            <th class="align-center" style="width: 60px;">SL#</th>
+                            <th class="align-left">INSTITUTE NAME</th>
+                            <th class="align-center">COUNTRY NAME</th>
+                            <th class="align-center" style="width: 100px;">STATUS</th>
+                            <th class="align-center" style="width: 80px;">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="institute,index: ${institutes}">
+                            <td class="align-center"><span th:text="${index.index+1}"></span></td>
+                            <td class="align-left"><span th:text="${institute.instituteName}"></span></td>
+                            <td class="align-center"><span th:text="${institute.countryName}"></span></td>
+                            <td class="align-center">
+                                <span th:if="${institute.status == 'Y'}">Active</span>
+                                <span th:if="${institute.status == 'N'}">Inactive</span>
+                            </td>
+                            <td class="align-center">
+                                <input type="hidden" id="row_id" th:value="${institute.id}">
+                                <input type="hidden" id="row_inst_name" th:value="${institute.instituteName}">
+                                <input type="hidden" id="row_country_id" th:value="${institute.countryId}">
+                                <input type="hidden" id="row_logo" th:value="${institute.logo}">
+                                <input type="hidden" id="row_status" th:value="${institute.status}">
+                                <a class="btn-edit btn btn-xs" onclick="edit(this)"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-edit btn btn-xs" onclick="view(this)"><i class="material-icons">visibility</i></a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="instituteModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue-grey">
+                    <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title align-center" id="defaultModalLabel">INSTITUTE INFORMATION</h4>
+                </div>
+                <form method="post" id="instituteInfoForm" modelAttribute="instituteInfo">
+                    <div class="modal-body">
+                        <div class="alert-code alert-block alert-danger hidden"></div><br>
+                        <input type="hidden" id="id" name="id" value=""/>
+                        <div class="row col-md-10">
+                            <div class="col-md-8">
+                                <span><b>INSTITUTE NAME :</b></span>
+                                <div class="form-group">
+                                    <input type="text" id="instituteName" name="instituteName" th:maxlength="30" value="" class="form-control"   autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <span><b>COUNTRY NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="countryId" name="countryId" style="width: 80%;">
+                                        <option value=""> Select Country</option>
+                                        <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.countryName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>ACTIVITY STATUS</b></span>
+                                <div class="form-group">
+                                    <div class="demo-checkbox">
+                                        <input type="checkbox" id="activity_status" class="filled-in chk-col-green">
+                                        <label for="activity_status"><b><span class="check-status">Inactive ?</span></b></label>
+                                        <input type="hidden" id="status" name="status" value="N">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row col-md-2">
+                            <div class="col-md-12">
+                                <span><b>LOGO</b></span>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <img class="form-control-image" src="image/default-image.png" id='img-upload' height="150px" width="150px" alt="No image"
+                                         onerror="this.src='image/default-image.png';"/>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input class="form-control" style="width: 100%" type="file" accept="image/*" id="image" name="image" value="" onchange="readURL(this);">
+                                    <input type="hidden" id="logo" name="logo">
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer" style="background-color: #ced9dc;">
+                        <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                            <i class="material-icons">save</i>
+                            <span>SAVE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="instituteViewInfoModal" style="overflow: auto;"  role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right:0px !important;
+        margin-right:0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+<script src="js/select2.min.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="js/pages/tables/jquery-datatable.js"></script>
+<script>
+
+    function chngLang(el){
+        var link = $(el).attr('id');
+        $.ajax({
+            async : false,
+            url : link ,
+            success : function(result) {
+                $("#view_page").html(result);
+            },
+            error: function(){
+                console.log("this employee has no user id.");
+            }
+        });
+    }
+
+    $(".modal-header").on("mousedown", function(mousedownEvt) {
+        var $draggable = $(this);
+        var x = mousedownEvt.pageX - $draggable.offset().left,
+            y = mousedownEvt.pageY - $draggable.offset().top;
+        $("body").on("mousemove.draggable", function(mousemoveEvt) {
+            $draggable.closest(".modal-dialog").offset({
+                "left": mousemoveEvt.pageX - x,
+                "top": mousemoveEvt.pageY - y
+            });
+        });
+        $("body").one("mouseup", function() {
+            $("body").off("mousemove.draggable");
+        });
+        $draggable.closest(".modal").one("bs.modal.hide", function() {
+            $("body").off("mousemove.draggable");
+        });
+    });
+
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+
+    $('#activity_status').change(function() {
+        if (this.checked) {
+            $('#status').val('Y');
+            $('.check-status').text('Active ?');
+        }else{
+            $('#status').val('N');
+            $('.check-status').text('Inactive ?');
+        }
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-upload').attr('src', e.target.result);
+                $('#img-upload').height(150);
+                $('#img-upload').width(150);
+                const base64String = reader.result
+                    .replace('data:', '')
+                    .replace(/^.+,/, '');
+                $('#logo').val(base64String);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+
+
+        }
+    }
+
+    function add(el) {
+       $("#id").val("");
+        $("#instituteName").val("");
+        $("#logo").val("");
+        $("#countryId").val("");
+        $("#instituteModal").modal();
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert").empty().addClass("hidden");
+        $(".alert-code").empty().addClass("hidden");
+    }
+
+    /**************************Start of Row Edit Function******************************/
+
+    function edit(el) {
+        var id = $(el).closest("tr").find("#row_id").val();
+        var instituteName = $(el).closest("tr").find("#row_inst_name").val();
+        var logo = $(el).closest("tr").find("#row_logo").val();
+        var countryId = $(el).closest("tr").find("#row_country_id").val();
+        var status = $(el).closest('tr').find("#row_status").val();
+
+        $("#id").val(id);
+        $("#instituteName").val(instituteName);
+        $("#logo").val(logo);
+        $("#countryId").select2("val", countryId);
+        //$("#countryId").val();
+        if(logo !=null && logo.length !=0){
+            $("#img-upload").attr('src', 'data:image/png;base64,'+logo+'');
+        }
+
+        if(status == 'Y'){
+            $('#activity_status').prop('checked', true);
+            $('#status').val('Y');
+            $('.check-status').text('Active');
+        }else{
+            $('#activity_status').prop('checked', false);
+            $('#status').val('N');
+            $('.check-status').text('Inactive');
+        }
+
+        $("#instituteModal").modal('show');
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert-code").empty().addClass("hidden");
+    };
+
+    $("#instituteInfoForm").submit(function(event){
+        event.preventDefault();
+        var formData = $("#instituteInfoForm").serialize();
+
+        if($(".alert-code").hasClass('hidden')){
+            $.ajax({
+                url : "institute/saveOrUpdate",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    $("#instituteModal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $("#view_page").html(data);
+                    sweetAlert("Saved!", "Your data has been Saved.", "success", 1000, false);
+                },
+                error: function(){
+                    sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+                }
+            });
+        }else{
+            sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+        }
+    });
+    function view(el) {
+        var id = $(el).closest("tr").find("#row_id").val();
+        $.ajax({
+            async : false,
+            url : "institute/" + id ,
+            success : function(data) {
+                $('#instituteViewInfoModal').modal('show').find('.modal-content').html(data);
+                $(".modal-backdrop.fade.in").off("click");
+                $(".modal").off("keydown");
+                $(".md").css("display", "none");
+
+            }
+        });
+    }
+    function del(el) {
+        var id = $(el).closest('tr').find("#row_id").val();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel please!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type : "GET",
+                    url : "menu/delete-institutes/" + id ,
+                    success : function(data) {
+                        $("#view_page").html(data);
+                        sweetAlert("Deleted!", "Deleted Successfully", "success", 1000, false);
+                    },
+                    error: function(){
+                        sweetAlert("Failed!", "Something going wrong.", "fail", 1000, false);
+                    }
+                });
+            } else {
+                sweetAlert("Cancelled", "Your data is safe :)", "error", 0, false);
+            }
+        });
+    }
+
+</script>
+
+
+
+</html>

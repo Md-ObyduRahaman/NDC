@@ -1,0 +1,87 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">BRANCH INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert-code alert-block alert-danger hidden"></div><br>
+        <input type="hidden" id="id" name="id" value=""/>
+        <div class="row col-md-10">
+            <div class="col-md-12">
+                <span><b>BRANCH NAME :</b></span>
+                <div class="form-group">
+                    [[${branch.branchName}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>CITY NAME :</b></span>
+                <div class="form-group">
+                    [[${branch.cityName}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>POST NAME :</b></span>
+                <div class="form-group">
+                    [[${branch.postName}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>PHONE NUMBER :</b></span>
+                <div class="form-group">
+                    [[${branch.phoneNumber}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>EMAIL :</b></span>
+                <div class="form-group">
+                    [[${branch.email}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>ADDRESS1</b></span>
+                <div class="form-group">
+                    [[${branch.address1}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>ADDRESS2</b></span>
+                <div class="form-group">
+                    [[${branch.address2}]]
+                </div>
+            </div>
+            <div class="col-md-4">
+                <span><b>ACTIVITY STATUS</b></span>
+                <div class="form-group">
+                    <span th:if="${branch.status == 'Y'}">Active</span>
+                    <span th:if="${branch.status == 'N'}">Inactive</span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row col-md-2">
+            <div class="col-md-12">
+                <span><b>LOGO</b></span>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <img class="form-control-image" th:src="@{'data:image/jpeg;base64,'+${branch.logo}}" id='img-upload' height="150px" width="150px" alt="No image"
+                         onerror="this.src='image/default-image.png';"/>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</html>

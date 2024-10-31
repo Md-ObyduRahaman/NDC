@@ -1,0 +1,81 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">ROOM INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert-code alert-block alert-danger hidden"></div><br>
+        <input type="hidden" id="id" name="id" value=""/>
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <span><b>ROOM NAME :</b></span>
+                <div class="form-group">
+                    [[${room.roomName}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>ROOM TYPE :</b></span>
+                <div class="form-group">
+                    [[${room.typeName}]]
+
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <span><b>No of Seat :</b></span>
+                <div class="form-group">
+                    [[${room.noOfSeat}]]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>BUILDING NAME :</b></span>
+                <div class="form-group">
+                    [[${room.buildingName}]]
+
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <span><b>AC/NON_AC :</b></span>
+                <div class="form-group">
+                    <span th:if="${room.acStatus == 'Y'}">AC</span>
+                    <span th:if="${room.acStatus == 'N'}">NON_AC</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span><b>ACTIVITY STATUS</b></span>
+                <div class="form-group">
+                    <span th:if="${room.status == 'Y'}">Active</span>
+                    <span th:if="${room.status == 'N'}">Inactive</span>
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <span><b>REMARKS</b></span>
+                <div class="form-group">
+                    [[${room.remarks}]]
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+        <!--<div class="modal-footer" style="background-color: #ced9dc;">
+            <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                <i class="material-icons">save</i>
+                <span>SAVE</span>
+            </button>
+        </div>-->
+
+
+</html>

@@ -1,0 +1,67 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">SUBJECT, BOOK & SESSION INFORMATION</h4>
+    </div>
+     <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <input type="hidden" id="id" name="id" value=""/>
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>SUBJECT BOOK NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${subjectBook.subBookName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>SESSION NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${subjectBook.sessionName}"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>SUBJECT TYPE NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${subjectBook.subjectTypeName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>SUBJECT NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${subjectBook.subjectName}"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>BOOK NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${subjectBook.bookName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b> STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${subjectBook.status == 'Y'}">Active</span>
+                        <span th:if="${subjectBook.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+</html>

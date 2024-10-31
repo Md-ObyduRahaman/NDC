@@ -1,0 +1,53 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">TEACHER SUBJECT INFORMATION</h4>
+    </div>
+     <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <input type="hidden" id="id" name="id" value=""/>
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>TEACHER SUBJECT NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${teacherSubject.teachSubjectName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>TEACHER NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${teacherSubject.employeeName}"></span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>SUBJECT NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${teacherSubject.subjectName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b> STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${teacherSubject.status == 'Y'}">Active</span>
+                        <span th:if="${teacherSubject.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="panel panel-success">
+    <div class="panel-heading" style="text-align: center">
+        <!--<div class="col-md-12">
+
+        <img class="form-control-image" th:src="@{'data:image/jpeg;base64,'+${logo}}" id='img-upload' height="150px" width="150px" alt="No image"
+             onerror="this.src='image/default-image.png';"/>
+        </div>-->
+        <h3>[[${instituteName}]]</h3>
+        <h4>Class: [[${className}]]</h4>
+        <h4>Section: [[${sectionName}]]</h4>
+
+
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <table class="table table-bordered" id="list">
+                <tbody>
+                <tr th:each="day,index: ${dayList}">
+                    <td class="align-left" style=" width:10%"><span th:text="${day}"></span></td>
+                    <td class="align-left" style=" width:90%">
+                        <div th:each="routine,index: ${routineList}" class="btn-group">
+                            <button th:if="${day} eq ${routine.day}" class="btn btn-default dropdown-toggle routine-text" data-toggle="dropdown">
+                                [[${routine.startTime+'-'+routine.endTime}]]<br/>
+                                [[${routine.sectionName}]]<br/>
+                                [[${routine.subjectName}]] <br/>
+                                [[${routine.roomName}]]<br/>
+                                [[${routine.teacherName}]]<br/>
+                                <a class="btn-edit btn btn-xs" th:onclick="|edit('${routine.id}')|"><i class="material-icons">mode_edit</i></a>||<a class="btn-edit btn btn-xs"  th:onclick="|del('${routine.id}')|"><i class="material-icons">delete_forever</i></a>
+                            </button>
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="panel-heading">
+        <div class="row">
+
+            <div class="col-md-12">
+                <button type="button" class="btn bg-deep-orange btn-sm waves-effect pull-right" onclick="printRoutine(this)" >
+                    <i class="material-icons">print</i>
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+</body>
+
+
+
+</html>

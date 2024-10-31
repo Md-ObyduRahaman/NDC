@@ -1,0 +1,71 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">MODULE INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <input type="hidden" id="id" name="id" value=""/>
+            <div class="row">
+                <div class="col-md-6">
+                    <span><b>MODULE NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${module.moduleName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span><b>MODULE ICON :</b></span>
+                    <div class="form-group">
+                        <span th:text="${module.icon}"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <span>&nbsp;</span>
+                    <div class="form-group">
+                        <i class="material-icons"><span th:text="${module.icon}"></span></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <span><b>ORDER NO:</b></span>
+                    <div class="form-group">
+                        <span th:text="${module.orderNo}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>ACTIVITY STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${module.status == 'Y'}">Active</span>
+                        <span th:if="${module.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 m-t--10">
+                    <span><b>REMARKS :</b></span>
+                    <div class="form-group">
+                        <span th:text="${module.remarks}"></span>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer" style="background-color: #ced9dc;">
+            <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                <i class="material-icons">save</i>
+                <span>SAVE</span>
+            </button>
+        </div>
+
+
+</html>

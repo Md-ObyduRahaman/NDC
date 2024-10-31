@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login</title>
+	<style>
+		body {
+			margin: 20px auto;
+			height: 100%;
+			color: #6a6f8c;
+			/* background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1516203893666842) 0%, rgba(1, 1, 1, 0.13201254622942926) 80%), url(./img/iconverge-main.jpg);*/
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-attachment: fixed;
+			font: 600 16px/18px 'Open Sans', sans-serif;
+			overflow: hidden;
+		}
+
+		*,
+		:after,
+		:before {
+			box-sizing: border-box
+		}
+
+		.clearfix:after,
+		.clearfix:before {
+			content: '';
+			display: table
+		}
+
+		.clearfix:after {
+			clear: both;
+			display: block
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none
+		}
+
+		.login-wrap {
+			width: 100%;
+			margin: auto;
+			margin-top: 100px;
+			max-width: 525px;
+			min-height: 670px;
+			position: relative;
+			box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+
+		}
+
+		.login-html {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			padding: 50px 70px 50px 70px;
+			/* background: #0051a2e8; */
+			background-color: #1E2F97;
+		}
+
+		.image-holder {
+			text-align: center;
+			margin-bottom: 44px;
+		}
+
+		.login-html .sign-in-htm,
+		.login-html .sign-up-htm {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: absolute;
+			transform: rotateY(180deg);
+			backface-visibility: hidden;
+			transition: all .4s linear;
+		}
+
+		.login-html .sign-in,
+		.login-html .sign-up,
+		.login-form .group .check {
+			display: none;
+		}
+
+		.login-html .tab,
+		.login-form .group .label,
+		.login-form .group .button {
+			text-transform: uppercase;
+		}
+
+		.login-html .tab {
+			font-size: 22px;
+			margin-right: 15px;
+			padding-bottom: 5px;
+			margin: 0 15px 10px 0;
+			display: inline-block;
+			border-bottom: 2px solid transparent;
+		}
+
+		.login-html .sign-in:checked+.tab,
+		.login-html .sign-up:checked+.tab {
+			color: #fff;
+			border-color: #3ab54a;
+		}
+
+		.login-form {
+			min-height: 345px;
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+
+		.login-form .group {
+			margin-bottom: 15px;
+		}
+
+		.login-form .group .label,
+		.login-form .group .input,
+		.login-form .group .button {
+			width: 100%;
+			color: #fff;
+			display: block;
+			outline: none;
+		}
+
+		.login-form .group .input,
+		.login-form .group .button {
+			border: none;
+			padding: 12px 18px;
+			border-radius: 25px;
+			background: rgba(255, 255, 255, .1);
+			outline: none;
+		}
+
+		.login-form .group input[data-type="password"] {
+			text-security: circle;
+			-webkit-text-security: circle;
+		}
+
+		.login-form .group .label {
+			color: #aaa;
+			font-size: 12px;
+		}
+
+		.login-form .group .button {
+			background: #3ab54a;
+			margin: 25px auto;
+		}
+
+		.login-form .group label .icon {
+			width: 15px;
+			height: 15px;
+			border-radius: 2px;
+			position: relative;
+			display: inline-block;
+			background: rgba(255, 255, 255, .1);
+		}
+
+		.login-form .group label .icon:before,
+		.login-form .group label .icon:after {
+			content: '';
+			width: 10px;
+			height: 2px;
+			background: #fff;
+			position: absolute;
+			transition: all .2s ease-in-out 0s;
+		}
+
+		.login-form .group label .icon:before {
+			left: 3px;
+			width: 5px;
+			bottom: 6px;
+			transform: scale(0) rotate(0);
+		}
+
+		.login-form .group label .icon:after {
+			top: 6px;
+			right: 0;
+			transform: scale(0) rotate(0);
+		}
+
+		.login-form .group .check:checked+label {
+			color: #fff;
+		}
+
+		.login-form .group .check:checked+label .icon {
+			background: #3ab54a;
+		}
+
+		.login-form .group .check:checked+label .icon:before {
+			transform: scale(1) rotate(45deg);
+		}
+
+		.login-form .group .check:checked+label .icon:after {
+			transform: scale(1) rotate(-45deg);
+		}
+
+		.login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
+			transform: rotate(0);
+		}
+
+		.login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
+			transform: rotate(0);
+		}
+
+
+		button {
+			position: absolute;
+			right: 10px;
+			top: 5px;
+			transition: all .5s ease;
+			color: #fff;
+			border: 3px solid white;
+			font-family: 'Montserrat', sans-serif;
+			text-align: center;
+			line-height: 1;
+			font-size: 17px;
+			background-color: transparent;
+			padding: 5px;
+			outline: none;
+			border-radius: 4px;
+		}
+
+		button:hover {
+			color: #001F3F;
+			background-color: #fff;
+		}
+	</style>
+</head>
+
+<body style="background-color: rgb(255, 253, 208);" cz-shortcut-listen="true">
+	<div class="login-wrap">
+		<div class="login-html">
+			<div class="image-holder">
+				<img th:src="@{image/ndc_logo.jpg}" alt="logo" width="150" height="120">
+
+				<!--<img src="image/ndc_logo.jpg" alt="logo" width="100" height="100">-->
+			</div>
+			<div class="login-form">
+
+				<div class="login-form">
+					<div class="alert alert-danger mt-4" role="alert" th:text="${msg}" th:if="${msg}!=1" ></div>
+
+					<form name="login" action="/ndc/login" method="post">
+						<div class="group">
+							<label for="user" class="label">Username</label>
+							<input id="user" type="text" class="input" name="mobile_no"
+								placeholder="Enter Your Mobile Number">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">Password</label>
+							<input id="pass" type="password" name="password" class="input" data-type="password"
+								placeholder="Enter Password">
+						</div>
+						<!--<div class="group">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    </div>-->
+						<div class="group">
+							<input type="submit" class="button" value="Sign In" name="submit">
+						</div>
+					</form>
+					<div style="color:#ff0000"></div>
+
+					<p style="text-align: center; color: white">OR</p>
+					<div class="group">
+						<a class="button" th:href="@{/ndc/application}" style="text-align: center">New Applicant</a>
+					</div>
+					<div class="row text-center m-1" th:if="${param.error} " style="color: red"> Incorrect username or
+						password. </div>
+
+
+					<!--<div class="row text-center m-1">
+                    <a th:href="@{/download/UserManual.pdf}" download="UserManual.pdf"  target="_blank" class="btn btn-success"><i class="fa fa-download"></i> Download User Manual PDF </a>
+                </div>
+                <div class="row text-center m-1">
+                    <a th:href="@{/download/notice.pdf}"  download="notice.pdf" target="_blank" class="btn btn-success"><i class="fa fa-download"></i> Download Notice PDF </a>
+                </div>-->
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

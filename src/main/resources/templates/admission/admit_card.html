@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admit Card</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+  <style>
+    .txt-center {
+      text-align: center;
+    }
+
+    .border- {
+      border: 1px solid #000 !important;
+    }
+
+    .padding {
+      padding: 15px;
+    }
+
+    .mar-bot {
+      margin-bottom: 15px;
+    }
+
+    .admit-card {
+      border: 2px solid #000;
+      padding: 15px;
+      margin: 20px 0;
+    }
+
+    .BoxA h5,
+    .BoxA p {
+      margin: 0;
+    }
+
+    h5 {
+      text-transform: uppercase;
+    }
+
+    table img {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .table-bordered td,
+    .table-bordered th,
+    .table thead th {
+      border: 1px solid #000000 !important;
+    }
+
+    #signature {
+      margin-left: 75%;
+      margin-top: 15px;
+    }
+
+
+    .header img {
+      float: left;
+      width: 70px;
+      height: 70px;
+      /* background: #555; */
+    }
+
+
+    .header {
+      position: relative;
+
+    }
+
+
+
+    .header1 .all_table {
+      float: left;
+      width: 420px;
+      /* background: #555; */
+    }
+
+
+    .header1 {
+      position: relative;
+
+    }
+
+
+    .header2 .write {
+      float: left;
+      width: auto;
+      /* background: #555; */
+    }
+
+
+    .header2 .write1 {
+      position: relative;
+      text-align: right;
+
+    }
+
+
+    
+
+
+    /* @media screen and (min-width: 1200px) {
+      .all_table {
+        width: 500px;
+      }
+    }
+
+
+    @media screen and (min-width: 280px) {
+      .all_table {
+        width: 500px;
+      }
+
+      .all_table1 {
+        width: 300px;
+
+
+      }
+    } */
+  </style>
+
+</head>
+
+
+<!-- <body onLoad="download()" ; id="invoice"> -->
+
+<body>
+
+  <div class="ml-2">
+    <button id="download" class="btn btn-success">download</button>
+  </div>
+
+
+  <section id="invoice">
+    <div class="container">
+      <div class="admit-card">
+        <div class=" mar-bot">
+          <div class="row">
+
+
+            <div class="col-sm-12 txt-center">
+              <div class="header">
+                <img th:src="@{/image/ndc_logo.jpg}" alt="logo" />
+                <h4 style="font-size: 18px; font-weight: bold;  text-align: center;">
+                  NOTRE DAME COLLEGE, DHAKA
+                </h4>
+                <h5 style="font-size: 14px; font-weight: bold; text-align: center;"> Admission Test - 2023 </h5>
+
+                <h6 style="text-align: center; font-weight: bold; ">
+                  Admit Card
+                </h6>
+              </div>
+
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="">
+          <div class="row">
+            <div class="col-sm-12">
+            <div class="header2">
+              <p class="write" style="font-size: 15px; font-weight: bold;">Candidate Details</p>
+                
+              <p class="write1" style="font-size: 15px; font-weight: bold;">Application Serial No. : <b> [[${studentInfo.APP_ROLL_NO}]]  </b></p>
+
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+        <!-- <div class="BoxD border- padding mar-bot"> -->
+        <div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="header1">
+              <table class="table table-bordered all_table">
+                <tbody>
+                  <tr>
+                    <td><b>Applied Group </b></td>
+                    <td><b> [[${studentInfo.APP_CAT}]]    </b></td>
+                  </tr>
+                  <!-- <tr>
+                    <td><b>Application Serial Number </b></td>
+                    <td><b>50000</b></td>
+                  </tr> -->
+                  <tr>
+                    <td><b>Name of Student </b></td>
+                    <td><b> [[${studentInfo.STD_NAME}]]    </b></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Father's Name</b></td>
+                    <td><b> [[${studentInfo.F_NAME}]]    </b></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Mother's Name </b></td>
+                    <td><b> [[${studentInfo.M_NAME}]]   </b></td>
+                  </tr>
+                  <!-- <tr>
+                    <td colspan="2"><b>Address: </b>moh hasnxgxums </td>
+                  </tr> -->
+                </tbody>
+              </table>
+
+
+              <img th:src="@{'data:image/jpeg;base64,'+${studentInfo.APP_PHOTO}}" id="output_image" width="150px" height="150px" style="margin-left: 120px;text-align: center;"></img>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="">
+          <div class="row">
+            <div class="col-sm-12">
+              <p style="font-size: 15px;font-weight:bold;">Admission Test Schedule</p>
+              <!-- <p>NH - 79 Gangrar Chittorgarh - 312901 <br> RAJASTHAN, INDIA</p> -->
+            </div>
+          </div>
+        </div>
+        <!-- <div class="BoxF border- padding mar-bot txt-center"> -->
+        <div class="">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered">
+                <!-- <thead>
+								<tr>
+									<th>Sr. No.</th>
+									<th>Subject/Paper</th>
+								</tr>
+							</thead> -->
+                <tbody>
+                  <tr>
+                    <td> <b> Date and Time of Admission Test </b></td>
+                    <td> [[${seatPlanInfo.EXAM_DATE}]]   </td>
+                    <!-- <td>5 July 2019</td> -->
+                  </tr>
+                  <tr>
+                    <td> <b>Building Name and Room No.</b> </td>
+                    <td> [[${seatPlanInfo.ROOM_NO}]]   </td>
+                    <!-- <td>5 July 2019</td> -->
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- <div class="col-sm-4"></div>
+          </div> -->
+        </div>
+
+
+        <div class="">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5 style="background-color: #000;padding:3px; text-align: center; font-size: 12px; width: fit-content; color: white;">আবেদনকারীদের জন্য সাধারণ নির্দেশনাবলি :
+              </h5>
+
+
+              <!-- <h6 id="name"> নির্দেশাবলিঃ </h6> -->
+              <h6 id="name" style="font-size: 14px;">১ । লিখিত ও মৌখিক পরীক্ষার সময় আবেদনকারীকে অবশ্যই এই প্রবেশপএ সঙ্গে
+                আনতে হবে । প্রবেশপএ ছাড়া পরীক্ষায় অংশগ্রহণ করা যাবে না । </h6>
+              <h6 id="name" style="font-size: 14px;">২। ভর্তি আবেদনের প্রবেশপত্রে উল্লিখিত তারিখ ও সময় অনুযায়ী লিখিত
+                পরীক্ষায় অংশগ্রহণ করতে হবে। </h6>
+              <h6 id="name" style="font-size: 14px;">৩ । পরীক্ষার দিন ৩০ মিনিট আগে কলেজে এসে আসন বিন্যাস দেখে নির্ধারিত
+                কক্ষে গিয়ে পরীক্ষায় অংশগ্রহণ করতে হবে।</h6>
+              <h6 id="name" style="font-size: 14px;">
+                ৪ । পরীক্ষার সময় এসএসসি পরীক্ষার ফলাফলের ইন্টারনেট প্রিন্ট কপি ও রেজিস্ট্রেশন কার্ড সঙ্গে আনতে হবে।
+                পরীক্ষার জন্য
+                কালো বলপেন আনবে ও প্রয়োজনে এসএসসি পরীক্ষায় অনুমোদিত সাধারণ সায়েন্টিফিক ক্যালকুলেটর, প্লাস্টিকের স্বচ্ছ
+                ফাইল
+                ফোল্ডার ও হাত ঘড়ি ব্যবহার করা যাবে। পরীক্ষার সময় অন্যের ক্যালকুলেটর ও জিনিস ব্যবহার করা যাবে না। মোবাইল
+                ও
+                বই-খাতা নিয়ে কলেজে প্রবেশ নিষেধ।
+              </h6>
+              <h6 id="name" style="font-size: 14px;">
+                ৫ । লিখিত পরীক্ষা: এসএসসি’র সংক্ষিপ্ত সিলেবাস অনুযায়ী ৪০ মিনিটের লিখিত পরীক্ষা অনুষ্ঠিত হবে। পরীক্ষার
+                বিষয়সমূহ: বিজ্ঞান বিভাগ- বাংলা,
+                ইংরেজি, পদার্থবিজ্ঞান, রসায়ন, উচ্চতর গণিত ও জীববিজ্ঞান; মানবিক বিভাগ- বাংলা, ইংরেজি, সাধারণ বিজ্ঞান ও
+                সাধারণ জ্ঞান; ব্যবসায় শিক্ষা বিভাগ- বাংলা, ইংরেজি, হিসাব বিজ্ঞান, সাধারণ বিজ্ঞান ও সাধারণ জ্ঞান। যারা
+                বিজ্ঞান বিভাগ থেকে মানবিক ও ব্যবসায় শিক্ষা বিভাগে ভর্তির আবেদন করেছে তাদেরকে বিজ্ঞান
+                বিভাগের প্রশ্নে এবং যারা ব্যবসায় শিক্ষা বিভাগ থেকে মানবিক বিভাগে ভর্তির আবেদন করেছে তাদেরকে ব্যবসায়
+                শিক্ষা
+                বিভাগের প্রশ্নে পরীক্ষা দিতে হবে।
+              </h6>
+              </h6>
+              <h6 id="name" style="font-size: 14px;"> ৬। ভর্তি পরীক্ষার ফলাফল প্রকাশের তারিখ পরীক্ষার দিনই জানিয়ে দেয়া
+                হবে। </h6>
+              <!-- <h6 id="name" style="font-size: 14px;">
+                    ৭ । লিখিত পরীক্ষা: যারা বিজ্ঞান বিভাগ থেকে মানবিক ও ব্যবসায় শিক্ষা বিভাগে ভর্তির আবেদন করেছে তাদেরকে বিজ্ঞান
+                    বিভাগের প্রশ্নে এবং যারা ব্যবসায় শিক্ষা বিভাগ থেকে মানবিক বিভাগে ভর্তির আবেদন করেছে তাদেরকে ব্যবসায় শিক্ষা
+                    বিভাগের প্রশ্নে পরীক্ষা দিতে হবে।
+                </h6> -->
+              <h6 id="name" style="font-size: 14px;"> ৭ । ভুল/অসত্য তথ্য প্রদান করে ভর্তি হলে ভর্তি বাতিল বলে গণ্য হবে
+                এবং ভর্তির টাকা ফেরত দেওয়া হবে না।</h6>
+
+              <div class="" id="signature">
+                <img th:src="@{/image/sign.jpg}" id="output_image" width="100px" height="50px"></img>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+  <!-- <button class="btn btn-primary" id="download">download</button> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+
+
+  <script>
+    window.onload = function() {
+      document.getElementById("download")
+        .addEventListener("click", () => {
+          const invoice = this.document.getElementById("invoice");
+          console.log(invoice);
+          console.log(window);
+          var opt = {
+            margin: [0, 0, 0, 0],
+            filename: 1234+'.pdf',
+            image: {
+              type: 'jpeg',
+              quality: 1
+            },
+            html2canvas: {
+              dpi: 192,
+              scale: 1,
+              letterRendering: true,
+              useCORS: true
+            },
+            jsPDF: {
+              unit: 'mm',
+              format: 'a4',
+              orientation: 'portrait'
+            }
+          };
+          //html2pdf().from(invoice).save();
+          html2pdf().from(invoice).set(opt).save();
+        })
+    }
+  </script>
+
+
+
+</body>
+
+</html>

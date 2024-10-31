@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL:  SMS</title>
+    <style type="text/css">
+
+        * {
+            padding: 0;
+            margin: 0 auto;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: cadetblue;
+
+            color: #1c1e21;
+        }
+
+        main {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .colm-form {
+            flex: 0 0 40%;
+            text-align: center;
+        }
+
+
+        .colm-form .form-container {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+            max-width: 400px;
+        }
+
+        .colm-form .form-container input, .colm-form .form-container .btn-login {
+            width: 100%;
+            margin: 5px 0;
+            height: 45px;
+            vertical-align: middle;
+            font-size: 16px;
+        }
+
+        .colm-form .form-container input {
+            border: 1px solid #dddfe2;
+            color: #1d2129;
+            padding: 0 8px;
+            outline: none;
+        }
+
+        .colm-form .form-container input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .colm-form .form-container .btn-login {
+            background-color: #3cb371;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            padding: 0 16px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .colm-form .form-container a {
+            display: block;
+            color: #1877f2;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 0 20px;
+            border-bottom: 1px solid #dadde1;
+        }
+
+        .colm-form .form-container a:hover {
+            text-decoration: underline;
+        }
+
+        .colm-form .form-container .btn-new {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            line-height: 48px;
+            padding: 0 16px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-top: 20px;
+
+        }
+
+        .colm-form p {
+            font-size: 14px;
+        }
+
+        .colm-form p a {
+            text-decoration: none;
+            color: #1c1e21;
+            font-weight: 600;
+        }
+
+        .colm-form p a:hover {
+            text-decoration: underline;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+<main>
+
+    <div class="colm-form">
+        <div class="form-container">
+            <h3> School Management System</h3>
+
+            <form name="login" action="/login"  method="post">
+
+                <input type="text" placeholder="username" name='username' id="username">
+                <input type="password" placeholder="Password" name='password' id="password">
+                <button style="font-weight:bold;" type="submit" id="btnLogin" class="btn-login">LOGIN</button>
+                <div class="text--center" th:if="${param.error}"> Invalid username and password. </div>
+                <div class="text--center" th:if="${param.logSucc}"> You have been logged out. </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+    </div>
+</main>
+
+</body>
+</html>

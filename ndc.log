@@ -1,0 +1,218 @@
+2022-12-10 16:58:55.323  INFO 8344 --- [restartedMain] com.itb.sms.SmsApplication               : Starting SmsApplication using Java 1.8.0_261 on DESKTOP-U0QE802 with PID 8344 (G:\CMED_PROJECTS\sms\target\classes started by USER in G:\CMED_PROJECTS\sms)
+2022-12-10 16:58:55.325  INFO 8344 --- [restartedMain] com.itb.sms.SmsApplication               : No active profile set, falling back to default profiles: default
+2022-12-10 16:58:55.372  INFO 8344 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\USER\.m2\repository\com\oracle\database\jdbc\ojdbc8\21.3.0.0\ojdbc8-21.3.0.0.jar referenced one or more files that do not exist: file:/C:/Users/USER/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.3.0.0/oraclepki.jar
+2022-12-10 16:58:55.373  INFO 8344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-10 16:58:55.374  INFO 8344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-10 16:58:56.213  INFO 8344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-10 16:58:56.421  INFO 8344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 200 ms. Found 45 JPA repository interfaces.
+2022-12-10 16:58:56.959  INFO 8344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-10 16:58:56.967  INFO 8344 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-10 16:58:56.967  INFO 8344 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-12-10 16:58:57.071  INFO 8344 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-10 16:58:57.072  INFO 8344 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1698 ms
+2022-12-10 16:58:57.251  INFO 8344 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-10 16:58:57.337  INFO 8344 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.4.Final
+2022-12-10 16:58:57.440  INFO 8344 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-10 16:58:57.515  INFO 8344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-10 16:58:58.266  INFO 8344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-10 16:58:58.276  INFO 8344 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2022-12-10 16:58:59.198  INFO 8344 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-10 16:58:59.206  INFO 8344 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 16:59:00.465  WARN 8344 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-10 16:59:00.582  INFO 8344 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@20781697, org.springframework.security.web.context.SecurityContextPersistenceFilter@6d97e753, org.springframework.security.web.header.HeaderWriterFilter@700822b0, org.springframework.security.web.authentication.logout.LogoutFilter@1ef0875f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@246f9f64, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39b7f621, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22937d9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32b13cea, org.springframework.security.web.session.SessionManagementFilter@75b7b954, org.springframework.security.web.access.ExceptionTranslationFilter@42090c24, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@58035e39]
+2022-12-10 16:59:01.128  INFO 8344 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-10 16:59:01.160  INFO 8344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-10 16:59:01.169  INFO 8344 --- [restartedMain] com.itb.sms.SmsApplication               : Started SmsApplication in 6.536 seconds (JVM running for 7.951)
+2022-12-10 16:59:16.389  INFO 8344 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-10 16:59:16.390  INFO 8344 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-10 16:59:16.392  INFO 8344 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-12-10 16:59:16.430  INFO 8344 --- [http-nio-8080-exec-1] c.i.sms.Controller.AdmissionController   : NDC Home Page
+2022-12-10 16:59:18.375  INFO 8344 --- [http-nio-8080-exec-5] c.i.sms.Controller.AdmissionController   : NDC Application Page
+2022-12-10 16:59:20.626  INFO 8344 --- [http-nio-8080-exec-5] c.i.sms.Controller.AdmissionController   : NDC Application Page
+2022-12-10 17:06:30.631  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Starting SmsApplication using Java 1.8.0_261 on DESKTOP-U0QE802 with PID 18816 (G:\CMED_PROJECTS\sms\target\classes started by USER in G:\CMED_PROJECTS\sms)
+2022-12-10 17:06:30.633  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : No active profile set, falling back to default profiles: default
+2022-12-10 17:06:30.698  INFO 18816 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\USER\.m2\repository\com\oracle\database\jdbc\ojdbc8\21.3.0.0\ojdbc8-21.3.0.0.jar referenced one or more files that do not exist: file:/C:/Users/USER/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.3.0.0/oraclepki.jar
+2022-12-10 17:06:30.698  INFO 18816 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-10 17:06:30.698  INFO 18816 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-10 17:06:31.549  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-10 17:06:31.782  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 224 ms. Found 45 JPA repository interfaces.
+2022-12-10 17:06:32.326  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-10 17:06:32.333  INFO 18816 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-10 17:06:32.333  INFO 18816 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-12-10 17:06:32.532  INFO 18816 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-10 17:06:32.532  INFO 18816 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1833 ms
+2022-12-10 17:06:32.743  INFO 18816 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-10 17:06:32.838  INFO 18816 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.4.Final
+2022-12-10 17:06:32.941  INFO 18816 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-10 17:06:33.024  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-10 17:06:33.882  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-10 17:06:33.896  INFO 18816 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2022-12-10 17:06:34.936  INFO 18816 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-10 17:06:34.944  INFO 18816 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:06:36.247  WARN 18816 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-10 17:06:36.358  INFO 18816 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1939a300, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d462373, org.springframework.security.web.header.HeaderWriterFilter@7d5883ac, org.springframework.security.web.authentication.logout.LogoutFilter@6c815734, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@f07722d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b6f3769, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@dffb324, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21a15c7a, org.springframework.security.web.session.SessionManagementFilter@4bdaa1d0, org.springframework.security.web.access.ExceptionTranslationFilter@59577a6f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ab7fcf2]
+2022-12-10 17:06:36.899  INFO 18816 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-10 17:06:36.945  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-10 17:06:36.954  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Started SmsApplication in 6.904 seconds (JVM running for 8.992)
+2022-12-10 17:06:44.740  INFO 18816 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-10 17:06:44.741  INFO 18816 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-10 17:06:44.742  INFO 18816 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-10 17:06:44.776  INFO 18816 --- [http-nio-8080-exec-1] c.i.sms.Controller.AdmissionController   : NDC Home Page
+2022-12-10 17:06:45.486  INFO 18816 --- [http-nio-8080-exec-3] c.i.sms.Controller.AdmissionController   : NDC Home Page
+2022-12-10 17:06:47.633  INFO 18816 --- [http-nio-8080-exec-7] c.i.sms.Controller.AdmissionController   : NDC Application Page
+2022-12-10 17:06:48.390  INFO 18816 --- [http-nio-8080-exec-8] c.i.sms.Controller.AdmissionController   : NDC Application Page
+2022-12-10 17:07:40.494  INFO 18816 --- [Thread-19] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:07:40.497  INFO 18816 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-10 17:07:40.546  INFO 18816 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-10 17:07:40.705  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Starting SmsApplication using Java 1.8.0_261 on DESKTOP-U0QE802 with PID 18816 (G:\CMED_PROJECTS\sms\target\classes started by USER in G:\CMED_PROJECTS\sms)
+2022-12-10 17:07:40.706  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : No active profile set, falling back to default profiles: default
+2022-12-10 17:07:40.847  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-10 17:07:40.848  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 0 ms. Found 0 JPA repository interfaces.
+2022-12-10 17:07:40.979  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-10 17:07:40.980  INFO 18816 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-10 17:07:40.980  INFO 18816 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-12-10 17:07:40.996  INFO 18816 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-10 17:07:40.996  INFO 18816 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 288 ms
+2022-12-10 17:07:41.029  INFO 18816 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-10 17:07:41.033  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-12-10 17:07:41.165  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-12-10 17:07:41.165  INFO 18816 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2022-12-10 17:07:41.175  INFO 18816 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-10 17:07:41.175  INFO 18816 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:07:41.187  WARN 18816 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-10 17:07:41.285  INFO 18816 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3cb4503c-d9e9-4353-a25a-2336eb1cd242
+
+2022-12-10 17:07:41.319  INFO 18816 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64b78ec4, org.springframework.security.web.context.SecurityContextPersistenceFilter@42eafc69, org.springframework.security.web.header.HeaderWriterFilter@39618bc6, org.springframework.security.web.csrf.CsrfFilter@2b64d3e4, org.springframework.security.web.authentication.logout.LogoutFilter@53f85ce8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@352459c8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4b14e6c9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@29c62cfa, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@66fcbade, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76a6b884, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@432c222d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2aef5956, org.springframework.security.web.session.SessionManagementFilter@341794fd, org.springframework.security.web.access.ExceptionTranslationFilter@70589404, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@791e90e]
+2022-12-10 17:07:41.344  INFO 18816 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-10 17:07:41.354  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-10 17:07:41.361  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Started SmsApplication in 0.684 seconds (JVM running for 73.399)
+2022-12-10 17:07:41.364  INFO 18816 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   WebSecurityEnablerConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2022-12-10 17:07:49.100  INFO 18816 --- [Thread-26] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:07:49.101  INFO 18816 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2022-12-10 17:07:49.135  INFO 18816 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2022-12-10 17:07:49.290  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Starting SmsApplication using Java 1.8.0_261 on DESKTOP-U0QE802 with PID 18816 (G:\CMED_PROJECTS\sms\target\classes started by USER in G:\CMED_PROJECTS\sms)
+2022-12-10 17:07:49.290  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : No active profile set, falling back to default profiles: default
+2022-12-10 17:07:49.662  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-10 17:07:49.881  INFO 18816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 217 ms. Found 45 JPA repository interfaces.
+2022-12-10 17:07:50.078  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-10 17:07:50.079  INFO 18816 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-10 17:07:50.084  INFO 18816 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-12-10 17:07:50.124  INFO 18816 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-10 17:07:50.124  INFO 18816 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 832 ms
+2022-12-10 17:07:50.201  INFO 18816 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-10 17:07:50.207  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2022-12-10 17:07:50.313  INFO 18816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2022-12-10 17:07:50.313  INFO 18816 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2022-12-10 17:07:50.777  INFO 18816 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-10 17:07:50.777  INFO 18816 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:07:51.271  INFO 17152 --- [main] com.itb.sms.SmsApplicationTests          : Starting SmsApplicationTests using Java 1.8.0_261 on DESKTOP-U0QE802 with PID 17152 (started by USER in G:\CMED_PROJECTS\sms)
+2022-12-10 17:07:51.272  INFO 17152 --- [main] com.itb.sms.SmsApplicationTests          : No active profile set, falling back to default profiles: default
+2022-12-10 17:07:52.120  WARN 18816 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-10 17:07:52.142  INFO 18816 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51c0f7d8, org.springframework.security.web.context.SecurityContextPersistenceFilter@562af3d1, org.springframework.security.web.header.HeaderWriterFilter@1bc32c02, org.springframework.security.web.authentication.logout.LogoutFilter@22a500eb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@33fa57f6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2404458c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2625de32, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71005b83, org.springframework.security.web.session.SessionManagementFilter@79bf91f4, org.springframework.security.web.access.ExceptionTranslationFilter@2b5b30e8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@31c26f0d]
+2022-12-10 17:07:52.303  INFO 18816 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-10 17:07:52.330  INFO 18816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-10 17:07:52.338  INFO 18816 --- [restartedMain] com.itb.sms.SmsApplication               : Started SmsApplication in 3.069 seconds (JVM running for 84.376)
+2022-12-10 17:07:52.341  INFO 18816 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' securityConfiguration; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+      Matched:
+         - found 'session' scope (OnWebApplicationCondition)
+
+   WebSecurityEnablerConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2022-12-10 17:07:52.529  INFO 17152 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-10 17:07:53.011  INFO 17152 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 470 ms. Found 45 JPA repository interfaces.
+2022-12-10 17:07:53.912  INFO 17152 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-10 17:07:53.970  INFO 17152 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.4.Final
+2022-12-10 17:07:54.147  INFO 17152 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-10 17:07:54.749  INFO 17152 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-10 17:07:56.436  INFO 17152 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-10 17:07:56.456  INFO 17152 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2022-12-10 17:07:58.137  INFO 17152 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-10 17:07:58.149  INFO 17152 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:08:00.651  WARN 17152 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-10 17:08:01.050  INFO 17152 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c2e73ce, org.springframework.security.web.context.SecurityContextPersistenceFilter@48590849, org.springframework.security.web.header.HeaderWriterFilter@5390862e, org.springframework.security.web.authentication.logout.LogoutFilter@6e6bd43b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@58a0f75b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@489c15e2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@a165c11, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3891db3a, org.springframework.security.web.session.SessionManagementFilter@22c0c0bc, org.springframework.security.web.access.ExceptionTranslationFilter@44103266, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@722d3ddb]
+2022-12-10 17:08:02.372  INFO 17152 --- [main] com.itb.sms.SmsApplicationTests          : Started SmsApplicationTests in 11.527 seconds (JVM running for 12.871)
+2022-12-10 17:08:02.596  INFO 17152 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:08:02.598  INFO 17152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-10 17:08:02.651  INFO 17152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-10 17:35:30.444  INFO 18816 --- [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-10 17:35:30.445  INFO 18816 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2022-12-10 17:35:30.492  INFO 18816 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

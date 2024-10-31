@@ -1,0 +1,1487 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission</title>
+    <link href="../css/select2.min.css" rel="stylesheet" media="screen">
+    <!--END:::********************** Project JS Library *****************************-->
+
+    <style type="text/css">
+
+
+        body {
+            font-family: 'Tangerine', serif;
+            /* text-shadow: 2px 2px 2px #aaa; */
+        }
+
+
+        section.content {
+            margin: 65px 0 0 270px;
+            -moz-transition: 0.5s;
+            -o-transition: 0.5s;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            /* height: 590px;
+            overflow: auto;
+            overflow-y: auto; */
+        }
+
+        .file-upload {
+            background-color: #ffffff;
+            width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .file-upload-btn {
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            background: #1FB264;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #15824B;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .file-upload-btn:hover {
+            background: #1AA059;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .file-upload-btn:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+        .file-upload-content {
+            text-align: center;
+        }
+
+        .file-upload-input {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .image-upload-wrap {
+            margin-top: 20px;
+            border: 4px dashed #1FB264;
+            position: relative;
+            height: 120px;
+        }
+
+        /*.image-title-wrap {
+            padding: 0 15px 15px 15px;
+            color: #222;
+        }*/
+
+        .drag-text {
+            text-align: center;
+        }
+
+        .drag-text h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+            color: #15824B;
+            padding: 60px 0;
+        }
+
+        .file-upload-image {
+            max-height: 200px;
+            max-width: 100%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .remove-image {
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            background: #cd4535;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #b02818;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .remove-image:hover {
+            background: #c13b2a;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+
+
+        .panel-footer {
+            height: 50px !important;
+        }
+
+    </style>
+
+
+</head>
+<div class="container-fluid">
+
+    <form class="form-horizontal" method="post" id="applicationForm" modelAttribute="updateInfo">
+    <div  class="row clearfix" style="font-size: 16px;">
+
+        <header class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <h2>Admission Application Form-2022</h2>
+            <h3>Notre Dame College, Dhaka.</h3>
+        </header>
+        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+
+                                <div class="alert-code alert-block alert-danger hidden"></div><br>
+                                <input type="hidden" id="app_id" name="app_id" th:value="${studentInfo.APP_ID}">
+                                <input type="hidden" id="APP_ROLL_NO" name="APP_ROLL_NO" th:value="${studentInfo.APP_ROLL_NO}">
+                                <div class="col-xs-10 ol-sm-10 col-md-10 col-lg-10">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-8">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Apply for admission to study</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="hidden" id="APP_CAT" name="APP_CAT" th:value="${studentInfo.APP_CAT}">
+                                                        <span th:if="${studentInfo.APP_CAT == '1'}">Science(Bangla)</span>
+                                                        <span th:if="${studentInfo.APP_CAT == '2'}">Science( Eng. Version)</span>
+                                                        <span th:if="${studentInfo.APP_CAT == '3'}">Humanities</span>
+                                                        <span th:if="${studentInfo.APP_CAT == '4'}">Business Studies</span>
+                                                 </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-7">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Full Name of Student </br>(According to SSC Admit Card)</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.STD_NAME}" maxlength="50" id="STD_NAME" name="STD_NAME">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Student's Mobile No:</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               th:value="${studentInfo.STD_MOBILE_NO}" maxlength="15" id="STD_MOBILE_NO" name="STD_MOBILE_NO" style="width: 80%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-7">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Religion</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="js-example-theme-single form-control"
+                                                                 id="RG_CODE" name="RG_CODE"
+                                                                 style="width: 100%;">
+                                                            <option value="">Select Religion</option>
+                                                            <option th:each="religion : ${religionList}" th:selected="${religion.RG_CODE eq studentInfo.RG_CODE}" th:value="${religion.RG_CODE}" th:text="${religion.RG_NAME}"></option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Religion Sect:</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.RG_SECT}" id="RG_SECT" name="RG_SECT" style="width: 80%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-7">
+
+                                        <div class="col-md-7">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Father's Name</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.F_NAME}" id="F_NAME" name="F_NAME">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Father's Mobile No:</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.F_MOBILE_NO}" maxlength="15" id="F_MOBILE_NO" name="F_MOBILE_NO" style="width: 80%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-7">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Mother's Name</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.M_NAME}" id="M_NAME" name="M_NAME">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label align-left">
+                                                <label >Mother's Mobile No:</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" maxlength="15"  class="form-control" th:value="${studentInfo.M_MOBILE_NO}" id="M_MOBILE_NO" name="M_MOBILE_NO" style="width: 80%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            <div class="col-xs-2 ol-sm-2 col-md-2 col-lg-2">
+                                <input type="hidden" id="imdata" name="imdata" th:value="${studentInfo.APP_PHOTO}">
+
+                                <div class="file-upload">
+                                    <button class="file-upload-btn" id="file-upload-btn" type="button"
+                                            onclick="$('.file-upload-input').trigger( 'click' )">Add Photo
+                                    </button>
+
+                                    <div  class="file-upload-content">
+                                        <input class="file-upload-input" id="file" type='file'  accept="image/*"/>
+                                        <img class="file-upload-image" th:src="@{'data:image/jpeg;base64,'+${studentInfo.APP_PHOTO}}" onerror="this.src='image/default-image.png';" style="width:150px;height:100px;"/>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                                <!--<div class="col-xs-1 ol-sm-1 col-md-1 col-lg-1">
+
+                                    <img th:src="@{'data:image/jpeg;base64,'+${studentInfo.APP_PHOTO}}" class="img-responsive img-thumbnail"
+                                         alt="Student Photo" style="width:150px;height:100px;">
+
+                                    <input type="hidden" id="imdata" name="imdata" th:value="${studentInfo.APP_PHOTO}">
+                                </div>-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" role="tab" id="headingOne_1">
+                        <h4 class="panel-title">
+                            Information regarding your SSC Exam:
+
+                        </h4>
+                    </div>
+                    <div id="collapseOne_2">
+                        <div class="panel-body">
+
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Full Name of School:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.SCHOOL_NAME}" id="SCHOOL_NAME" name="SCHOOL_NAME">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Board</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="js-example-theme-single form-control"
+                                                                 id="BOARD_CODE" name="BOARD_CODE"
+                                                                 style="width: 100%;">
+                                                            <option th:each="board : ${boardList}" th:selected="${board.BOARD_CODE eq studentInfo.BOARD_CODE}" th:value="${board.BOARD_CODE}" th:text="${board.BOARD_NAME}"></option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Exam Roll No.</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.EXAM_ROLL_NO}" maxlength="20" id="EXAM_ROLL_NO" name="EXAM_ROLL_NO" style="width: 40%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+                                                <label >Registration No:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.REG_NO}" maxlength="15" id="REG_NO" name="REG_NO" style="width: 40%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Session</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.SESSION_NO}" maxlength="10" id="SESSION_NO" name="SESSION_NO" style="width: 40%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Exam Year:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control" th:value="${studentInfo.EXAM_YEAR}" maxlength="5" id="EXAM_YEAR" name="EXAM_YEAR" style="width: 40%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >Location of the school</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="js-example-theme-single form-control"
+                                                                name="LOC_CODE" id="LOC_CODE"
+                                                                 style="width: 100%;">
+                                                            <option value="">Select School Location</option>
+                                                            <option th:each="location : ${locationList}" th:selected="${location.LOC_CODE eq studentInfo.LOC_CODE}" th:value="${location.LOC_CODE}" th:text="${location.LOC_NAME}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+                                                <label >SSC Group:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="js-example-theme-single form-control"
+                                                                 name="SSC_GR_CODE" id="SSC_GR_CODE"
+                                                                 style="width: 100%;">
+                                                            <option value="">Select SSC Group</option>
+                                                            <option th:each="group : ${groupList}" th:selected="${group.GR_CODE eq studentInfo.SSC_GR_CODE}" th:value="${group.GR_CODE}" th:text="${group.GR_NAME}"></option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" role="tab" id="headingOne_3">
+                        <h4 class="panel-title">
+                            এসএসসি/দাখিল/সমমানের পরীক্ষায় প্রাপ্তবিষয় ভিত্তিক Grade Point পূরণ করতে হবে
+                            (উদাহরণস্বরূপ : 4.00,4.50,5.00 ইত্যাদি)
+
+                        </h4>
+                    </div>
+                    <div id="collapseOne_3">
+                        <div class="panel-body">
+
+                            <div th:style="${studentInfo.SSC_GR_CODE == '1' ? 'display:block' : 'display:none'}"   id="group1" class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Bangla:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_BANG : ''}" id="GP_BANG1" name="GP_BANG">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >English</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_ENG : ''}" id="GP_ENG1" name="GP_ENG">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Mathematics</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_MATH : ''}" id="GP_MATH1" name="GP_MATH">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Physics:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_PHY : ''}" id="GP_PHY" name="GP_PHY">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Chemistry:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_CHE : ''}"  id="GP_CHE" name="GP_CHE">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Biology:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_BIO : ''}"  id="GP_BIO" name="GP_BIO">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Higher Math:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"  class="form-control science_group_mandatory decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '1' ? studentInfo.GP_HMATH : ''}"  id="GP_HMATH" name="GP_HMATH">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                            <div th:style="${studentInfo.SSC_GR_CODE == '2' ? 'display:block' : 'display:none'}"   id="group2" class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                <div class="row m-b-5">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Bangla:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_BANG : ''}" id="GP_BANG" name="GP_BANG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >English</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_ENG : ''}" id="GP_ENG" name="GP_ENG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Mathematics</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_MATH : ''}" id="GP_MATH" name="GP_MATH">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Science:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_SCIENCE : ''}"  id="GP_SCIENCE" name="GP_SCIENCE">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Economics:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_ECO : ''}"  id="GP_ECO" name="GP_ECO">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Civics &amp; Citizenship:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_CIVICS : ''}"   id="GP_CIVICS" name="GP_CIVICS">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Geography &amp; Environment:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '2' ? studentInfo.GP_GEO : ''}"   id="GP_GEO" name="GP_GEO">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div th:style="${studentInfo.SSC_GR_CODE == '3' ? 'display:block' : 'display:none'}"   id="group3" class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                <div class="row m-b-5">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Bangla:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_BANG : ''}"   id="GP_BANG" name="GP_BANG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >English</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_ENG : ''}"   id="GP_ENG" name="GP_ENG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Mathematics</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_MATH : ''}"  id="GP_MATH" name="GP_MATH">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Quran Majid &; Hadith Sharif:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_QURAN : ''}" id="GP_QURAN" name="GP_QURAN">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Arabic-I & Arabic-II:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_ARABIC : ''}"   id="GP_ARABIC" name="GP_ARABIC">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Aqaid &amp; Fiqh:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_AQAID : ''}"   id="GP_AQAID" name="GP_AQAID">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Islamic History:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '3' ? studentInfo.GP_ISLAM : ''}"   id="GP_ISLAM" name="GP_ISLAM">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div th:style="${studentInfo.SSC_GR_CODE == '4' ? 'display:block' : 'display:none'}" id="group4" class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                <div class="row m-b-5">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Bangla:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_BANG : ''}"  id="GP_BANG" name="GP_BANG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >English</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_ENG : ''}"   id="GP_ENG" name="GP_ENG">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Mathematics</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_MATH : ''}"   id="GP_MATH" name="GP_MATH">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Science:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_SCIENCE : ''}"    id="GP_SCIENCE" name="GP_SCIENCE">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Accounting:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_ACC : ''}"  id="GP_ACC" name="GP_ACC">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Finance &amp; Banking:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_FIN : ''}"  id="GP_FIN" name="GP_FIN">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                            <label >Business Entrepreneurship:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text"  class="form-control decimal_input maximum_input" th:maxlength="4" th:value="${studentInfo.SSC_GR_CODE == '4' ? studentInfo.GP_BUSINT : ''}"   id="GP_BUSINT" name="GP_BUSINT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" id="headingOne_4">
+                        <h2 class="panel-title">
+                            The names and GPA of the other subjects that have been examined:
+
+                        </h2>
+                    </div>
+                    <div id="collapseOne_4">
+                        <div class="panel-body">
+
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-4">
+                                            <span><b>Subjects :</b></span>
+                                            <div class="row m-b-5">
+                                                <input type="text"  class="form-control" th:value="${studentInfo.EXAM_SUB_NAME1}" id="EXAM_SUB_NAME1" name="EXAM_SUB_NAME1">
+                                            </div>
+                                            <div class="row m-b-5">
+                                                <input type="text"  class="form-control" th:value="${studentInfo.EXAM_SUB_NAME2}" id="EXAM_SUB_NAME2" name="EXAM_SUB_NAME2">
+                                            </div>
+                                            <div class="row m-b-5">
+                                                <input type="text"  class="form-control" th:value="${studentInfo.EXAM_SUB_NAME3}" id="EXAM_SUB_NAME3" name="EXAM_SUB_NAME3">
+                                            </div>
+                                            <div class="row">
+                                                <input type="text"  class="form-control" th:value="${studentInfo.EXAM_SUB_NAME4}" id="EXAM_SUB_NAME4" name="EXAM_SUB_NAME4">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 ">
+                                            <span><b>Grade Points :</b></span>
+                                            <div class="row m-b-5 text-center" style="width: 25%;">
+                                                <input type="text"  class="form-control decimal_input" th:value="${studentInfo.GP_EXAM_SUB1}" id="GP_EXAM_SUB1" name="GP_EXAM_SUB1">
+                                            </div>
+                                            <div class="row m-b-5 text-center" style="width: 25%;">
+                                                <input type="text"  class="form-control decimal_input" th:value="${studentInfo.GP_EXAM_SUB2}" id="GP_EXAM_SUB2" name="GP_EXAM_SUB2">
+                                            </div>
+                                            <div class="row m-b-5 text-center" style="width: 25%;">
+                                                <input type="text"  class="form-control decimal_input" th:value="${studentInfo.GP_EXAM_SUB3}" id="GP_EXAM_SUB3" name="GP_EXAM_SUB3">
+                                            </div>
+                                            <div class="row text-center" style="width: 25%;">
+                                                <input type="text"  class="form-control decimal_input" th:value="${studentInfo.GP_EXAM_SUB4}" id="GP_EXAM_SUB4" name="GP_EXAM_SUB4">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-md-4">
+                                            <span><b>Name of SSC Additional Subject & Grade Point :</b></span>
+                                            <div class="form-group">
+                                                <input type="text"  class="form-control" th:value="${studentInfo.ADD_SUB_NAME}" id="ADD_SUB_NAME" name="ADD_SUB_NAME">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span><b>Grade Points :</b></span>
+                                            <div class="form-group" style="width: 25%;">
+                                                <input type="text"  class="form-control decimal_input" th:value="${studentInfo.GP_ADD_SUB}" id="GP_ADD_SUB" name="GP_ADD_SUB">
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                            <label >SSC GPA:</label>
+                                            <label><input type="text" id="SSC_GPA" name="SSC_GPA"  th:maxlength="4" th:value="${studentInfo.SSC_GPA}"  class="form-control decimal_input maximum_input total_gpa"></label>
+
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                            <label >Total No. of A+:</label>
+                                            <label><input type="text" id="TOTAL_APLUS" name="TOTAL_APLUS" th:value="${studentInfo.TOTAL_APLUS}"
+                                                          th:maxlength="2" value="" class="decimal_input form-control"></label>
+                                            <label>(Total availed A+ except Physical Education, Health and
+                                                Sports, and Career Education)</label>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >SSC পরীক্ষায় প্রাপ্ত মোট নম্বর (যদি থাকে ): Total Marks</label>
+                                                <label><input type="text" id="TOTAL_MARKS" name="TOTAL_MARKS" maxlength="4" th:value="${studentInfo.TOTAL_MARKS}" class="form-control decimal_input"></label>
+                                                <label >(প্রাপ্ত মোট নম্বরের ক্ষেত্রে Physical Education, Health and
+                                                    Sports ও  Career Education এ প্রাপ্ত নম্বর যোগ হবে না )</label>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-4">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text-left">
+                                                    <label >Version of SSC Exam :</label>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="hidden" id="SSC_VERSION" name="SSC_VERSION" th:value="${studentInfo.SSC_VERSION}">
+                                                            <select class="js-example-theme-single form-control mandatory-select-item"   style="width: 100%;" disabled>
+                                                                <option value="">Select SSC Version</option>
+                                                                <option th:each="versionInfo : ${versionList}" th:selected="${versionInfo.VAR_CODE eq studentInfo.SSC_VERSION}" th:value="${versionInfo.VAR_CODE}" th:text="${versionInfo.VAR_NAME}"></option>
+
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+
+                                                    <input type="hidden" id="OTP" name="OTP" th:value="${studentInfo.OTP}">
+                                                    <label >কলেজ থেকে ক্ষুদে বার্তা (sms) প্রেরণ করার জন্য ছাত্র অথবা অভিভাবকের মোবাইল নম্বর:</label>
+                                                    <input type="hidden" id="SMS_MOBILE_NO" name="SMS_MOBILE_NO" th:value="${studentInfo.SMS_MOBILE_NO}">
+                                                    <label> <input type="text"  th:value="${studentInfo.SMS_MOBILE_NO}" th:maxlength="20"  class="form-control" disabled>
+                                                </label>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>যমজ ভাই ভর্তি আবেদন করে থাকলে তার এসএসসি রোল ও রেজিস্ট্রেশন নম্বর :</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" th:value="${studentInfo.TB_EXAM_ROLL_NO}" th:maxlength="18" id="TB_EXAM_ROLL_NO" name="TB_EXAM_ROLL_NO" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" th:value="${studentInfo.TB_REG_NO}" th:maxlength="18" id="TB_REG_NO" name="TB_REG_NO">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>ফরম পূরণে কোনো মিথ্যা/ভুল তথ্য দিলে নটর ডেম কলেজে ভর্তির
+                                                    জন্য প্রার্থী অযোগ্য বলে বিবেচিত হবে । Captcha Verification
+                                                    সম্পন্ন হলে Submit বাটনে ক্লিক করুন ।</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text"
+                                                               class="form-control" id="captchaData"
+                                                               th:value="${captcha}" style="font-weight: bolder" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="iptval" name="iptval"
+                                                               class="form-control"
+                                                               placeholder="Input Captcha" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary" id="Verify">Verify</button>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6 text-left">
+
+                                            <label style="color: red; font-size: large; font-weight: bold;" id="levelcap"></label>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                        </div>
+                        <div class = "panel-footer text-center">
+                            <button type="submit" id="btnSave" class="btn btn-primary pull-center" disabled>UPDATE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </form>
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+
+<script src="../js/select2.min.js"></script>
+<script>
+
+
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+
+    $('#captchaData').bind('cut copy paste', function(e) {
+        e.preventDefault();
+    });
+    $("input").blur(function(){
+        $(this).css("border", "1px solid green")
+    });
+    $('.mandatory-select-item').on('change', function(){
+        if ($(this).val()!=0 && $(this).val()!='') {
+            $(this).siblings(".select2-container").css('border', '1px solid green');
+        }else{
+            $(this).siblings(".select2-container").css('border', '1px solid red');
+        }
+    });
+    $(function () {
+        $("input").attr("autocomplete", "fake-name-disable-autofill");
+
+        $('.decimal_input').keypress(function (event) {
+            return (isNumber(event, this))
+        });
+        $('.maximum_input').keyup(function (event) {
+            if(parseFloat($(this).val()) > 5.0) {
+                alert("GP will be 1 to 5");
+                $(this).val("");
+
+            }
+        });
+        $('.total_gpa').keyup(function (event) {
+            if((parseFloat($(this).val()) <5.0) && ($("#APP_CAT").val() == 1 || $("#APP_CAT").val() == 2) ) {
+                alert("GPA must be  5");
+                $(this).val("");
+
+            }
+        });
+
+
+        $("#SSC_GR_CODE").on('change', function () {
+            let id = $('option:selected', this).val();
+
+            if (id == 1) {
+                $("#group1").css("display", "block");
+                $("#group2").css("display", "none");
+                $("#group3").css("display", "none");
+                $("#group4").css("display", "none");
+
+
+
+
+            } else if (id == 2) {
+                $("#group1").css("display", "none");
+                $("#group2").css("display", "block");
+                $("#group3").css("display", "none");
+                $("#group4").css("display", "none");
+
+
+
+            } else if (id == 3) {
+                $("#group1").css("display", "none");
+                $("#group2").css("display", "none");
+                $("#group3").css("display", "block");
+                $("#group4").css("display", "none");
+
+
+
+            } else if (id == 4) {
+                $("#group1").css("display", "none");
+                $("#group2").css("display", "none");
+                $("#group3").css("display", "none");
+                $("#group4").css("display", "block");
+
+
+            } else {
+                $("#group1").css("display", "none");
+                $("#group2").css("display", "none");
+                $("#group3").css("display", "none");
+                $("#group4").css("display", "none");
+
+            }
+        });
+    });
+
+    $("#Verify").click(function() {
+        let bla = $('#iptval').val();
+        let data = $('#captchaData').val();
+        if (bla === "") {
+            document.getElementById('levelcap').innerHTML = 'To Enable Submit Button Please Verify';
+        } else {
+            if (bla.trim() === data.trim()) {
+                document.getElementById('levelcap').innerHTML = 'Successfully Verified. Now You Can Submit Your Information.';
+                document.getElementById("btnSave").disabled = false;
+            } else {
+                document.getElementById("btnSave").disabled = true;
+                document.getElementById('levelcap').innerHTML = 'Failed To Verify';
+            }
+        }
+
+        return false;
+    });
+
+    $("#applicationForm").submit(function(event){
+        event.preventDefault();
+        let formData = $("#applicationForm").serialize();
+        if (isValid()) {
+            if ($(".alert-code").hasClass('hidden')) {
+                $.ajax({
+                    url: "/ndc/application/update",
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        $("#view_page").html(data);
+                        sweetAlert("Saved!", "Application updated Successfully.", "success", 1000, false);
+                    },
+                    error: function () {
+                        sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+                    }
+                });
+            } else {
+                sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+            }
+
+        }
+    });
+
+    function isValid() {
+        let photo = $('#imdata').val()|| '';
+        let group=$('#SSC_GR_CODE').val()|| '';
+        let fMobileNo=$('#F_MOBILE_NO').val()|| '';
+        let mMobileNo=$('#M_MOBILE_NO').val()|| '';
+        let appCat=$('#APP_CAT').val()|| '';
+        let sscGpa=$('#SSC_GPA').val()|| '0';
+
+        let status="0";
+        if (photo.trim().length== 0 || group.trim().length== 0 || fMobileNo.trim().length== 0  || mMobileNo.trim().length== 0) {
+            status="1";
+
+            if (photo.trim().length== 0) {
+                document.getElementById("file-upload-btn").style.border = "1px solid";
+                document.getElementById("file-upload-btn").style.borderColor = "red";
+            }
+
+            if (group.trim().length== 0) {
+                $("#SSC_GR_CODE").siblings(".select2-container").css('border', '1px solid red');
+            }
+
+            if (fMobileNo.trim().length== 0) {
+                document.getElementById("F_MOBILE_NO").style.border = "1px solid";
+                document.getElementById("F_MOBILE_NO").style.borderColor = "red";
+            }
+
+            if (mMobileNo.trim().length== 0) {
+                document.getElementById("M_MOBILE_NO").style.border = "1px solid";
+                document.getElementById("M_MOBILE_NO").style.borderColor = "red";
+            }
+
+
+        }
+
+        if (group=="1") {
+            let bangla=$('#GP_BANG1').val()|| '';
+            let english=$('#GP_ENG1').val()|| '';
+            let math=$('#GP_MATH1').val()|| '';
+
+
+            if (bangla.trim().length== 0 || english.trim().length== 0  || math.trim().length== 0 ) {
+
+                status = "1";
+
+
+                if (bangla.trim().length== 0) {
+                    document.getElementById("GP_BANG1").style.border = "1px solid";
+                    document.getElementById("GP_BANG1").style.borderColor = "red";
+                }
+                if (english.trim().length== 0) {
+                    document.getElementById("GP_ENG1").style.border = "1px solid";
+                    document.getElementById("GP_ENG1").style.borderColor = "red";
+                }
+
+                if (math.trim().length== 0) {
+                    document.getElementById("GP_MATH1").style.border = "1px solid";
+                    document.getElementById("GP_MATH1").style.borderColor = "red";
+                }
+
+
+            }
+
+        }
+        if(  (appCat == 1 || appCat == 2) && (parseFloat(sscGpa) <5.0)) {
+            status = "1";
+            document.getElementById("SSC_GPA").style.border = "1px solid";
+            document.getElementById("SSC_GPA").style.borderColor = "red";
+
+        }
+        if (status=="1"){
+            alert("Please fill up all red marked field.");
+             return false;
+        }
+
+        return true;
+
+
+    }
+
+    const MAX_WIDTH = 90;
+    const MAX_HEIGHT = 100;
+    const MIME_TYPE = "image/jpeg";
+    const QUALITY = 0.9;
+    let imgSize=0.0;
+    const input = document.getElementById("file");
+    input.onchange = function(ev) {
+        const file = ev.target.files[0]; // get the file
+        const blobURL = URL.createObjectURL(file);
+        const img = new Image();
+        img.src = blobURL;
+        img.onerror = function() {
+            URL.revokeObjectURL(this.src);
+            // Handle the failure properly
+            console.log("Cannot load image");
+        };
+        img.onload = function() {
+            URL.revokeObjectURL(this.src);
+            const [newWidth, newHeight] = calculateSize(img, MAX_WIDTH, MAX_HEIGHT);
+            const canvas = document.createElement("canvas");
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, newWidth, newHeight);
+            canvas.toBlob(
+                (blob) => {
+
+                },
+                MIME_TYPE,
+                QUALITY
+            );
+            let dataURL = canvas.toDataURL();
+            dataURL = dataURL.replace(/^data:image\/[a-z]+;base64,/, "");
+            let dataSize=dataURL.length/1024;
+            if(parseFloat(dataSize)>29.0){
+                alert("Student Photo is larger than 32 KB.");
+            }else {
+
+                $(".file-upload-image").attr('src', 'data:image/png;base64,'+dataURL+'');
+                document.getElementById('imdata').value = dataURL;
+
+                $("#file-upload-btn").css("border", "1px solid green")
+
+
+
+            }
+            console.log(dataURL);
+        };
+    };
+
+    function calculateSize(img, maxWidth, maxHeight) {
+        let width = img.width;
+        let height = img.height;
+
+        // calculate the width and height, constraining the proportions
+        if (width > height) {
+            if (width > maxWidth) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+            }
+        } else {
+            if (height > maxHeight) {
+                width = Math.round((width * maxHeight) / height);
+                height = maxHeight;
+            }
+        }
+        return [width, height];
+    }
+
+</script>
+
+
+</html>

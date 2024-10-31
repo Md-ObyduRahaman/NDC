@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- <meta charset="UTF-8"> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>NDC Admission </title>
+	<!-- Favicon-->
+	<!--<link rel="icon" href="image/ati.jpg" type="image/x-icon" >-->
+
+	<!--START:::********************** Project CSS Library *****************************-->
+
+	<!-- Google Fonts -->
+	<link href="../css/google-font.css" rel="stylesheet" type="text/css">
+	<link href="../css/material-icon.css" rel="stylesheet" type="text/css">
+
+	<!-- Waves Effect Css -->
+	<link href="../vendor/node-waves/waves.css" rel="stylesheet" />
+
+	<!-- Animation Css -->
+	<link href="../vendor/animate-css/animate.css" rel="stylesheet" />
+
+	<!-- Dropzone Css -->
+	<link href="../vendor/dropzone/dropzone.css" rel="stylesheet">
+
+
+	<!-- Morris Chart Css-->
+	<link href="../vendor/morrisjs/morris.css" rel="stylesheet" />
+
+	<!-- Sweetalert Css -->
+	<link href="../vendor/sweetalert/sweetalert.css" rel="stylesheet" />
+
+
+	<!-- Bootstrap Spinner Css -->
+	<link href="../vendor/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+	<!-- Bootstrap Tagsinput Css -->
+	<link href="../vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+	<!-- Bootstrap Select Css -->
+
+	<!-- noUISlider Css -->
+	<link href="../vendor/nouislider/nouislider.min.css" rel="stylesheet" />
+
+	<!-- Custom Css -->
+	<link href="../css/style.css" rel="stylesheet">
+
+	<!-- Fontawesome Css -->
+	<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Bootstrap Core Css -->
+	<link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- JQuery DataTable Css -->
+	<link href="../vendor/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+	<link href="../css/themes/all-themes.css" rel="stylesheet" />
+
+	<link href="../css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+
+
+	<!--END:::********************** Project CSS Library *****************************-->
+
+	<!--START:::********************** Project JS Library *****************************-->
+
+	<!-- Jquery Core Js -->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core Js -->
+	<script src="../vendor/bootstrap/js/bootstrap.js"></script>
+
+	<!-- Select Plugin Js -->
+
+	<!-- Slimscroll Plugin Js -->
+	<script src="../vendor/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="../vendor/node-waves/waves.js"></script>
+
+	<!-- Jquery CountTo Plugin Js -->
+	<script src="../vendor/jquery-countto/jquery.countTo.js"></script>
+
+	<!-- Morris Plugin Js -->
+	<script src="../vendor/raphael/raphael.min.js"></script>
+	<script src="../vendor/morrisjs/morris.js"></script>
+	<!-- Chart Plugins Js -->
+
+
+	<!-- ChartJs -->
+	<script src="../vendor/chartjs/Chart.bundle.js"></script>
+
+
+	<!-- Flot Charts Plugin Js -->
+	<!--<script src="../vendor/flot-charts/jquery.flot.js"></script>
+    <script src="../vendor/flot-charts/jquery.flot.resize.js"></script>
+    <script src="../vendor/flot-charts/jquery.flot.pie.js"></script>
+    <script src="../vendor/flot-charts/jquery.flot.categories.js"></script>
+    <script src="../vendor/flot-charts/jquery.flot.time.js"></script>-->
+
+	<!-- Sparkline Chart Plugin Js -->
+	<script src="../vendor/jquery-sparkline/jquery.sparkline.js"></script>
+
+	<!-- Jquery DataTable Plugin Js -->
+	<!--<script src="../vendor/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../vendor/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../vendor/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../js/pages/tables/jquery-datatable.js"></script>-->
+
+	<!-- SweetAlert Plugin Js -->
+	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
+
+	<!-- Custom Js -->
+	<script src="../js/admin.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="../js/pages/index.js"></script>
+	<script src="../js/pages/ui/modals.js"></script>
+	<script src="../js/pages/ui/dialogs.js"></script>
+
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../vendor/bootstrap-notify/bootstrap-notify.js"></script>
+
+	<!-- Demo Js -->
+	<script src="../js/demo.js"></script>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>-->
+	<script src="../js/bootstrap-datepicker.min.js"></script>
+	<script src="../vendor/momentjs/moment.js"></script>
+
+	<script src="../vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<link href="../css/select2.min.css" rel="stylesheet" media="screen">
+
+	<!--END:::********************** Project JS Library *****************************-->
+
+	<style type="text/css">
+		body {
+			font-family: 'Tangerine', serif;
+			/* text-shadow: 2px 2px 2px #aaa; */
+		}
+
+
+		section.content {
+			margin: 65px 0 0 270px;
+			-moz-transition: 0.5s;
+			-o-transition: 0.5s;
+			-webkit-transition: 0.5s;
+			transition: 0.5s;
+			/* height: 590px;
+            overflow: auto;
+            overflow-y: auto; */
+		}
+
+
+		.file-upload {
+			background-color: #ffffff;
+			width: 100%;
+			margin: 0 auto;
+			padding: 5px;
+		}
+
+		.file-upload-btn {
+			width: 100%;
+			margin: 0;
+			color: #fff;
+			background: #1FB264;
+			border: none;
+			padding: 10px;
+			border-radius: 4px;
+			border-bottom: 4px solid #15824B;
+			transition: all .2s ease;
+			outline: none;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		.file-upload-btn:hover {
+			background: #1AA059;
+			color: #ffffff;
+			transition: all .2s ease;
+			cursor: pointer;
+		}
+
+		.file-upload-btn:active {
+			border: 0;
+			transition: all .2s ease;
+		}
+
+		.file-upload-content {
+			display: none;
+			text-align: center;
+		}
+
+		.file-upload-input {
+			position: absolute;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			outline: none;
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		.image-upload-wrap {
+			margin-top: 20px;
+			border: 4px dashed #1FB264;
+			position: relative;
+			height: 120px;
+		}
+
+		/*.image-title-wrap {
+            padding: 0 15px 15px 15px;
+            color: #222;
+        }*/
+
+		.drag-text {
+			text-align: center;
+		}
+
+		.drag-text h3 {
+			font-weight: 100;
+			text-transform: uppercase;
+			color: #15824B;
+			padding: 60px 0;
+		}
+
+		.file-upload-image {
+			max-height: 200px;
+			max-width: 100%;
+			margin: auto;
+			padding: 20px;
+		}
+
+		.remove-image {
+			width: 100%;
+			margin: 0;
+			color: #fff;
+			background: #cd4535;
+			border: none;
+			padding: 10px;
+			border-radius: 4px;
+			border-bottom: 4px solid #b02818;
+			transition: all .2s ease;
+			outline: none;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		.remove-image:hover {
+			background: #c13b2a;
+			color: #ffffff;
+			transition: all .2s ease;
+			cursor: pointer;
+		}
+
+		.remove-image:active {
+			border: 0;
+			transition: all .2s ease;
+		}
+
+		.panel-footer {
+			height: 50px !important;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+
+		<div class="row clearfix" style="font-size: 16px;">
+			<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 text-left">
+				<marquee behavior="scroll" direction="left" style="font-size: 14px; font-weight: bolder"><span
+						style="color: red">Bkash থেকে payment এর message পাওয়ার পর Admit Card Download এ কোন সমস্যা
+						হলে</span> <span style="color: blue">ndc.iadmissionbd.net</span> <span style="color: red">এ
+						প্রবেশ করে Login করে Dashboard থেকে Bkash verification পেইজে এ প্রবেশ করে আপনার মোবাইলে প্রাপ্ত
+						Bkash Transaction Id টি টাইপ করে Submit বাটন এ প্রেস করুন।</span></marquee>
+			</div>
+			<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<header class="col-lg-12 col-md-12 col-sm-12 text-center">
+								<h2>Admission Application Form-2022</h2>
+								<h3>Notre Dame College, Dhaka.</h3>
+							</header>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<form class="form-horizontal" method="post" id="applicationForm" modelAttribute="applicationInfo">
+				<div class="alert-code alert-block alert-danger hidden"></div><br>
+				<input required type="hidden" id="APP_ROLL_NO" name="APP_ROLL_NO" value="0">
+				<div id="rootDiv" class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+					<div class="panel-group">
+						<div class="panel panel-default">
+
+							<div class="panel-heading">
+								<h2 class="panel-title">
+									Student Information
+
+								</h2>
+							</div>
+							<div id="collapseOne_1">
+								<div class="panel-body">
+
+									<div class="col-xs-10 ol-sm-10 col-md-10 col-lg-10">
+										<div class="row m-b-5">
+
+											<div class="col-md-8">
+												<div
+													class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text_left">
+													<label>Apply for admission to study</label>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+													<div class="form-group">
+														<select required class="js-example-theme-single form-control"
+															id="APP_CAT" name="APP_CAT" style="width: 100%;">
+															<option value="">Select your subject </option>
+															<option th:each="category : ${catList}"
+																th:value="${category.CAT_CODE}"
+																th:text="${category.CAT_NAME}"></option>
+														</select>
+
+													</div>
+												</div>
+
+											</div>
+
+
+										</div>
+										<div class="row m-b-5">
+
+											<div class="col-md-8">
+												<div
+													class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text_left">
+													<label>Full Name of Student </br>(According to SSC Admit
+														Card)</label>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+													<div class="form-group">
+														<div class="form-line">
+															<input required oninput="validateNumber(this,60)" type="text"
+																maxlength="60" id="STD_NAME" name="STD_NAME"
+																class="form-control"
+																placeholder="Enter full name of student">
+															<span id="msg60" style="color:red; font-weight:bold">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-4">
+												<div
+													class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text_left">
+													<label>Student's Mobile No:</label>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<div class="form-group">
+														<div class="form-line">
+															<input required type="text" id="STD_MOBILE_NO" name="STD_MOBILE_NO"
+																class="form-control"
+																placeholder="Enter student's mobile no">
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="row m-b-5">
+
+											<div class="col-md-8">
+												<div
+													class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text_left">
+													<label>Religion</label>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+													<div class="form-group">
+
+														<select required class="js-example-theme-single form-control"
+															id="RG_CODE" name="RG_CODE" style="width: 100%;">
+															<option value="">Select Religion</option>
+															<option th:each="religion : ${religionList}"
+																th:value="${religion.RG_CODE}"
+																th:text="${religion.RG_NAME}"></option>
+														</select>
+
+
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-4">
+												<div
+													class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text_left">
+													<label>Religion Sect:</label>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<div class="form-group">
+														<div class="form-line">
+															<input required type="text" id="RG_SECT" name="RG_SECT"
+																class="form-control"
+																placeholder="Shia/Sunni, Brahmana/Kshatriya, Catholic/Baptist">
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+										<div class="row m-b-5">
+
+											<div class="col-md-8">
+												<div
+													class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text_left">
+													<label>Father's Name</label>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+													<div class="form-group">
+														<div class="form-line">
+															<input required oninput="validateNumber(this,50)" maxlength="50"  type="text" id="F_NAME" name="F_NAME"
+																class="form-control" placeholder="Enter father's name">
+														<span id="msg50" style="color:red; font-weight:bold">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-4">
+												<div
+													class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text_left">
+													<label>Father's Mobile No:</label>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<div class="form-group">
+														<div class="form-line">
+															<input required type="text" id="F_MOBILE_NO" maxlength="15"
+																name="F_MOBILE_NO" class="form-control"
+																placeholder="Enter father's mobile No">
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+										<div class="row">
+
+											<div class="col-md-8">
+												<div
+													class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text_left">
+													<label>Mother's Name</label>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+													<div class="form-group">
+														<div class="form-line">
+															<input required oninput="validateNumber(this,49)" maxlength="50" type="text" id="M_NAME" name="M_NAME"
+																class="form-control" placeholder="Enter mother's name">
+																<span id="msg49" style="color:red; font-weight:bold">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-4">
+												<div
+													class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text_left">
+													<label>Mother's Mobile No:</label>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<div class="form-group">
+														<div class="form-line">
+															<input required type="text" id="M_MOBILE_NO" name="M_MOBILE_NO"
+																class="form-control" maxlength="15"
+																placeholder="Enter mother's mobile No">
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+
+									</div>
+									<div class="col-xs-2 ol-sm-2 col-md-2 col-lg-2">
+										<div class="file-upload">
+											<button class="file-upload-btn" type="button"
+												onclick="$('.file-upload-input').trigger( 'click' )">Add Photo
+											</button>
+
+											<div class="image-upload-wrap" id="image-upload-wrap">
+												<input required class="file-upload-input" id="file" type='file'
+													accept="image/*" />
+												<input type="hidden" id="imdata" name="imdata">
+												<div class="drag-text">
+													<h5>Maximum Size 32 KB</h5>
+												</div>
+											</div>
+											<div class="file-upload-content">
+												<img class="file-upload-image" src="#" alt="your image" />
+												<div class="image-title-wrap">
+													<button type="button" onclick="removeUpload()" class="remove-image">
+														Remove</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+
+							<div class="panel-heading" role="tab" id="headingOne_1">
+								<h4 class="panel-title">
+									Information regarding your SSC Exam:
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+									<div class="row m-b-5">
+
+										<div class="col-xs-6 ol-sm-6 col-md-6 col-lg-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+												<label>Full Name of School:</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+												<div class="form-group">
+													<div class="form-line">
+														<input required oninput="validateNumber(this,80)" maxlength="80" type="text" id="SCHOOL_NAME" name="SCHOOL_NAME"
+															class="form-control">
+															<span id="msg80" style="color:red; font-weight:bold">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>Board</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<select required class="js-example-theme-single form-control" id="BOARD_CODE"
+														name="BOARD_CODE" style="width: 100%;">
+														<option value="">Select Board</option>
+														<option th:each="board : ${boardList}"
+															th:value="${board.BOARD_CODE}"
+															th:text="${board.BOARD_NAME}"></option>
+													</select>
+
+
+												</div>
+											</div>
+
+										</div>
+
+
+									</div>
+									<div class="row m-b-5">
+
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>Exam Roll No.</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<div class="form-line">
+														<input required type="text" id="EXAM_ROLL_NO" name="EXAM_ROLL_NO"
+															max="15" class="form-control" style="width: 30%;">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+												<label>Registration No:</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+												<div class="form-group">
+													<div class="form-line">
+														<input required type="text" id="REG_NO" name="REG_NO" maxlength="20"
+															class="form-control" style="width: 30%;">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+									<div class="row m-b-5">
+
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>Session</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<div class="form-line">
+														<input required type="text" id="SESSION_NO" name="SESSION_NO"
+															maxlength="10" class="form-control" style="width: 30%;">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>Exam Year:</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<div class="form-line">
+														<input required type="text" id="EXAM_YEAR" name="EXAM_YEAR"
+															class="form-control" maxlength="5" style="width: 30%;">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+									<div class="row m-b-5">
+
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>Location of the school</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<select required class="js-example-theme-single form-control" name="LOC_CODE"
+														id="LOC_CODE" style="width: 100%;">
+														<option value="">Select School Location</option>
+														<option th:each="location : ${locationList}"
+															th:value="${location.LOC_CODE}"
+															th:text="${location.LOC_NAME}"></option>
+													</select>
+
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-5 col-xs-4 form-control-label align-left">
+												<label>SSC Group:</label>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-7 col-xs-8">
+												<div class="form-group">
+													<select required
+														class="js-example-theme-single form-control mandatory-select-item"
+														name="SSC_GR_CODE" id="SSC_GR_CODE" style="width: 100%;">
+														<option value="">Select SSC Group</option>
+														<!--<option th:each="group : ${groupList}" th:value="${group.GR_CODE}" th:text="${group.GR_NAME}"></option>-->
+													</select>
+
+
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+
+								</div>
+
+
+							</div>
+
+						</div>
+
+						<div class="panel panel-default" id="group1" style="display: none;">
+
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									এসএসসি/দাখিল/সমমানের পরীক্ষায় প্রাপ্তবিষয় ভিত্তিক Grade Point পূরণ করতে হবে
+									(উদাহরণস্বরূপ : 3.50,4.00,5.00 ইত্যাদি)
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 ">
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Bangla:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BANG1" name="GP_BANG1"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>English</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ENG1" name="GP_ENG1"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Mathematics</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_MATH1" name="GP_MATH1"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Physics:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_PHY" name="GP_PHY"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Chemistry:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_CHE" name="GP_CHE"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Biology:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BIO" name="GP_BIO"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Higher Math:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_HMATH" name="GP_HMATH"
+															class="form-control science_group_mandatory decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+
+
+
+							</div>
+
+						</div>
+						<div class="panel panel-default" id="group2" style="display: none;">
+
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									এসএসসি/দাখিল/সমমানের পরীক্ষায় প্রাপ্তবিষয় ভিত্তিক Grade Point পূরণ করতে হবে
+									(উদাহরণস্বরূপ : 3.50,4.00,5.00 ইত্যাদি)
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 ">
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Bangla:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BANG2" name="GP_BANG2"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>English</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ENG2" name="GP_ENG2"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Mathematics</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_MATH2" name="GP_MATH2"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Science:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_SCIENCE2" name="GP_SCIENCE2"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Economics:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ECO" name="GP_ECO"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Civics & Citizenship:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_CIVICS" name="GP_CIVICS"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Geography & Environment:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_GEO" name="GP_GEO"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+
+								</div>
+
+
+
+							</div>
+
+						</div>
+						<div class="panel panel-default" id="group3" style="display: none;">
+
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									এসএসসি/দাখিল/সমমানের পরীক্ষায় প্রাপ্তবিষয় ভিত্তিক Grade Point পূরণ করতে হবে
+									(উদাহরণস্বরূপ : 3.50,4.00,5.00 ইত্যাদি)
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 ">
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Bangla:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BANG3" name="GP_BANG3"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>English</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ENG3" name="GP_ENG3"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Mathematics</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_MATH3" name="GP_MATH3"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Quran Majid Hadith Sharif:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_QURAN" name="GP_QURAN"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Arabic-I Arabic-II:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ARABIC" name="GP_ARABIC"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Aqaid & Fiqh:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_AQAID" name="GP_AQAID"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Islamic History:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ISLAM" name="GP_ISLAM"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+
+								</div>
+
+
+							</div>
+
+						</div>
+						<div class="panel panel-default" id="group4" style="display: none;">
+
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									এসএসসি/দাখিল/সমমানের পরীক্ষায় প্রাপ্তবিষয় ভিত্তিক Grade Point পূরণ করতে হবে
+									(উদাহরণস্বরূপ : 3.50,4.00,5.00 ইত্যাদি)
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 ">
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Bangla:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BANG4" name="GP_BANG4"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>English</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ENG4" name="GP_ENG4"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Mathematics</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_MATH4" name="GP_MATH4"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Science:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_SCIENCE4" name="GP_SCIENCE4"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<div class="row m-b-5">
+
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Accounting:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_ACC" name="GP_ACC"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Finance & Banking:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_FIN" name="GP_FIN"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<div
+												class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+												<label>Business Entrepreneurship:</label>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="GP_BUSINT" name="GP_BUSINT"
+															class="form-control decimal_input maximum_input">
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div id="subjectDiv" class="panel panel-default" style="display: none">
+
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									The names and GPA of the other subjects that have been examined:
+
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+								<div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+
+									<div class="row">
+										<div class="col-md-1 m-r-5 text-center">
+											<span><b>SL# :</b></span>
+											<div class="row m-b-5">
+												<input type="text" value="1." class="form-control text-center" disabled>
+											</div>
+											<div class="row m-b-5">
+												<input type="text" value="2." class="form-control text-center" disabled>
+											</div>
+											<div class="row m-b-5 ">
+												<input type="text" value="3." class="form-control text-center" disabled>
+											</div>
+											<div class="row">
+												<input type="text" value="4." class="form-control text-center" disabled>
+											</div>
+										</div>
+										<div class="col-md-2 m-r-5">
+											<span><b>Subjects :</b></span>
+											<div class="row m-b-5">
+												<input type="text" id="EXAM_SUB_NAME1" name="EXAM_SUB_NAME1"
+													th:maxlength="30" value="" class="form-control">
+											</div>
+											<div class="row m-b-5">
+												<input type="text" id="EXAM_SUB_NAME2" name="EXAM_SUB_NAME2"
+													th:maxlength="30" value="" class="form-control">
+											</div>
+											<div class="row m-b-5 ">
+												<input type="text" id="EXAM_SUB_NAME3" name="EXAM_SUB_NAME3"
+													th:maxlength="30" value="" class="form-control">
+											</div>
+											<div class="row">
+												<input type="text" id="EXAM_SUB_NAME4" name="EXAM_SUB_NAME4"
+													th:maxlength="30" value="" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-2">
+											<span><b>Grade Points :</b></span>
+											<div class="row m-b-5">
+												<input type="text" id="GP_EXAM_SUB1" name="GP_EXAM_SUB1"
+													th:maxlength="4" value=""
+													class="form-control decimal_input maximum_input" style="width: 50%">
+											</div>
+											<div class="row m-b-5">
+												<input type="text" id="GP_EXAM_SUB2" name="GP_EXAM_SUB2"
+													th:maxlength="4" value=""
+													class="form-control decimal_input maximum_input" style="width: 50%">
+											</div>
+											<div class="row m-b-5">
+												<input type="text" id="GP_EXAM_SUB3" name="GP_EXAM_SUB3"
+													th:maxlength="4" value=""
+													class="form-control decimal_input maximum_input" style="width: 50%">
+											</div>
+											<div class="row">
+												<input type="text" id="GP_EXAM_SUB4" name="GP_EXAM_SUB4"
+													th:maxlength="30" value=""
+													class="form-control decimal_input maximum_input" style="width: 50%">
+											</div>
+										</div>
+
+
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<span><b>Name of SSC Additional Subject & Grade Point :</b></span>
+											<div class="form-group">
+												<input required type="text" id="ADD_SUB_NAME" name="ADD_SUB_NAME"
+													th:maxlength="30" value="" class="form-control">
+											</div>
+
+										</div>
+										<div class="col-md-3">
+											<span><b>Grade Points :</b></span>
+											<div class="form-group">
+												<input required type="text" id="GP_ADD_SUB" name="GP_ADD_SUB" th:maxlength="4"
+													value="" class="form-control decimal_input maximum_input"
+													style="width: 25%;">
+											</div>
+
+										</div>
+
+
+									</div>
+									<div class="row m-b-5">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+											<label>SSC GPA:</label>
+											<label><input required type="text" id="SSC_GPA" name="SSC_GPA" th:maxlength="4"
+													class="form-control decimal_input maximum_input total_gpa"></label>
+
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+											<label>Total No. of A+:</label>
+											<label><input required type="text" id="TOTAL_APLUS" name="TOTAL_APLUS"
+													th:maxlength="2" value=""
+													class="decimal_input form-control"></label>
+											<label>(Total availed A+ except Physical Education, Health and
+												Sports, and Career Education)</label>
+
+										</div>
+
+									</div>
+
+
+
+
+								</div>
+
+
+							</div>
+
+						</div>
+						<div class="panel panel-default">
+
+
+							<div id="collapseOne_4">
+								<div class="panel-body">
+
+
+									<div class="row">
+										<div class="col-md-4">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div
+													class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text-left">
+													<label>Version of SSC Exam :</label>
+
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<div class="form-group">
+														<div class="form-line">
+
+															<select required
+																class="js-example-theme-single form-control mandatory-select-item"
+																id="SSC_VERSION" name="SSC_VERSION"
+																style="width: 100%;">
+																<option value="">Select SSC Version</option>
+																<option th:each="versionInfo : ${versionList}"
+																	th:value="${versionInfo.VAR_CODE}"
+																	th:text="${versionInfo.VAR_NAME}"></option>
+
+															</select>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+
+
+										</div>
+										<div class="col-md-8">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+													<label>কলেজ থেকে ক্ষুদে বার্তা (sms) প্রেরণ করার জন্য ছাত্র অথবা
+														অভিভাবকের মোবাইল নম্বর:</label><label> <input required type="text"
+															id="SMS_MOBILE_NO" name="SMS_MOBILE_NO" th:maxlength="20"
+															class="form-control" placeholder="Min 11 Digit">
+													</label>
+
+												</div>
+
+											</div>
+
+
+										</div>
+
+
+
+									</div>
+
+
+
+
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>যমজ ভাই ভর্তি আবেদন করে থাকলে তার এসএসসি রোল ও রেজিস্ট্রেশন নম্বর
+													:</label>
+											</div>
+
+										</div>
+
+
+									</div>
+									<div class="row">
+
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" class="form-control" id="TB_EXAM_ROLL_NO"
+															name="TB_EXAM_ROLL_NO" placeholder="SSC Roll">
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="TB_REG_NO" name="TB_REG_NO"
+															class="form-control" placeholder="Registration Number">
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+
+
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>ফরম পূরণে কোনো মিথ্যা/ভুল তথ্য দিলে নটর ডেম কলেজে ভর্তির
+													জন্য প্রার্থী অযোগ্য বলে বিবেচিত হবে । Captcha Verification
+													সম্পন্ন হলে Submit বাটনে ক্লিক করুন ।</label>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<div class="row">
+
+										<div class="col-md-6">
+											<div
+												class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label align-left">
+												<div id="notcp" class="form-group">
+													<div class="form-line">
+														<input type="text" id="captchaData" class="form-control"
+															th:value="${captcha}" style="font-weight: bolder" readonly>
+
+
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" id="iptval" name="iptval"
+															class="form-control" style="font-weight: bolder"
+															placeholder="Input Captcha">
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+												<div class="form-group">
+													<button type="button" class="btn btn-primary"
+														id="Verify">Verify</button>
+
+												</div>
+											</div>
+
+
+										</div>
+
+										<div class="col-md-6 text-left">
+
+											<label style="color: red; font-size: large; font-weight: bold;"
+												id="levelcap"></label>
+
+										</div>
+									</div>
+
+
+
+
+								</div>
+
+
+							</div>
+							<div class="panel-footer text-center">
+								<button type="submit" id="btnSave" class="btn btn-success waves-effect"
+									disabled>SUBMIT</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+<script src="../js/select2.min.js"></script>
+<script>
+
+	$(".js-example-theme-single").select2({
+		theme: "classic"
+	});
+	$("input").blur(function () {
+		$(this).css("border", "1px solid green")
+	});
+
+	$('#captchaData').bind('cut copy paste', function (e) {
+		e.preventDefault();
+	});
+
+	$('.mandatory-select-item').on('change', function () {
+		if ($(this).val() != 0 && $(this).val() != '') {
+			$(this).siblings(".select2-container").css('border', '1px solid green');
+		} else {
+			$(this).siblings(".select2-container").css('border', '1px solid red');
+		}
+	});
+
+	$(function () {
+		$("input").attr("autocomplete", "fake-name-disable-autofill");
+
+		$('.decimal_input').keypress(function (event) {
+			return (isNumber(event, this))
+		});
+
+		$('.maximum_input').keyup(function (event) {
+			if (parseFloat($(this).val()) > 5.0) {
+				alert("GP will be 1 to 5");
+				$(this).val("");
+
+			}
+		});
+
+		$('.total_gpa').keyup(function (event) {
+			if ((parseFloat($(this).val()) < 5.0) && ($("#APP_CAT").val() == 1 || $("#APP_CAT").val() == 2)) {
+				alert("GPA must be  5");
+				$(this).val("");
+
+			}
+		});
+
+
+
+		$("#SSC_GR_CODE").on('change', function () {
+			let id = $('option:selected', this).val();
+
+			if (id == 1) {
+				$("#group1").css("display", "block");
+				$("#group2").css("display", "none");
+				$("#group3").css("display", "none");
+				$("#group4").css("display", "none");
+
+				$('#GP_BANG1').attr('name', 'GP_BANG');
+				$('#GP_ENG1').attr('name', 'GP_ENG');
+				$('#GP_MATH1').attr('name', 'GP_MATH');
+
+				$('#GP_BANG2').attr('name', 'GP_BANG2');
+				$('#GP_ENG2').attr('name', 'GP_ENG2');
+				$('#GP_MATH2').attr('name', 'GP_MATH2');
+				$('#GP_SCIENCE2').attr('name', 'GP_SCIENCE2');
+
+				$('#GP_BANG3').attr('name', 'GP_BANG3');
+				$('#GP_ENG3').attr('name', 'GP_ENG3');
+				$('#GP_MATH3').attr('name', 'GP_MATH3');
+
+				$('#GP_BANG4').attr('name', 'GP_BANG4');
+				$('#GP_ENG4').attr('name', 'GP_ENG4');
+				$('#GP_MATH4').attr('name', 'GP_MATH4');
+				$('#GP_SCIENCE4').attr('name', 'GP_SCIENCE4');
+
+
+
+			} else if (id == 2) {
+				$("#group1").css("display", "none");
+				$("#group2").css("display", "block");
+				$("#group3").css("display", "none");
+				$("#group4").css("display", "none");
+
+				$('#GP_BANG2').attr('name', 'GP_BANG');
+				$('#GP_ENG2').attr('name', 'GP_ENG');
+				$('#GP_MATH2').attr('name', 'GP_MATH');
+				$('#GP_SCIENCE2').attr('name', 'GP_SCIENCE');
+
+				$('#GP_BANG1').attr('name', 'GP_BANG1');
+				$('#GP_ENG1').attr('name', 'GP_ENG1');
+				$('#GP_MATH1').attr('name', 'GP_MATH1');
+
+				$('#GP_BANG3').attr('name', 'GP_BANG3');
+				$('#GP_ENG3').attr('name', 'GP_ENG3');
+				$('#GP_MATH3').attr('name', 'GP_MATH3');
+
+				$('#GP_BANG4').attr('name', 'GP_BANG4');
+				$('#GP_ENG4').attr('name', 'GP_ENG4');
+				$('#GP_MATH4').attr('name', 'GP_MATH4');
+				$('#GP_SCIENCE4').attr('name', 'GP_SCIENCE4');
+
+			} else if (id == 3) {
+				$("#group1").css("display", "none");
+				$("#group2").css("display", "none");
+				$("#group3").css("display", "block");
+				$("#group4").css("display", "none");
+
+				$('#GP_BANG3').attr('name', 'GP_BANG');
+				$('#GP_ENG3').attr('name', 'GP_ENG');
+				$('#GP_MATH3').attr('name', 'GP_MATH');
+
+				$('#GP_BANG1').attr('name', 'GP_BANG1');
+				$('#GP_ENG1').attr('name', 'GP_ENG1');
+				$('#GP_MATH1').attr('name', 'GP_MATH1');
+
+				$('#GP_BANG2').attr('name', 'GP_BANG2');
+				$('#GP_ENG2').attr('name', 'GP_ENG2');
+				$('#GP_MATH2').attr('name', 'GP_MATH2');
+				$('#GP_SCIENCE2').attr('name', 'GP_SCIENCE2');
+
+				$('#GP_BANG4').attr('name', 'GP_BANG4');
+				$('#GP_ENG4').attr('name', 'GP_ENG4');
+				$('#GP_MATH4').attr('name', 'GP_MATH4');
+				$('#GP_SCIENCE4').attr('name', 'GP_SCIENCE4');
+
+			} else if (id == 4) {
+				$("#group1").css("display", "none");
+				$("#group2").css("display", "none");
+				$("#group3").css("display", "none");
+				$("#group4").css("display", "block");
+
+				$('#GP_BANG3').attr('name', 'GP_BANG3');
+				$('#GP_ENG3').attr('name', 'GP_ENG3');
+				$('#GP_MATH3').attr('name', 'GP_MATH3');
+
+				$('#GP_BANG1').attr('name', 'GP_BANG1');
+				$('#GP_ENG1').attr('name', 'GP_ENG1');
+				$('#GP_MATH1').attr('name', 'GP_MATH1');
+
+				$('#GP_BANG2').attr('name', 'GP_BANG2');
+				$('#GP_ENG2').attr('name', 'GP_ENG2');
+				$('#GP_MATH2').attr('name', 'GP_MATH2');
+				$('#GP_SCIENCE2').attr('name', 'GP_SCIENCE2');
+
+				$('#GP_BANG4').attr('name', 'GP_BANG');
+				$('#GP_ENG4').attr('name', 'GP_ENG');
+				$('#GP_MATH4').attr('name', 'GP_MATH');
+				$('#GP_SCIENCE4').attr('name', 'GP_SCIENCE');
+
+			} else {
+				$("#group1").css("display", "none");
+				$("#group2").css("display", "none");
+				$("#group3").css("display", "none");
+				$("#group4").css("display", "none");
+
+			}
+			if (id == 1 || id == 2 || id == 3 || id == 4) {
+				$("#subjectDiv").css("display", "block");
+			} else {
+				$("#subjectDiv").css("display", "none");
+			}
+		});
+	});
+
+	$("#Verify").click(function () {
+		let bla = $('#iptval').val();
+		let data = $('#captchaData').val();
+		if (bla === "") {
+			document.getElementById('levelcap').innerHTML = 'To Enable Submit Button Please Verify';
+		} else {
+			if (bla.trim() === data.trim()) {
+				document.getElementById('levelcap').innerHTML = 'Successfully Verified. Now You Can Submit Your Information.';
+				document.getElementById("btnSave").disabled = false;
+			} else {
+				document.getElementById("btnSave").disabled = true;
+				document.getElementById('levelcap').innerHTML = 'Failed To Verify';
+			}
+		}
+
+		return false;
+	});
+
+
+
+
+
+
+
+
+	$("#applicationForm").submit(function (event) {
+		event.preventDefault();
+		let formData = $("#applicationForm").serialize();
+		if (isValid()) {
+			if ($(".alert-code").hasClass('hidden')) {
+				$.ajax({
+					url: "/ndc/application/save",
+					type: 'POST',
+					data: formData,
+					async: false,
+					success: function (data) {
+						sweetAlert("Saved!", "Application submitted Successfully.", "success", 4000, false);
+						window.setTimeout(function () {
+							window.location.href = "/ndc";
+						}, 3000);
+					},
+					error: function () {
+						sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+					}
+				});
+			} else {
+				sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+			}
+
+		}
+	});
+
+	function isValid() {
+		let photo = $('#imdata').val() || '';
+		let smsMobileNo = $('#SMS_MOBILE_NO').val() || '';
+		let group = $('#SSC_GR_CODE').val() || '';
+		let fMobileNo = $('#F_MOBILE_NO').val() || '';
+		let mMobileNo = $('#M_MOBILE_NO').val() || '';
+		let sscVersion = $('#SSC_VERSION').val() || '';
+		let appCat = $('#APP_CAT').val() || '';
+		let sscGpa = $('#SSC_GPA').val() || '0';
+
+
+
+		var status = "0";
+		if (photo.trim().length == 0 || sscVersion.trim().length == 0 || smsMobileNo.trim().length == 0 || smsMobileNo.trim().length <= 10 || group.trim().length == 0 || fMobileNo.trim().length == 0 || mMobileNo.trim().length == 0) {
+			status = "1";
+
+
+			if (photo.trim().length == 0) {
+				document.getElementById("image-upload-wrap").style.border = "1px solid";
+				document.getElementById("image-upload-wrap").style.borderColor = "red";
+			}
+
+
+			if (sscVersion.trim().length == 0) {
+
+				$("#SSC_VERSION").siblings(".select2-container").css('border', '1px solid red');
+
+			}
+
+			if (smsMobileNo.trim().length == 0 || smsMobileNo.trim().length <= 10) {
+				document.getElementById("SMS_MOBILE_NO").style.border = "1px solid";
+				document.getElementById("SMS_MOBILE_NO").style.borderColor = "red";
+			}
+
+			if (group.trim().length == 0) {
+				$("#SSC_GR_CODE").siblings(".select2-container").css('border', '1px solid red');
+			}
+			if (fMobileNo.trim().length == 0) {
+				document.getElementById("F_MOBILE_NO").style.border = "1px solid";
+				document.getElementById("F_MOBILE_NO").style.borderColor = "red";
+			}
+			if (mMobileNo.trim().length == 0) {
+				document.getElementById("M_MOBILE_NO").style.border = "1px solid";
+				document.getElementById("M_MOBILE_NO").style.borderColor = "red";
+			}
+
+
+		}
+
+		if (group == "1") {
+			let bangla = $('#GP_BANG1').val() || '';
+			let english = $('#GP_ENG1').val() || '';
+			let math = $('#GP_MATH1').val() || '';
+
+			if (bangla.trim().length == 0 || english.trim().length == 0 || math.trim().length == 0) {
+
+				status = "1";
+
+
+				if (bangla.trim().length == 0) {
+					document.getElementById("GP_BANG1").style.border = "1px solid";
+					document.getElementById("GP_BANG1").style.borderColor = "red";
+				}
+				if (english.trim().length == 0) {
+					document.getElementById("GP_ENG1").style.border = "1px solid";
+					document.getElementById("GP_ENG1").style.borderColor = "red";
+				}
+				if (math.trim().length == 0) {
+					document.getElementById("GP_MATH1").style.border = "1px solid";
+					document.getElementById("GP_MATH1").style.borderColor = "red";
+				}
+
+			}
+
+		}
+
+		if ((appCat == 1 || appCat == 2) && (parseFloat(sscGpa) < 5.0)) {
+			status = "1";
+			document.getElementById("SSC_GPA").style.border = "1px solid";
+			document.getElementById("SSC_GPA").style.borderColor = "red";
+
+		}
+
+		if (status == "1") {
+
+			alert("Please fill up all red marked field.");
+
+			return false;
+		}
+
+		return true;
+
+	}
+	const MAX_WIDTH = 90;
+	const MAX_HEIGHT = 100;
+	const MIME_TYPE = "image/jpeg";
+	const QUALITY = 0.9;
+	let imgSize = 0.0;
+	const input = document.getElementById("file");
+	input.onchange = function (ev) {
+		const file = ev.target.files[0]; // get the file
+		const blobURL = URL.createObjectURL(file);
+		const img = new Image();
+		img.src = blobURL;
+		img.onerror = function () {
+			URL.revokeObjectURL(this.src);
+			// Handle the failure properly
+			console.log("Cannot load image");
+		};
+		img.onload = function () {
+			URL.revokeObjectURL(this.src);
+			const [newWidth, newHeight] = calculateSize(img, MAX_WIDTH, MAX_HEIGHT);
+			const canvas = document.createElement("canvas");
+			canvas.width = newWidth;
+			canvas.height = newHeight;
+			const ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0, newWidth, newHeight);
+			canvas.toBlob(
+				(blob) => {
+
+				},
+				MIME_TYPE,
+				QUALITY
+			);
+			let dataURL = canvas.toDataURL();
+			dataURL = dataURL.replace(/^data:image\/[a-z]+;base64,/, "");
+			let dataSize = dataURL.length / 1024;
+			if (parseFloat(dataSize) > 29.0) {
+				alert("Student Photo is larger than 32 KB.");
+			} else {
+
+				$('.image-upload-wrap').hide();
+				$(".file-upload-image").attr('src', 'data:image/png;base64,' + dataURL + '');
+				$('.file-upload-content').show();
+				document.getElementById('imdata').value = dataURL;
+
+			}
+			console.log(dataURL);
+		};
+	};
+
+	function calculateSize(img, maxWidth, maxHeight) {
+		let width = img.width;
+		let height = img.height;
+
+		// calculate the width and height, constraining the proportions
+		if (width > height) {
+			if (width > maxWidth) {
+				height = Math.round((height * maxWidth) / width);
+				width = maxWidth;
+			}
+		} else {
+			if (height > maxHeight) {
+				width = Math.round((width * maxHeight) / height);
+				height = maxHeight;
+			}
+		}
+		return [width, height];
+	}
+	function removeUpload() {
+		$('.file-upload-content').hide();
+		$('.image-upload-wrap').show();
+		$(".file-upload-image").attr('src', '#');
+		$("#imdata").val("");
+	}
+
+
+
+
+	$(document).ready(function () {
+		$("#APP_CAT").change(function () {
+			var Dropdown = null;
+			$("#SSC_GR_CODE").empty();
+
+			Dropdown = $("#SSC_GR_CODE");
+			let appCat = $('#APP_CAT').val();
+			//alert(appCat)
+			if (appCat == "1" || appCat == "2") {
+				$("#SSC_GR_CODE").empty();
+				$("<option>").val("").text("Select book").appendTo(Dropdown);
+				$("<option>").val("1").text("Scince").appendTo(Dropdown);
+
+			}
+			if (appCat == "3") {
+				$("#SSC_GR_CODE").empty();
+				$("<option>").val("").text("Select book").appendTo(Dropdown);
+				$("<option>").val("1").text("Scince").appendTo(Dropdown);
+				$("<option>").val("2").text("Humanities").appendTo(Dropdown);
+				$("<option>").val("3").text("General").appendTo(Dropdown);
+				$("<option>").val("4").text("Business Studies").appendTo(Dropdown);
+			}
+			if (appCat == "4") {
+				$("#SSC_GR_CODE").empty();
+				$("<option>").val("").text("Select book").appendTo(Dropdown);
+				$("<option>").val("1").text("Scince").appendTo(Dropdown);
+				$("<option>").val("3").text("General").appendTo(Dropdown);
+				$("<option>").val("4").text("Business Studies").appendTo(Dropdown);
+			}
+
+		})
+	})
+
+</script>
+<script>
+	function validateNumber(input, digit) {
+		var number = input.value.trim();
+		var numberLength = number.length;
+		var errorMessage = document.getElementById('msg'+digit);
+
+		if (numberLength == digit) {
+			errorMessage.textContent = 'The number should have exactly ' + digit + ' digits.';
+			input.setCustomValidity('The number should have exactly ' + digit + ' digits.');
+		} else {
+			errorMessage.textContent = '';
+			input.setCustomValidity('');
+		}
+	}
+</script>
+
+</html>

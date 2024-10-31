@@ -1,0 +1,214 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admit Card</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <style>
+        * {
+
+            font-family: 'Times New Roman';
+        }
+
+        #invoice {
+            border: dashed #000000;
+            height: 1000px;
+            width: 750px;
+            margin: 20px;
+            padding: 20px;
+
+        }
+
+        #name {
+
+            margin-top: 10px;
+
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #roll {
+            margin-top: 75%;
+        }
+
+        #signature {
+            margin-left: 75%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+
+<body onload="download()" ;="" id="invoice" cz-shortcut-listen="true" style="">
+
+
+<div class="container">
+
+    <!-- include for admit card download -->
+
+
+
+    <!-- include for admit card download -->
+
+    <div class="admit_card">
+
+        <div class="row">
+            <div class="col-md-2">
+                <img th:src="@{/image/ndc_logo.jpg}" alt="logo" width="90px" height="90px" style="float: right;">
+            </div>
+
+            <div class="col-md-7">
+                <h4 style="font-size: 18px; font-weight: bold;  text-align: center;">
+                    NOTRE DAME COLLEGE, DHAKA
+                </h4>
+                <h5 style="font-size: 14px; font-weight: bold; text-align: center;"> Admission 2022 </h5>
+                <br>
+                <h6 class="border" style="text-align: center; font-weight: bold; ">
+                    Admit Card
+                </h6>
+
+                <h6 class="mt-3" style="font-size: 16px; font-family:Calibri; text-align: center;">
+                    <input type="hidden" id="APP_ROLL_NO" name="APP_ROLL_NO" th:value="${studentInfo.APP_ROLL_NO}">
+                    <i>Applied for admission in group : </i>
+                    <span th:if="${studentInfo.APP_CAT == '1'} " style="font-weight: bold;"><i>Science(Bangla)</i></span>
+                    <span th:if="${studentInfo.APP_CAT == '2'}" style="font-weight: bold;"><i>Science( Eng. Version)</i></span>
+                    <span th:if="${studentInfo.APP_CAT == '3'}" style="font-weight: bold;"><i>Humanities</i></span>
+                    <span th:if="${studentInfo.APP_CAT == '4'}" style="font-weight: bold;"><i>Business Studies</i></span>
+
+                </h6>
+            </div>
+
+            <div class="col-md-3">
+                <div id="roll">
+                    <h6 style=" font-size: 12px; font-weight: bold; text-align: center;">Sl. No. of. Appl. Form</h6>
+                    <label style="border: 1px solid black; height: 25px; width: 150px; text-align : center; margin-top: 10px;">
+                        [[${studentInfo.APP_ROLL_NO}]]                        </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <span style="font-size: 16px; font-weight: bold; margin-bottom:0;">&nbsp; 1. &nbsp; Name of Student &nbsp;: &nbsp; [[${studentInfo.STD_NAME}]]  </span>
+                    <p> <small style="font-size: 10px;">&nbsp; &nbsp; &nbsp; (According to your SSC Admit Card)</small></p>
+                </div>
+                <p style="font-size: 16px; font-weight: bold;">&nbsp; 2. &nbsp; Father's Name &nbsp; &nbsp; &nbsp;: &nbsp; [[${studentInfo.F_NAME}]]</p>
+                <p style="font-size: 16px; font-weight: bold;">&nbsp; 3. &nbsp; Mother's Name &nbsp; &nbsp;: &nbsp; [[${studentInfo.M_NAME}]]</p>
+            </div>
+            <div class="col-md-4 ">
+                <!-- imahe starts  -->
+                <div class=" ms-1" style="margin-left: 25%;">
+                    <img th:src="@{'data:image/jpeg;base64,'+${studentInfo.APP_PHOTO}}" class="img-responsive img-thumbnail"
+                         alt="Student Photo" id="output_image" width="150px" height="120px" style="margin-left: 10px;">
+                    </div>
+                <div style="margin-left: 8%;">
+                    <p class="mt-2 " style="border: 1px solid black; width: 200px; margin-left: 0">
+                        Exam Date: [[${seatPlanInfo.EXAM_DATE}]] </br>
+                        Exam Time: [[${seatPlanInfo.EXAM_TIME}]] <br>
+                        Exam Room: [[${seatPlanInfo.ROOM_NO}]] <br>
+                        Name of Building: <br> [[${seatPlanInfo.BUILDING_NO}]] , [[${seatPlanInfo.FLOOR_NO}]]                       </p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div>
+            <h6 id="name"> নির্দেশাবলিঃ </h6>
+            <h6 id="name" style="font-size: 14px;">১ । লিখিত ও মৌখিক পরীক্ষার সময় আবেদনকারীকে অবশ্যই এই প্রবেশপএ সঙ্গে আনতে হবে । প্রবেশপএ ছাড়া পরীক্ষায় অংশগ্রহণ করা যাবে না । </h6>
+            <h6 id="name" style="font-size: 14px;">২। ভর্তি আবেদনের প্রবেশপত্রে উল্লিখিত তারিখ ও সময় অনুযায়ী লিখিত পরীক্ষায় অংশগ্রহণ করতে হবে। </h6>
+            <h6 id="name" style="font-size: 14px;">৩ । পরীক্ষার দিন ৩০ মিনিট আগে কলেজে এসে আসন বিন্যাস দেখে নির্ধারিত কক্ষে গিয়ে পরীক্ষায় অংশগ্রহণ করতে হবে।</h6>
+            <h6 id="name" style="font-size: 14px;">
+                ৪ । পরীক্ষার সময় এসএসসি পরীক্ষার ফলাফলের ইন্টারনেট প্রিন্ট কপি ও রেজিস্ট্রেশন কার্ড সঙ্গে আনতে হবে। পরীক্ষার জন্য
+                কালো বলপেন আনবে ও প্রয়োজনে এসএসসি পরীক্ষায় অনুমোদিত সাধারণ সায়েন্টিফিক ক্যালকুলেটর, প্লাস্টিকের স্বচ্ছ ফাইল
+                ফোল্ডার ও হাত ঘড়ি ব্যবহার করা যাবে। পরীক্ষার সময় অন্যের ক্যালকুলেটর ও জিনিস ব্যবহার করা যাবে না। মোবাইল ও
+                বই-খাতা নিয়ে কলেজে প্রবেশ নিষেধ।
+            </h6>
+            <h6 id="name" style="font-size: 14px;">
+                ৫ । লিখিত পরীক্ষা: এসএসসি’র সংক্ষিপ্ত সিলেবাস অনুযায়ী ৪০ মিনিটের লিখিত পরীক্ষা অনুষ্ঠিত হবে। পরীক্ষার বিষয়সমূহ: বিজ্ঞান বিভাগ- বাংলা,
+                ইংরেজি, পদার্থবিজ্ঞান, রসায়ন, উচ্চতর গণিত ও জীববিজ্ঞান; মানবিক বিভাগ- বাংলা, ইংরেজি, সাধারণ বিজ্ঞান ও
+                সাধারণ জ্ঞান; ব্যবসায় শিক্ষা বিভাগ- বাংলা, ইংরেজি, হিসাব বিজ্ঞান, সাধারণ বিজ্ঞান ও সাধারণ জ্ঞান। যারা বিজ্ঞান বিভাগ থেকে মানবিক ও ব্যবসায় শিক্ষা বিভাগে ভর্তির আবেদন করেছে তাদেরকে বিজ্ঞান
+                বিভাগের প্রশ্নে এবং যারা ব্যবসায় শিক্ষা বিভাগ থেকে মানবিক বিভাগে ভর্তির আবেদন করেছে তাদেরকে ব্যবসায় শিক্ষা
+                বিভাগের প্রশ্নে পরীক্ষা দিতে হবে।
+            </h6>
+
+            <h6 id="name" style="font-size: 14px;"> ৬। ভর্তি পরীক্ষার ফলাফল প্রকাশের তারিখ পরীক্ষার দিনই জানিয়ে দেয়া হবে। </h6>
+            <!-- <h6 id="name" style="font-size: 14px;">
+                ৭ । লিখিত পরীক্ষা: যারা বিজ্ঞান বিভাগ থেকে মানবিক ও ব্যবসায় শিক্ষা বিভাগে ভর্তির আবেদন করেছে তাদেরকে বিজ্ঞান
+                বিভাগের প্রশ্নে এবং যারা ব্যবসায় শিক্ষা বিভাগ থেকে মানবিক বিভাগে ভর্তির আবেদন করেছে তাদেরকে ব্যবসায় শিক্ষা
+                বিভাগের প্রশ্নে পরীক্ষা দিতে হবে।
+            </h6> -->
+            <h6 id="name" style="font-size: 14px;"> ৭ । ভুল/অসত্য তথ্য প্রদান করে ভর্তি হলে ভর্তি বাতিল বলে গণ্য হবে এবং ভর্তির টাকা ফেরত দেওয়া হবে না।</h6>
+        </div>
+
+        <div class="" id="signature">
+            <img th:src="@{/image/sign.jpg}"
+                 alt="Signature" id="output_image" width="150px" height="50px" style="margin-left: 10px;">
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <button class="btn btn-primary" id="download">download</button> -->
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+<script>
+    function download() {
+        const invoice = this.document.getElementById("invoice");
+        const appSlNo = this.document.getElementById("APP_ROLL_NO").value;
+        const fileName=appSlNo+".pdf";
+        console.log(invoice);
+        console.log(window);
+        var opt = {
+            filename: fileName,
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 1
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+        //html2pdf().from(invoice).save();
+        html2pdf().from(invoice).set(opt).save();
+    }
+</script>
+
+
+
+</body></html>

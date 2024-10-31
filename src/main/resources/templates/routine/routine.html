@@ -1,0 +1,428 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL:  SMS</title>
+    <link href="vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <link href="css/select2.min.css" rel="stylesheet" media="screen">
+
+</head>
+<div class="container-fluid">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-6">
+                  <h4 class="panel-title">
+                CLASS ROUTINE
+
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-sm bg-cyan waves-effect pull-right" id="btnAdd" onClick="add(this)"  title="Add New">
+                        <i class="material-icons">games</i>ADD ROUTINE
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="alert alert-block alert-danger hidden"></div>
+                    <div class="col-md-4 company-list">
+                        <span class="month">CLASS NAME : </span>
+                        <div class="form-group">
+                        <select class="js-example-theme-single form-control"  id="classIds" name="classId" style="width: 100%;">
+                            <option value=""> Select CLASS</option>
+                            <option th:each="classInfo : ${classes}" th:value="${classInfo.id}" th:text="${classInfo.className}"></option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="month"><b>SECTION</b></span>
+                        <div class="form-group">
+                            <select class="js-example-theme-single form-control"  id="sectionIds" name="sectionIds" style="width: 100%;">
+                                <option value=""> Select Section</option>
+                                <option th:each="sectionInfo : ${sections}" th:value="${sectionInfo.id}" th:text="${sectionInfo.sectionName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="month"><b>SESSION</b></span>
+                        <div class="form-group">
+                            <select class="js-example-theme-single form-control"  id="sessionIdS" name="sectionId" style="width: 100%;">
+                                <option value=""> Select Sessions</option>
+                                <option th:each="info : ${sessions}" th:value="${info.id}" th:text="${info.sessionName}"></option>
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <!--<button type="button" id="btnPrint" class="btn bg-red btn-sm waves-effect pull-right m-t-5 hidden" onclick="printDiv(this)">
+                        <i class="material-icons">print</i><span><spring:message code="btn.print"/></span>
+                    </button>-->
+                </div>
+            </div>
+        <div class="panel-heading">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <button type="button" class="btn bg-cyan btn-sm waves-effect pull-right" onClick="view(this)" >
+                        <span>GET ROUTINE</span>
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        </div>
+
+
+    </div>
+<div id="routineList" class="container-fluid">
+
+
+
+</div>
+
+
+
+    <div class="modal fade" id="routineModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue-grey">
+                    <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title align-center" id="defaultModalLabel">ROUTINE INFORMATION</h4>
+                </div>
+                <form method="post" id="routineInfoForm" modelAttribute="routineInfo">
+                    <div class="modal-body">
+                        <div class="alert-code alert-block alert-danger hidden"></div><br>
+                        <input type="hidden" id="id" name="id" value=""/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><b>SESSION NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="sessionId" name="sessionId" style="width: 100%;">
+                                        <option value=""> Select Sessions</option>
+                                        <option th:each="info : ${sessions}" th:value="${info.id}" th:text="${info.sessionName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>SECTION NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="sectionId" name="sectionId" style="width: 100%;">
+                                        <option value=""> Select Sections</option>
+                                        <option th:each="section : ${sections}" th:value="${section.id}" th:text="${section.sectionName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><b>SUBJECT NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="subjectId" name="subjectId" style="width: 100%;">
+                                        <option value=""> Select Subject</option>
+                                        <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.subjectName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>TEACHER NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="teacherId" name="teacherId" style="width: 100%;">
+                                        <option value=""> Select Teacher</option>
+                                        <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.empName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><b>DAY :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="dayId" name="day" style="width: 100%;">
+                                        <option value=""> SELECT DAY</option>
+                                        <option value="SATURDAY">SATURDAY</option>
+                                        <option value="SUNDAY">SUNDAY</option>
+                                        <option value="MONDAY">MONDAY</option>
+                                        <option value="TUESDAY">TUESDAY</option>
+                                        <option value="WEDNESDAY">WEDNESDAY</option>
+                                        <option value="THURSDAY">THURSDAY</option>
+                                        <option value="FRIDAY">FRIDAY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>ROOM NAME :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="roomId" name="roomId" style="width: 100%;">
+                                        <option value=""> SELECT ROOM NO</option>
+                                        <option th:each="room : ${rooms}" th:value="${room.id}" th:text="${room.roomName+ ' [' + room.buildingName+']'}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><b>START TIME :</b></span>
+                                <div class="form-group">
+                                    <input type="text" id="startTime" name="startTime" th:maxlength="10" value="" class="form-control times"   autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>END TIME :</b></span>
+                                <div class="form-group">
+                                    <input type="text" id="endTime" name="endTime" th:maxlength="10" value="" class="form-control times"   autocomplete="off" required>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        
+                    </div>
+                    <div class="modal-footer" style="background-color: #ced9dc;">
+                        <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                            <i class="material-icons">save</i>
+                            <span>SAVE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="routineViewInfoModal" style="overflow: auto;"  role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right:0px !important;
+        margin-right:0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+<script src="vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="js/pages/tables/jquery-datatable.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/printThis.js"></script>
+<script>
+    $(function() {
+        $('.times').bootstrapMaterialDatePicker({
+            format: 'HH:mm',
+            clearButton: true,
+            date: false
+        });
+        /*$('#endTime').bootstrapMaterialDatePicker({
+            format: 'HH:mm',
+            clearButton: true,
+            date: false
+        });*/
+    });
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+
+
+    $(".modal-header").on("mousedown", function(mousedownEvt) {
+        var $draggable = $(this);
+        var x = mousedownEvt.pageX - $draggable.offset().left,
+            y = mousedownEvt.pageY - $draggable.offset().top;
+        $("body").on("mousemove.draggable", function(mousemoveEvt) {
+            $draggable.closest(".modal-dialog").offset({
+                "left": mousemoveEvt.pageX - x,
+                "top": mousemoveEvt.pageY - y
+            });
+        });
+        $("body").one("mouseup", function() {
+            $("body").off("mousemove.draggable");
+        });
+        $draggable.closest(".modal").one("bs.modal.hide", function() {
+            $("body").off("mousemove.draggable");
+        });
+    });
+
+
+
+
+    function add(el) {
+       $("#id").val("");
+        $("#sessionId").select2("val", "");
+        $("#sectionId").select2("val", "");
+        $("#subjectId").select2("val", "");
+        $("#teacherId").select2("val", "");
+        $("#roomId").select2("val", "");
+        $("#dayId").select2("val", "");
+        $("#startTime").val( "");
+        $("#endTime").val( "");
+       $("#routineModal").modal();
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert").empty().addClass("hidden");
+        $(".alert-code").empty().addClass("hidden");
+    }
+
+    /**************************Start of Row Edit Function******************************/
+
+    function edit(id){
+        $.ajax({
+            type : "GET",
+            url : "class_routine/" + id ,
+            dataType : 'json',
+            success : function(data) {
+
+                    $("#id").val(id);
+                    $("#sessionId").select2("val", data.sessionId);
+                    $("#sessionId").attr('disabled', true);
+                    $("#sectionId").select2("val", data.sectionId);
+                    $("#sectionId").attr('disabled', true);
+                    $("#subjectId").select2("val", data.subjectId);
+                    $("#teacherId").select2("val", data.teacherId);
+                    $("#dayId").select2("val", data.day);
+                    $("#dayId").attr('disabled', true);
+                    $("#roomId").select2("val", data.roomId);
+                    $("#startTime").val( data.startTime);
+                    $("#startTime").attr('disabled', true);
+                    $("#endTime").val( data.endTime);
+                    $("#endTime").attr('disabled', true);
+
+                    $("#routineModal").modal('show');
+                    $(".modal-backdrop.fade.in").off("click");
+                    $(".modal").off("keydown");
+                    $(".alert-code").empty().addClass("hidden");
+
+
+
+            }
+        });
+    }
+
+
+
+    $("#routineInfoForm").submit(function(event){
+        event.preventDefault();
+        var formData = $("#routineInfoForm").serialize();
+
+        if($(".alert-code").hasClass('hidden')){
+            $.ajax({
+                url : "class_routine/saveOrUpdate",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    $("#routineModal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $("#view_page").html(data);
+                    sweetAlert("Saved!", "Your data has been Saved.", "success", 1000, false);
+                },
+                error: function(){
+                    sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+                }
+            });
+        }else{
+            sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+        }
+    });
+    function view(el) {
+        let classId = $("#classIds option:selected").val();
+        let sectionId = $("#sectionIds option:selected").val();
+        let sessionIds = $("#sessionIdS option:selected").val();
+        $.ajax({
+            url : "class_routine/"+ classId + "/" + sectionId + "/" + sessionIds,
+            type: 'GET',
+            success: function (data) {
+                $("#routineModal").modal('hide');
+                $('.modal-backdrop').remove();
+                $("#routineList").html(data);
+            }
+        });
+    }
+    function del(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel please!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type : "GET",
+                    url : "class_routine/delete/" + id ,
+                    success : function(data) {
+                        $("#view_page").html(data);
+                        sweetAlert("Deleted!", "Deleted Successfully", "success", 1000, false);
+                    },
+                    error: function(){
+                        sweetAlert("Failed!", "Something going wrong.", "fail", 1000, false);
+                    }
+                });
+            } else {
+                sweetAlert("Cancelled", "Your data is safe :)", "error", 0, false);
+            }
+        });
+    }
+
+    function printRoutine(el){
+        $('#routineList').printThis({
+            importCSS : true,
+            loadCSS : [ "css/printDiv.css"],
+        });
+    }
+</script>
+
+<!-- Jquery DataTable Plugin Js -->
+
+
+</html>

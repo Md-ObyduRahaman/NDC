@@ -1,0 +1,1862 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission</title>
+    <link href="../css/select2.min.css" rel="stylesheet" media="screen">
+    <!--END:::********************** Project JS Library *****************************-->
+
+    <style type="text/css">
+
+
+        body {
+            font-family: 'Tangerine', serif;
+            /* text-shadow: 2px 2px 2px #aaa; */
+        }
+
+
+        section.content {
+            margin: 65px 0 0 270px;
+            -moz-transition: 0.5s;
+            -o-transition: 0.5s;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            /* height: 590px;
+            overflow: auto;
+            overflow-y: auto; */
+        }
+
+
+        .file-upload {
+            background-color: #ffffff;
+            width: 300px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .file-upload-btn {
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            background: #1FB264;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #15824B;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .file-upload-btn:hover {
+            background: #1AA059;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .file-upload-btn:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+        .file-upload-content {
+            display: none;
+            text-align: center;
+        }
+
+        .file-upload-input {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .image-upload-wrap {
+            margin-top: 20px;
+            border: 4px dashed #1FB264;
+            position: relative;
+        }
+
+        /*.image-title-wrap {
+            padding: 0 15px 15px 15px;
+            color: #222;
+        }*/
+
+        .drag-text {
+            text-align: center;
+        }
+
+        .drag-text h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+            color: #15824B;
+            padding: 60px 0;
+        }
+
+        .file-upload-image {
+            max-height: 100px;
+            max-width: 100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .remove-image {
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            background: #cd4535;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #b02818;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .remove-image:hover {
+            background: #c13b2a;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+        .panel-footer {
+            height: 50px !important;
+        }
+
+    </style>
+
+
+</head>
+<div class="container-fluid">
+
+
+    <div  class="row clearfix" style="font-size: 16px;">
+
+        <header class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                <img th:src="@{/image/ndc_logo.jpg}" class="img-responsive img-thumbnail"
+                     alt="Cinque Terre" style="width:150px;height:100px;">
+            </div>
+            <div class="col-xs-6 ol-sm-6 col-md-6 col-lg-6">
+                <h3>Notre Dame College, Dhaka</h3>
+                <h4>Admission Form-2022-23</h4>
+                <h5>Group : SCIENCE</h5>
+                <h6>Application Id No. : 10000</h6>
+
+
+            </div>
+            <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                <img th:src="@{/image/ndc_logo.jpg}" class="img-responsive img-thumbnail"
+                     alt="Cinque Terre" style="width:150px;height:100px;">
+            </div>
+        </header>
+        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+            <div class="col-md-12 ">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-center">
+                    <label>ফরম পূরণের নির্দেশিকাঃ ভর্তি ফরমের সকল তথ্য ফিল্ড সঠিক ও নির্ভুলভাবে পূরণ করতে হবে। তোমার পূরণকৃত তথ্য ঢাকা শিক্ষা বোর্ড ও কলেজের বিভিন্ন কাজে ব্যবহার ও সংরক্ষন করা হবে।</label>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            Student's Information (Please enter information as it appears on your SSC records or other official documents)
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Full Name of Student:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Nickname:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Date of Birth:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Birth Reg. No.:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Blood Group:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Religion:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select2 class="js-example-theme-single form-control"
+                                                                 id="studentTypeId" name="studentTypeId"
+                                                                 style="width: 100%;">
+                                                            <option value="" selected>Select Your Religion</option>
+                                                            <option value="1">Islam</option>
+                                                            <option value="2">Hindu</option>
+                                                            <option value="3">Christan</option>
+                                                            <option value="4">Buddist</option>
+                                                        </select2>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Religious Sect./Caste:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Student's Mobile No.:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label text-left">
+                                                <label >Preferred Phone Number for College SMS:</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Permanent Address:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Dhaka Residence Address:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h2 class="panel-title">
+                            SSC Information
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >SSC Group:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select2 class="js-example-theme-single form-control"
+                                                                 id="ad_cat" name="ad_cat"
+                                                                 style="width: 100%;">
+                                                            <option value="" selected>Select SSC Group</option>
+                                                            <option value="1">Science</option>
+                                                            <option value="2">Humanities</option>
+                                                            <option value="3" selected="">General</option>
+                                                            <option value="4">Business Studies</option>
+                                                        </select2>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >School Name:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >School Address:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Board:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select2 class="js-example-theme-single form-control"
+                                                                 id="studentTypeId" name="studentTypeId"
+                                                                 style="width: 100%;">
+                                                            <option value="" selected>Select Board</option>
+                                                            <option value="04">Dhaka</option>
+                                                            <option value="02">Chattogram</option>
+                                                            <option value="10">Madrasah</option>
+                                                            <option value="06">Mymensingh</option>
+                                                            <option value="07">Rajshahi</option>
+                                                            <option value="08">Sylhet</option>
+                                                            <option value="05">Jashore</option>
+                                                            <option value="01">Barishal</option>
+                                                            <option value="09">Dinajpur</option>
+                                                            <option value="03">Cumilla</option>
+                                                        </select2>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Exam Center:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Exam Roll No.:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Exam Year:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Reg. No.:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Reg. Year/Session:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >SSC GPA:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Number of A+:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h2 class="panel-title">
+                            SSC subjects & marks
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Subject Name</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Marks</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Subject Name</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Marks</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Subject Name</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Marks</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Subject Name</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Marks</label>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Bangla:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >English:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Religion:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Mathmatics:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Science:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >ICT:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Career Education:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Hist. of Bangladesh & World Civ.:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Agriculture Studies:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Physical Edu. Health & Sports:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Civics and Citizenship:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <label >Geography and Environment:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-md-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Other Subjects & Marks:</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+                                        <div class="col-md-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Additional Sub. and Marks:</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+                                        <div class="col-md-3">
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-control-label text-left">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                           Father's Information
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Father's Name:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Occupation:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Designation (in detail):</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >National ID Number::</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-3">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Name of Institution/Organization/Office with Address:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-4">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label text-left">
+                                                <label >Mobile Number:</label>
+                                            </div>
+                                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Monthly Income of Parents Tk.:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-control-label text-left">
+                                                <label >Total Monthly Income of Family Tk.:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            Mother's Information
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Mother's Name:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Occupation:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Designation (in detail):</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >National ID Number::</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-3">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Name of Institution/Organization/Office with Address:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Mobile Number:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            Local Guardian:(If parents are not in Dhaka City)
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Gurdian's Name:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Relationship:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Occupation:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Designation (in detail):</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-3">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Name of Institution/Organization/Office with Address:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Mobile Number:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            Progress Reports to Be Sent To:
+
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label > Name:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter full name of student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Relationship:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Mobile No:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-3">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Address:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" id="address1" name="address1" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+
+                     <div id="collapseOne_4">
+                        <div class="panel-body">
+                            <form>
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-center">
+                                            <label > কলেজে ৭টি বিষয় নিয়ে পড়তে হবে। তাই শুধু Additional বিষয়ে টিক চিহ্ন দিতে হবে।</br> Subjects you wish to study at Notre Dame College</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label text-left">
+                                                <label >Groups:</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select2 class="js-example-theme-single form-control"
+                                                                 id="studentTypeId" name="studentTypeId"
+                                                                 style="width: 100%;">
+                                                            <option value="" selected>Select Group</option>
+                                                            <option value="03">Group-H</option>
+                                                            <option value="04">Group-W</option>
+                                                            <option value="05">Group-G</option>
+                                                        </select2>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="demo-checkbox">
+                                            <input type="checkbox" id="md_checkbox_1" class="chk-col-green" checked disabled >
+                                            <label for="md_checkbox_1">Bangla</label>
+                                            <input type="checkbox" id="md_checkbox_2" class="chk-col-green" checked disabled >
+                                            <label for="md_checkbox_2">English</label>
+                                            <input type="checkbox" id="md_checkbox_3" class="chk-col-green" checked disabled>
+                                            <label for="md_checkbox_3">ICT(Information & Communication Technology)</label>
+                                            <input type="checkbox" id="md_checkbox_4" class="chk-col-green" checked disabled>
+                                            <label for="md_checkbox_4">History</label>
+                                            <input type="checkbox" id="md_checkbox_5" class="chk-col-green" checked disabled>
+                                            <label for="md_checkbox_5">Social Work</label>
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-center">
+                                            <label > (Choose any one as an additional subject from the below)</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                            <div class="demo-radio-button">
+                                                <input name="group5" type="radio" id="radio_30" class="with-gap radio-col-green" checked>
+                                                <label for="radio_30">Economics</label>
+                                                <input name="group5" type="radio" id="radio_31" class="with-gap radio-col-green">
+                                                <label for="radio_31">Logic</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                            <label > Activites in which you took part while in high School:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-2">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Sports(Details):</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-2">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Clubs:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-2">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label >Others:</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address_2"
+                                                               class="form-control"
+                                                               placeholder="Enter student's mobile no">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>When the information are entered, click on the submit button, the admission form will appear. Print the displayed admission form in A4 size paper and bring it on admission day.</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class = "panel-footer text-center">
+                            <button type="button" id="btnSave" class="btn btn-default pull-right">SUBMIT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+
+<script src="../js/select2.min.js"></script>
+<script>
+
+
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+
+    $(function () {
+        $('#ad_cat').val("0").trigger('change');
+
+
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                if (input.files[0].size <= 1024 * 100) {
+                    $('.image-upload-wrap').hide();
+
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                    const base64String = reader.result
+                        .replace('data:', '')
+                        .replace(/^.+,/, '');
+                    $('#picture').val(base64String);
+                } else {
+                    alert('Image should be within 100 KB.');
+                }
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+        $("#picture").val("");
+    }
+</script>
+
+
+</html>

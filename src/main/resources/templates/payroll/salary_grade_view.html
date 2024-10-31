@@ -1,0 +1,33 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">SALARY GRADE INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <span><b>GRADE NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${salaryGrade.gradeName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>ACTIVITY STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${salaryGrade.status == 'Y'}">Active</span>
+                        <span th:if="${salaryGrade.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+</html>

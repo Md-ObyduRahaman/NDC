@@ -1,0 +1,405 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL:  SMS</title>
+    <link href="css/select2.min.css" rel="stylesheet" media="screen">
+
+</head>
+<div class="container-fluid">
+    <div class="block-header">
+        <span style="text-shadow: 2px 2px 2px #aaa;">ROOM LIST</span>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="body table-responsive table-bordered">
+                    <button type="button" class="btn btn-sm bg-blue waves-effect pull-right" id="btnAdd" onClick="add(this)" data-toggle="tooltip" title="Add New">
+                        <i class="material-icons">games</i>
+                    </button><br><br>
+                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="roomList">
+                        <thead>
+                        <tr>
+                            <th class="align-center" style="width: 60px;">SL#</th>
+                            <th class="align-left">ROOM NAME</th>
+                            <th class="align-left">ROOM TYPE</th>
+                            <th class="align-left">BUILDING NAME</th>
+                            <th class="align-left">NO Of SEAT</th>
+                            <th class="align-center">AC/NON_AC</th>
+                            <th class="align-center" style="width: 100px;">STATUS</th>
+                            <th class="align-center" style="width: 120px;">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="room,index: ${rooms}">
+                            <td class="align-center"><span th:text="${index.index+1}"></span></td>
+                            <td class="align-left"><span th:text="${room.roomName}"></span></td>
+                            <td class="align-left"><span th:text="${room.typeName}"></span></td>
+                            <td class="align-left"><span th:text="${room.buildingName}"></span></td>
+                            <td class="align-center"><span th:text="${room.noOfSeat}"></span></td>
+                            <td class="align-center">
+                                <span th:if="${room.acStatus == 'Y'}">AC</span>
+                                <span th:if="${room.acStatus == 'N'}">NON_AC</span>
+                                 </td>
+                            <td class="align-center">
+                                <span th:if="${room.status == 'Y'}">Active</span>
+                                <span th:if="${room.status == 'N'}">Inactive</span>
+                            </td>
+                            <td class="align-center">
+                                <input type="hidden" id="row_id" th:value="${room.id}">
+                                <input type="hidden" id="row_room_name" th:value="${room.roomName}">
+                                <input type="hidden" id="row_type_id" th:value="${room.typeId}">
+                                <input type="hidden" id="row_building_id" th:value="${room.buildingId}">
+                                <input type="hidden" id="row_no_of_seat" th:value="${room.noOfSeat}">
+                                <input type="hidden" id="row_ac_status" th:value="${room.acStatus}">
+                                <input type="hidden" id="row_status" th:value="${room.status}">
+                                <input type="hidden" id="row_remarks" th:value="${room.remarks}">
+                                <a class="btn-edit btn btn-xs" onclick="edit(this)"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-edit btn btn-xs" onclick="view(this)"><i class="material-icons">visibility</i></a>
+                                <a class="btn-edit btn btn-xs" onclick="del(this)"><i class="material-icons">delete_forever</i></a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="roomModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue-grey">
+                    <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title align-center" id="defaultModalLabel">ROOM INFORMATION</h4>
+                </div>
+                <form method="post" id="roomInfoForm" modelAttribute="roomInfo">
+                    <div class="modal-body">
+                        <div class="alert-code alert-block alert-danger hidden"></div><br>
+                        <input type="hidden" id="id" name="id" value=""/>
+                        <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <span><b>ROOM NAME :</b></span>
+                                <div class="form-group">
+                                    <input type="text" id="roomName" name="roomName" th:maxlength="30" value="" class="form-control"   autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>ROOM TYPE :</b></span>
+                                <div class="form-group">
+                                    <select class="js-example-theme-single form-control"  id="typeId" name="typeId" style="width: 100%;">
+                                        <option value=""> Select TYPE</option>
+                                        <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.typeName}"></option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <span><b>No of Seat :</b></span>
+                                <div class="form-group">
+                                    <input type="text" id="noOfSeat" name="noOfSeat" th:maxlength="3" value="" style="width: 100px;" class="form-control"   autocomplete="off" required>
+
+                                </div>
+                            </div>
+                                <div class="col-md-6">
+                                    <span><b>BUILDING NAME :</b></span>
+                                    <div class="form-group">
+                                        <select class="js-example-theme-single form-control"  id="buildingId" name="buildingId" style="width: 100%;">
+                                            <option value=""> Select BUILDING</option>
+                                            <option th:each="building : ${buildings}" th:value="${building.id}" th:text="${building.buildingName}"></option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <span><b>AC/NON_AC :</b></span>
+                                <div class="form-group">
+                                    <div class="demo-checkbox">
+                                        <input type="checkbox" id="ac_status" class="filled-in chk-col-green">
+                                        <label for="ac_status"><b><span class="check-ac-status">NON_AC</span></b></label>
+                                        <input type="hidden" id="acStatus" name="acStatus" value="N">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span><b>ACTIVITY STATUS</b></span>
+                                <div class="form-group">
+                                    <div class="demo-checkbox">
+                                        <input type="checkbox" id="activity_status" class="filled-in chk-col-green">
+                                        <label for="activity_status"><b><span class="check-status">Inactive</span></b></label>
+                                        <input type="hidden" id="status" name="status" value="N">
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                                <div class="row col-md-12">
+                            <div class="col-md-12">
+                                <span><b>REMARKS</b></span>
+                                <div class="form-group">
+                                    <textarea rows="4" id="remarks" name="remarks" class="form-control" ></textarea>
+                                </div>
+                            </div>
+                                </div>
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer" style="background-color: #ced9dc;">
+                        <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                            <i class="material-icons">save</i>
+                            <span>SAVE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="roomViewInfoModal" style="overflow: auto;"  role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right:0px !important;
+        margin-right:0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+<script src="js/select2.min.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="js/pages/tables/jquery-datatable.js"></script>
+<script>
+
+
+
+    $(".modal-header").on("mousedown", function(mousedownEvt) {
+        var $draggable = $(this);
+        var x = mousedownEvt.pageX - $draggable.offset().left,
+            y = mousedownEvt.pageY - $draggable.offset().top;
+        $("body").on("mousemove.draggable", function(mousemoveEvt) {
+            $draggable.closest(".modal-dialog").offset({
+                "left": mousemoveEvt.pageX - x,
+                "top": mousemoveEvt.pageY - y
+            });
+        });
+        $("body").one("mouseup", function() {
+            $("body").off("mousemove.draggable");
+        });
+        $draggable.closest(".modal").one("bs.modal.hide", function() {
+            $("body").off("mousemove.draggable");
+        });
+    });
+
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+    $('#ac_status').change(function() {
+        if (this.checked) {
+            $('#acStatus').val('Y');
+            $('.check-ac-status').text('AC');
+        }else{
+            $('#acStatus').val('N');
+            $('.check-ac-status').text('NON_AC');
+        }
+    });
+
+    $('#activity_status').change(function() {
+        if (this.checked) {
+            $('#status').val('Y');
+            $('.check-status').text('Active');
+        }else{
+            $('#status').val('N');
+            $('.check-status').text('Inactive');
+        }
+    });
+
+
+
+    function add(el) {
+       $("#id").val("");
+        $("#roomName").val("");
+        $("#typeId").select2("val", "");
+        $("#buildingId").select2("val", "");
+        $("#noOfSeat").val("");
+        $("#remarks").val("");
+
+        $('#ac_status').prop('checked', false);
+        $('#acStatus').val('N');
+        $('.check-ac-status').text('NON_AC');
+
+        $('#activity_status').prop('checked', false);
+        $('#status').val('N');
+        $('.check-status').text('Inactive');
+
+        $("#roomModal").modal();
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert").empty().addClass("hidden");
+        $(".alert-code").empty().addClass("hidden");
+    }
+
+    /**************************Start of Row Edit Function******************************/
+
+    function edit(el) {
+        let id = $(el).closest("tr").find("#row_id").val();
+        let roomName = $(el).closest("tr").find("#row_room_name").val();
+        let noOfSeat = $(el).closest("tr").find("#row_no_of_seat").val();
+        let typeId = $(el).closest("tr").find("#row_type_id").val();
+        let buildingId = $(el).closest("tr").find("#row_building_id").val();
+        let acStatus = $(el).closest('tr').find("#row_ac_status").val();
+        let status = $(el).closest('tr').find("#row_status").val();
+        let remarks = $(el).closest("tr").find("#row_remarks").val();
+
+
+        $("#id").val(id);
+        $("#roomName").val(roomName);
+        $("#noOfSeat").val(noOfSeat);
+        $("#typeId").select2("val", typeId);
+        $("#buildingId").select2("val", buildingId);
+        $("#remarks").val(remarks);
+
+        if(acStatus == 'Y'){
+            $('#ac_status').prop('checked', true);
+            $('#acStatus').val('Y');
+            $('.check-ac-status').text('AC');
+        }else{
+            $('#ac_status').prop('checked', false);
+            $('#acStatus').val('N');
+            $('.check-ac-status').text('NON_AC');
+        }
+
+        if(status == 'Y'){
+            $('#activity_status').prop('checked', true);
+            $('#status').val('Y');
+            $('.check-status').text('Active');
+        }else{
+            $('#activity_status').prop('checked', false);
+            $('#status').val('N');
+            $('.check-status').text('Inactive');
+        }
+
+        $("#roomModal").modal('show');
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert-code").empty().addClass("hidden");
+    };
+
+    $("#roomInfoForm").submit(function(event){
+        event.preventDefault();
+        let formData = $("#roomInfoForm").serialize();
+
+        if($(".alert-code").hasClass('hidden')){
+            $.ajax({
+                url : "room/saveOrUpdate",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    $("#roomModal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $("#view_page").html(data);
+                    sweetAlert("Saved!", "Your data has been Saved.", "success", 1000, false);
+                },
+                error: function(){
+                    sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+                }
+            });
+        }else{
+            sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+        }
+    });
+    function view(el) {
+        var id = $(el).closest("tr").find("#row_id").val();
+        $.ajax({
+            async : false,
+            url : "room/" + id ,
+            success : function(data) {
+                $('#roomViewInfoModal').modal('show').find('.modal-content').html(data);
+                $(".modal-backdrop.fade.in").off("click");
+                $(".modal").off("keydown");
+                $(".md").css("display", "none");
+
+            }
+        });
+    }
+    function del(el) {
+        let id = $(el).closest('tr').find("#row_id").val();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel please!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type : "GET",
+                    url : "room/delete/" + id ,
+                    success : function(data) {
+                        $("#view_page").html(data);
+                        sweetAlert("Deleted!", "Deleted Successfully", "success", 1000, false);
+                    },
+                    error: function(){
+                        sweetAlert("Failed!", "Something going wrong.", "fail", 1000, false);
+                    }
+                });
+            } else {
+                sweetAlert("Cancelled", "Your data is safe :)", "error", 0, false);
+            }
+        });
+    }
+
+</script>
+
+
+
+</html>

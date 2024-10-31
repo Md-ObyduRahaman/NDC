@@ -1,0 +1,40 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">MAJOR INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <span><b>MAJOR NAME :</b></span>
+                    <div class="form-group">
+                        <span th:text="${major.majorName}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>ACTIVITY STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${major.status == 'Y'}">Active</span>
+                        <span th:if="${major.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!--<div class="modal-footer" style="background-color: #ced9dc;">
+            <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                <i class="material-icons">save</i>
+                <span>SAVE</span>
+            </button>
+        </div>-->
+
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL: SMS</title>
+
+</head>
+
+    <div class="row clearfix" style="font-size: 14px;">
+        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12 text-left">
+            <marquee behavior="scroll" direction="left" style="font-size: 14px; font-weight: bolder"><span style="color: red">Bkash থেকে payment এর  message পাওয়ার পর Admit Card Download  এ  কোন সমস্যা হলে</span> <span style="color: blue">ndc.iadmissionbd.net</span> <span style="color: red">এ প্রবেশ করে Login করে Dashboard থেকে Bkash verification পেইজে এ প্রবেশ করে আপনার মোবাইলে  প্রাপ্ত Bkash Transaction Id টি টাইপ করে Submit বাটন এ প্রেস করুন।</span></marquee>
+        </div>
+        <header class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                <img th:src="@{/image/ndc_logo.jpg}" class="img-responsive img-thumbnail"
+                     alt="Cinque Terre" style="width:150px;height:100px;">
+            </div>
+            <div class="col-xs-6 ol-sm-6 col-md-6 col-lg-6">
+                <h2>Admission Application Form-2022</h2>
+                <h3>Notre Dame College, Dhaka</h3>
+
+            </div>
+            <div class="col-xs-3 ol-sm-3 col-md-3 col-lg-3">
+                <img th:src="@{'data:image/jpeg;base64,'+${studentInfo.APP_PHOTO}}" class="img-responsive img-thumbnail"
+                     alt="Student Photo" style="width:150px;height:100px;">
+
+            </div>
+        </header>
+        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+
+
+                    <div id="collapseOne_1">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>1. Apply for admission to study:</label>
+                                                <span th:if="${studentInfo.APP_CAT == '1'}">Science(Bangla)</span>
+                                                <span th:if="${studentInfo.APP_CAT == '2'}">Science( Eng. Version)</span>
+                                                <span th:if="${studentInfo.APP_CAT == '3'}">Humanities</span>
+                                                <span th:if="${studentInfo.APP_CAT == '4'}">Business Studies</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>2. Full name of Student(According to SSC Admit Card) :</label>
+                                                <span>[[${studentInfo.STD_NAME}]]</span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>3. Student Mobile Number :</label> <span>[[${studentInfo.STD_MOBILE_NO}]]</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>4. Religion :</label>
+                                                <span th:if="${studentInfo.RG_CODE == '1'}">Islam</span>
+                                                <span th:if="${studentInfo.RG_CODE == '2'}">Hindu</span>
+                                                <span th:if="${studentInfo.RG_CODE == '3'}">Christan</span>
+                                                <span th:if="${studentInfo.RG_CODE == '4'}">Buddist</span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-6 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>5. Sect./Caste :</label> <span> [[${studentInfo.RG_SECT}]]</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>6. Fathers Name :</label>
+                                                <span> [[${studentInfo.F_NAME}]]</span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-12 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label style="color: mediumseagreen;">*Number of A+ and GPA obtained in SSC (don't count Physical Education, Health and Sports & Career Education)</label>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-4 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>7. Number Of A+ :</label> <span>[[${studentInfo.TOTAL_APLUS}]]</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4 text-left">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>8. Result GPA :</label>
+                                                <span>[[${studentInfo.SSC_GPA}]]</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4 text-left">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <label>9. Version of SSC Exam :</label>
+                                                <span th:if="${studentInfo.SSC_VERSION == 'E'}">English</span>
+                                                <span th:if="${studentInfo.SSC_VERSION == 'B'}">Bangla</span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+
+
+                    <div id="collapseOne_2">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label text-left">
+                                                <h4 style="color: red;">Any False declarations will automatically
+                                                    disqualify a candidate for admission at Notre Dame College.</h4>
+                                                <h3 th:if="${studentInfo.PAYMENT_STATUS} != 'P'">Registration Fees 300 Taka.</h3>
+                                                <h2 th:if="${studentInfo.PAYMENT_STATUS} != 'P'">Click Payment Method :</h2>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row m-b-5">
+
+                                        <div class="col-md-4 text-left">
+                                          <a th:if="${studentInfo.PAYMENT_STATUS} != 'P'" th:href="@{'http://103.106.118.10/ndc_2023_sms_link/RAW_PHP_Bkash_july_2023/payment.php?id=' +${studentInfo.APP_ID} }" >
+                                              <img th:src="@{/image/bkash_logo.jpg}" class="img-responsive img-thumbnail"
+                                            style="width:150px;height:100px;">
+                                            </a>
+
+                                            <a th:if="${studentInfo.PAYMENT_STATUS} == 'P'" th:href="@{/ndc/admit}" style="margin-top: 20px;font-weight: 400;font-size: 1rem;border-color: #4e73df;color: #4e73df " class="btn btn-outline-primary" id="download"><i class="fa fa-download"></i> Download Admit Card</a>
+                                           &nbsp; &nbsp; &nbsp; &nbsp;<a th:if="${studentInfo.PAYMENT_STATUS} == 'P'" th:href="@{/ndc/pay_slip}"  target="_blank" style="margin-top: 20px;font-weight: 400;font-size: 1rem;border-color: #4e73df;color: #4e73df " class="btn btn-outline-primary" ><i class="fa fa-print"></i> Pay Slip</a>
+
+
+                                        </div>
+                                        <!--<div th:if="${studentInfo.PAYMENT_STATUS} == 'P'" class="col-md-4 text-left">
+                                            <button type="button" href="/ndc/pay_slip" data-ajax="true" class="btn bg-blue btn-sm waves-effect">
+                                                <i class="material-icons">mode_edit</i>
+                                            </button>
+
+                                        </div>-->
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    body.modal-open {
+        overflow: auto;
+    }
+
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+</style>
+
+<script>
+    function paySlipLoad(el){
+        let link = $(el).attr('id');
+        $.ajax({
+            async : false,
+            url : link ,
+            success : function(result) {
+                $("#container-fluid").html(result);
+            },
+            error: function(){
+                console.log("this employee has no user id.");
+            }
+        });
+    }
+
+</script>
+</html>

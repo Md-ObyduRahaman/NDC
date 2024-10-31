@@ -1,0 +1,1368 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITBL:  SMS</title>
+    <link href="css/select2.min.css" rel="stylesheet" media="screen">
+
+</head>
+<div class="container-fluid">
+    <div class="block-header">
+        <span style="text-shadow: 2px 2px 2px #aaa;">STUDENT LIST</span>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="body table-responsive table-bordered">
+                    <button type="button" class="btn btn-sm bg-blue waves-effect pull-right" id="btnAdd" onClick="add(this)" data-toggle="tooltip" title="Add New">
+                        <i class="material-icons">games</i>
+                    </button><br><br>
+                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="roomList">
+                        <thead>
+                        <tr>
+                            <th class="align-center" style="width: 60px;">SL#</th>
+                            <th class="align-left">STUDENT ID</th>
+                            <th class="align-left">STUDENT NAME</th>
+                            <th class="align-left">CLASS NAME</th>
+                            <th class="align-left">SECTION</th>
+                            <th class="align-center">ROLL NO</th>
+                            <th class="align-center">GENDER</th>
+                            <th class="align-center">RELIGION</th>
+                            <th class="align-center" style="width: 120px;">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr th:each="info,index: ${students}">
+                            <td class="align-center"><span th:text="${index.index+1}"></span></td>
+                            <td class="align-left"><span th:text="${info.empCode}"></span></td>
+                            <td class="align-left"><span th:text="${info.empName}"></span></td>
+                            <td class="align-left"><span th:text="${info.designationName}"></span></td>
+                            <td class="align-left">
+                                <span th:if="${info.gender == 1}">Male</span>
+                                <span th:if="${info.gender  == 2}">Female</span>
+                                <span th:if="${info.gender  == 3}">Other</span>
+                            </td>
+                            <td class="align-center"><span th:text="${info.bloodGroup}"></span></td>
+                            <td class="align-center"><span th:text="${info.religionName}"></span></td>
+                            <td class="align-center"><span th:text="${info.contactNo1}"></span></td>
+                            <td class="align-center">
+                                <input type="hidden" id="row_id" th:value="${info.id}">
+                                <input type="hidden" id="row_emp_code" th:value="${info.empCode}">
+                                <input type="hidden" id="row_emp_name" th:value="${info.empName}">
+                                <input type="hidden" id="row_father_name" th:value="${info.fatherName}">
+                                <input type="hidden" id="row_mother_name" th:value="${info.motherName}">
+                                <input type="hidden" id="row_type_id" th:value="${info.typeId}">
+                                <input type="hidden" id="row_designation_id" th:value="${info.designationId}">
+                                <input type="hidden" id="row_teaching_status" th:value="${info.teachingStatus}">
+                                <input type="hidden" id="row_order_no" th:value="${info.orderNo}">
+                                <input type="hidden" id="row_national_id" th:value="${info.nationalId}">
+                                <input type="hidden" id="row_gender" th:value="${info.gender}">
+                                <input type="hidden" id="row_marital_status" th:value="${info.maritalStatus}">
+                                <input type="hidden" id="row_spouse_name" th:value="${info.spouseName}">
+                                <input type="hidden" id="row_blood_group" th:value="${info.bloodGroup}">
+                                <input type="hidden" id="row_religion_id" th:value="${info.religionId}">
+                                <input type="hidden" id="row_dob" th:value="${#dates.format(info.dob, 'dd-MMM-yyyy')}">
+                                <input type="hidden" id="row_joining_date" th:value="${#dates.format(info.joiningDate, 'dd-MMM-yyyy')}">
+                                <input type="hidden" id="row_present_address" th:value="${info.presentAddress}">
+                                <input type="hidden" id="row_permanent_address" th:value="${info.permanentAddress}">
+                                <input type="hidden" id="row_contactNo1" th:value="${info.contactNo1}">
+                                <input type="hidden" id="row_contactNo2" th:value="${info.contactNo2}">
+                                <input type="hidden" id="row_email" th:value="${info.email}">
+                                <input type="hidden" id="row_picture" th:value="${info.picture}">
+                                <input type="hidden" id="row_status" th:value="${info.status}">
+                                <a class="btn-edit btn btn-xs" onclick="edit(this)"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-edit btn btn-xs" onclick="view(this)"><i class="material-icons">visibility</i></a>
+                                <a class="btn-edit btn btn-xs" onclick="del(this)"><i class="material-icons">delete_forever</i></a>
+
+                            </td>
+
+                        </tr>-->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="studentModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-xxl" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue-grey">
+                    <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title align-center" id="defaultModalLabel">STUDENT INFORMATION</h4>
+                </div>
+                <form method="post" id="studentInfoForm" modelAttribute="studentInfo">
+                    <div class="modal-body">
+                        <div class="alert-code alert-block alert-danger hidden"></div><br>
+                        <input type="hidden" id="id" name="id" value=""/>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" >
+                                <h4 class="panel-title">
+                                    PERSONAL INFORMATION
+                                </h4>
+                            </div>
+                            <div id="collapseOne_1">
+                                <div class="panel-body">
+                                    <div class="row col-md-9">
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>STUDENT ID :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="udStudentId" name="udStudentId" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>STUDENT NAME :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="studentName" name="studentName" th:maxlength="30" value="" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>STUDENT TYPE :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="studentTypeId" name="studentTypeId" style="width: 100%;">
+                                                    <option value=""> Select Student Type</option>
+                                                    <option value="1"> General</option>
+                                                    <option value="2"> SSC(VOC)</option>
+                                                    <option value="3"> HSC(VOC) </option>
+                                                    <option value="4"> HSC(BM) </option>
+                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>FATHER'S NAME :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="fatherName" name="fatherName" th:maxlength="30" value="" class="form-control"    autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>FATHER'S OCCUPATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="fatherOccupationId" name="fatherOccupationId" style="width: 100%;">
+                                                    <option value=""> Select Occupation</option>
+                                                    <option th:each="occupation : ${occupations}" th:value="${occupation.id}" th:text="${occupation.occupationName}"></option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>FATHER'S NID :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="fatherNationalId" name="fatherNationalId" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>MOTHER'S NAME :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="motherName" name="motherName" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>MOTHER'S OCCUPATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="motherOccupationId" name="motherOccupationId" style="width: 100%;">
+                                                    <option value=""> Select Occupation</option>
+                                                    <option th:each="occupation : ${occupations}" th:value="${occupation.id}" th:text="${occupation.occupationName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>MOTHER'S NID :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="motherNationalId" name="motherNationalId" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>FATHER'S MOBILE NO :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="fatherMobileNo" name="fatherMobileNo" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>MOTHER'S MOBILE NO :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="motherMobileNo" name="motherMobileNo" th:maxlength="30" value="" class="form-control"   autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>BIRTH PLACE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="placeOfBirth" name="placeOfBirth" th:maxlength="30" value="" class="form-control"    autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>DATE OF BIRTH :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="dob" name="dob" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>AGE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="age" name="age" th:maxlength="30" value="" class="form-control"    autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>BIRTH REG. NO. :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="birthRegNo" name="birthRegNo" th:maxlength="30" value="" class="form-control"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-3">
+                                        <div class="file-upload">
+                                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Photo</button>
+
+                                            <div class="image-upload-wrap">
+                                                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                                <input type="hidden" id="picture" name="picture">
+                                                <div class="drag-text">
+                                                    <h3>Image should be within 100 KB</h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content">
+                                                <img class="file-upload-image" src="#" alt="your image" />
+                                                <div class="image-title-wrap">
+                                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <!--<span class="image-title">Uploaded Image</span>--></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="row">
+                                        <div class="col-md-3">
+                                            <span><b>GENDER :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gender" name="gender" style="width: 100%;">
+                                                    <option value=""> Select Gender</option>
+                                                    <option value="1"> Male</option>
+                                                    <option value="2"> Female</option>
+                                                    <option value="3"> Other</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>BLOOD GROUP :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="bloodGroup" name="bloodGroup" style="width: 100%;">
+                                                    <option value=""> Select Blood Group</option>
+                                                    <option value="A+"> A positive (A+)</option>
+                                                    <option value="A-"> A negative (A-)</option>
+                                                    <option value="B+"> B positive (B+)</option>
+                                                    <option value="B-"> B negative (B-)</option>
+                                                    <option value="O+"> O positive (O+)</option>
+                                                    <option value="O-"> O negative (O-)</option>
+                                                    <option value="AB+"> AB positive (AB+)</option>
+                                                    <option value="AB-"> AB negative (AB-)</option>
+                                                    <option value="UNKNOWN"> Unknown</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>MARITAL STATUS :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="maritalStatus" name="maritalStatus" style="width: 100%;">
+                                                    <option value=""> Select Marital Status</option>
+                                                    <option value="1"> Unmarried</option>
+                                                    <option value="2"> Married</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>RELIGION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="religionId" name="religionId" style="width: 100%;">
+                                                    <option value=""> Select Religion</option>
+                                                    <option th:each="religion : ${religions}" th:value="${religion.id}" th:text="${religion.religionName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="row">
+                                        <div class="col-md-3">
+                                            <span><b>NATIONALITY :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="nationality" name="nationality" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>ETHNICITY :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="ethnicity" name="ethnicity" th:maxlength="30" value="" class="form-control"   autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>QUOTA :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="quotaId" name="quotaId" style="width: 100%;">
+                                                    <option value=""> Select Quota</option>
+                                                    <option th:each="quota : ${quotas}" th:value="${quota.id}" th:text="${quota.quotaName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>DIFFERENTLY ABLED :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="disability" name="disability" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="row">
+                                        <div class="col-md-3">
+                                            <span><b>STUDENT'S EMAIL :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="email" name="email" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span><b>ANNUAL INCOME OF GURDIAN :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="annualIncome" name="annualIncome" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" >
+                                <h4 class="panel-title">
+                                    PRESENT ADDRESS
+                                </h4>
+                            </div>
+                            <div id="collapseOne_2">
+                                <div class="panel-body">
+                                    <div class="row col-md-12">
+                                        <input type="hidden" id="presentAddressId" name="presentAddressId" value=""/>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>DIVISION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentDivisionId" name="presentDivisionId" style="width: 100%;">
+                                                    <option value=""> Select Division</option>
+                                                    <option th:each="state : ${states}" th:value="${state.id}" th:text="${state.stateName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>DISTRICT :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentDistrictId" name="presentDistrictId" style="width: 100%;">
+                                                    <option value=""> Select District</option>
+                                                    <option th:each="district : ${cities}" th:value="${district.id}" th:text="${district.cityName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>UPAZILLA/THANA :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentThanaId" name="presentThanaId" style="width: 100%;">
+                                                    <option value=""> Select Thana/Upazila</option>
+                                                    <option th:each="thana : ${thanas}" th:value="${thana.id}" th:text="${thana.postName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>UNION/WARD :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentUnionId" name="presentUnionId" style="width: 100%;">
+                                                    <option value=""> Select Union</option>
+                                                    <option th:each="union : ${unions}" th:value="${union.id}" th:text="${union.unionName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST OFFICE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="presentPostOffice" name="presentPostOffice" th:maxlength="30" value="" class="form-control"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST CODE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="presentPostCode" name="presentPostCode" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>VILLAGE/HOLDING/ROAD :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="presentAddress" name="presentAddress" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>AREA STATUS :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentAreaStatusId" name="presentAreaStatusId" style="width: 100%;">
+                                                    <option value=""> Select Area Status</option>
+                                                    <option th:each="area : ${areas}" th:value="${area.id}" th:text="${area.areaName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>GEOGRAPHICAL LOCATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="presentGeoLocationId" name="presentGeoLocationId" style="width: 100%;">
+                                                    <option value=""> Select Geographical Location</option>
+                                                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.locationName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" >
+                                <h4 class="panel-title">
+                                    PERMANENT ADDRESS
+                                </h4>
+                            </div>
+                            <div id="collapseOne_3">
+                                <div class="panel-body">
+                                    <div class="row col-md-12">
+                                        <input type="hidden" id="permanentAddressId" name="permanentAddressId" value=""/>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>DIVISION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentDivisionId" name="permanentDivisionId" style="width: 100%;">
+                                                    <option value=""> Select Division</option>
+                                                    <option th:each="state : ${states}" th:value="${state.id}" th:text="${state.stateName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>DISTRICT :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentDistrictId" name="permanentDistrictId" style="width: 100%;">
+                                                    <option value=""> Select District</option>
+                                                    <option th:each="district : ${cities}" th:value="${district.id}" th:text="${district.cityName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>UPAZILLA/THANA :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentThanaId" name="permanentThanaId" style="width: 100%;">
+                                                    <option value=""> Select Thana/Upazila</option>
+                                                    <option th:each="thana : ${thanas}" th:value="${thana.id}" th:text="${thana.postName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>UNION/WARD :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentUnionId" name="permanentUnionId" style="width: 100%;">
+                                                    <option value=""> Select Union</option>
+                                                    <option th:each="union : ${unions}" th:value="${union.id}" th:text="${union.unionName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST OFFICE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="permanentPostOffice" name="permanentPostOffice" th:maxlength="30" value="" class="form-control"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST CODE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="permanentPostCode" name="permanentPostCode" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>VILLAGE/HOLDING/ROAD :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="permanentAddress" name="permanentAddress" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>AREA STATUS :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentAreaStatusId" name="permanentAreaStatusId" style="width: 100%;">
+                                                    <option value=""> Select Area Status</option>
+                                                    <option th:each="area : ${areas}" th:value="${area.id}" th:text="${area.areaName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>GEOGRAPHICAL LOCATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="permanentGeoLocationId" name="permanentGeoLocationId" style="width: 100%;">
+                                                    <option value=""> Select Geographical Location</option>
+                                                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.locationName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" >
+                                <h4 class="panel-title">
+                                    LOCAL GURDIAN (In absence of Father and Mother)
+                                </h4>
+                            </div>
+                            <div id="collapseOne_4">
+                                <div class="panel-body">
+                                    <div class="row col-md-12">
+                                        <input type="hidden" id="gurdianId" name="gurdianId" value=""/>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>NAME OF GURDIAN :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="nameOfGurdian" name="nameOfGurdian" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>RELATION :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="relation" name="relation" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>CONTACT NO :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianContactNo" name="gurdianContactNo" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>EMAIL  :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianEmail" name="gurdianEmail" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>OCCUPATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianOccupationId" name="gurdianOccupationId" style="width: 100%;">
+                                                    <option value=""> Select Quota</option>
+                                                    <option th:each="quota : ${quotas}" th:value="${quota.id}" th:text="${quota.quotaName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>ANNUAL HOUSEHOLD INCOME :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianAnnualIncome" name="gurdianAnnualIncome" th:maxlength="30" value="" class="form-control" placeholder="auto generated"   autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>DIVISION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianDivisionId" name="gurdianDivisionId" style="width: 100%;">
+                                                    <option value=""> Select Division</option>
+                                                    <option th:each="state : ${states}" th:value="${state.id}" th:text="${state.stateName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>DISTRICT :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianDistrictId" name="gurdianDistrictId" style="width: 100%;">
+                                                    <option value=""> Select District</option>
+                                                    <option th:each="district : ${cities}" th:value="${district.id}" th:text="${district.cityName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>UPAZILLA/THANA :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianThanaId" name="gurdianThanaId" style="width: 100%;">
+                                                    <option value=""> Select Thana/Upazila</option>
+                                                    <option th:each="thana : ${thanas}" th:value="${thana.id}" th:text="${thana.postName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>UNION/WARD :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianUnionId" name="gurdianUnionId" style="width: 100%;">
+                                                    <option value=""> Select Union</option>
+                                                    <option th:each="union : ${unions}" th:value="${union.id}" th:text="${union.unionName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST OFFICE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianPostOffice" name="gurdianPostOffice" th:maxlength="30" value="" class="form-control"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>POST CODE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianPostCode" name="gurdianPostCode" th:maxlength="30" value="" class="form-control"  autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>VILLAGE/HOLDING/ROAD :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="gurdianAddress" name="gurdianAddress" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>AREA STATUS :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianAreaStatusId" name="gurdianAreaStatusId" style="width: 100%;">
+                                                    <option value=""> Select Area Status</option>
+                                                    <option th:each="area : ${areas}" th:value="${area.id}" th:text="${area.areaName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>GEOGRAPHICAL LOCATION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="gurdianGeoLocationId" name="gurdianGeoLocationId" style="width: 100%;">
+                                                    <option value=""> Select Geographical Location</option>
+                                                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.locationName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" >
+                                <h4 class="panel-title">
+                                   ACADEMIC INFORMATION
+                                </h4>
+                            </div>
+                            <div id="collapseOne_5">
+                                <div class="panel-body">
+                                    <div class="row col-md-12">
+                                        <input type="hidden" id="academicRecordId" name="academicRecordId" value=""/>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>CLASS :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="classId" name="classId" style="width: 100%;">
+                                                    <option value=""> Select Class</option>
+                                                    <option th:each="info : ${classes}" th:value="${info.id}" th:text="${info.className}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>SECTION :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="sectionId" name="sectionId" style="width: 100%;">
+                                                    <option value=""> Select Section</option>
+                                                    <option th:each="section : ${sections}" th:value="${section.id}" th:text="${section.sectionName}"></option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>SHIFT :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="shiftId" name="shiftId" style="width: 100%;">
+                                                    <option value=""> Select Shift</option>
+                                                    <option value="1"> Morning</option>
+                                                    <option value="2"> Day</option>
+                                                    <option value="3"> Evening</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>GROUP  :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="groupId" name="groupId" style="width: 100%;">
+                                                    <option value=""> Select Group</option>
+                                                    <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.groupName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>SESSION/YEAR :</b></span>
+                                            <div class="form-group">
+                                                <select class="js-example-theme-single form-control"  id="sessionId" name="sessionId" style="width: 100%;">
+                                                    <option value=""> Select Session/Year</option>
+                                                    <option th:each="info : ${sessions}" th:value="${info.id}" th:text="${info.sessionName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>ROLL NO :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="rollNo" name="rollNo" th:maxlength="30" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>ADMISSION DATE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="admissionDate" name="admissionDate" th:maxlength="30" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>ADMISSION NO :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="admissionNo" name="admissionNo" th:maxlength="30" value="" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>REG. NO. :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="regNo" name="regNo" th:maxlength="30" value="" class="form-control"    autocomplete="off">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>STIPEND :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="stipendStatus" id="stipend_yes" value="Y" class="with-gap">
+                                                <label for="stipend_yes">Yes</label>
+
+                                                <input type="radio" name="stipendStatus" id="stipend_no" value="N" class="with-gap">
+                                                <label for="stipend_no" class="m-l-20">No</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>STIPEND TYPE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="stipendType" name="stipendType" th:maxlength="30" value="" class="form-control"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>BOARD SCHOLARSHIP :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="scholarshipStatus" id="scholarship_yes" value="Y" class="with-gap">
+                                                <label for="scholarship_yes">Yes</label>
+
+                                                <input type="radio" name="scholarshipStatus" id="scholarship_no" value="N" class="with-gap">
+                                                <label for="scholarship_no" class="m-l-20">No</label>
+
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>SCHOLARSHIP TYPE :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="scholarshipType" name="scholarshipType" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>REPEATER :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="repeaterStatus" id="repeater_yes" value="Y" class="with-gap">
+                                                <label for="repeater_yes">Yes</label>
+
+                                                <input type="radio" name="repeaterStatus" id="repeater_no" value="N" class="with-gap">
+                                                <label for="repeater_no" class="m-l-20">No</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>TRANSFER :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="transferStatus" id="transfer_in" value="Y" class="with-gap">
+                                                <label for="transfer_in">In</label>
+
+                                                <input type="radio" name="transferStatus" id="transfer_out" value="N" class="with-gap">
+                                                <label for="transfer_out" class="m-l-20">Out</label>
+
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>EIIN :</b></span>
+                                            <div class="form-group">
+                                                <input type="text" id="eiin" name="eiin" th:maxlength="30" value="" class="form-control"   autocomplete="off" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>DROPOUT :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="dropOutStatus" id="dropout_yes" value="Y" class="with-gap">
+                                                <label for="dropout_yes">Yes</label>
+
+                                                <input type="radio" name="dropOutStatus" id="dropout_no" value="N" class="with-gap">
+                                                <label for="dropout_no" class="m-l-20">No</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span><b>ENGLISH VERSION :</b></span>
+                                            <div class="form-group">
+                                                <input type="radio" name="versionStatus" id="version_yes" value="Y" class="with-gap">
+                                                <label for="version_yes">Yes</label>
+
+                                                <input type="radio" name="versionStatus" id="version_no" value="N" class="with-gap">
+                                                <label for="version_no" class="m-l-20">No</label>
+                                            </div>
+
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer" style="background-color: #ced9dc;">
+                        <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                            <i class="material-icons">save</i>
+                            <span>SAVE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="studentViewInfoModal" style="overflow: auto;"  role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-xxl" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mod-cl {
+        color: transparent;
+        opacity: 1;
+    }
+
+    .alert-code {
+        color: white;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        padding-right:0px !important;
+        margin-right:0px !important;
+    }
+
+    /*.modal-dialog{
+        overflow-y: initial !important
+    }*/
+    .modal-body{
+        height: 750px;
+        overflow-y: auto;
+    }
+    input, textarea {
+        border: 1px solid #c8c7cc;
+        border-radius: 4px !important;
+    }
+    textarea {
+        resize: none;
+    }
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        vertical-align: middle !important;
+    }
+    .file-upload {
+        background-color: #ffffff;
+        width: 300px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .file-upload-btn {
+        width: 100%;
+        margin: 0;
+        color: #fff;
+        background: #1FB264;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .file-upload-btn:hover {
+        background: #1AA059;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .file-upload-btn:active {
+        border: 0;
+        transition: all .2s ease;
+    }
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        margin-top: 20px;
+        border: 4px dashed #1FB264;
+        position: relative;
+    }
+
+    /*.image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }*/
+
+    .drag-text {
+        text-align: center;
+    }
+
+    .drag-text h3 {
+        font-weight: 100;
+        text-transform: uppercase;
+        color: #15824B;
+        padding: 60px 0;
+    }
+
+    .file-upload-image {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .remove-image {
+        width: 100%;
+        margin: 0;
+        color: #fff;
+        background: #cd4535;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #b02818;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .remove-image:hover {
+        background: #c13b2a;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .remove-image:active {
+        border: 0;
+        transition: all .2s ease;
+    }
+
+
+</style>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/select2.min.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="js/pages/tables/jquery-datatable.js"></script>
+
+<script>
+
+    $( function() {
+
+
+        $("#dob").datepicker({
+            format: "dd-M-yyyy",
+            todayHighlight: true,
+            endDate: '+0d',
+            autoclose: true
+        });
+
+        $( "#joiningDate" ).datepicker({
+            format: "dd-M-yyyy",
+            todayHighlight: true,
+            endDate: '+0d',
+            autoclose: true
+
+
+        });
+    });
+
+
+    $(".modal-header").on("mousedown", function(mousedownEvt) {
+        var $draggable = $(this);
+        var x = mousedownEvt.pageX - $draggable.offset().left,
+            y = mousedownEvt.pageY - $draggable.offset().top;
+        $("body").on("mousemove.draggable", function(mousemoveEvt) {
+            $draggable.closest(".modal-dialog").offset({
+                "left": mousemoveEvt.pageX - x,
+                "top": mousemoveEvt.pageY - y
+            });
+        });
+        $("body").one("mouseup", function() {
+            $("body").off("mousemove.draggable");
+        });
+        $draggable.closest(".modal").one("bs.modal.hide", function() {
+            $("body").off("mousemove.draggable");
+        });
+    });
+
+    $(".js-example-theme-single").select2({
+        theme: "classic"
+    });
+    $('#teaching_status').change(function() {
+        if (this.checked) {
+            $('#teachingStatus').val('Y');
+            $('.check-teaching-status').text('YES');
+        }else{
+            $('#teachingStatus').val('N');
+            $('.check-teaching-status').text('NO');
+        }
+    });
+
+    $('#activity_status').change(function() {
+        if (this.checked) {
+            $('#status').val('Y');
+            $('.check-status').text('Active');
+        }else{
+            $('#status').val('N');
+            $('.check-status').text('Inactive');
+        }
+    });
+
+
+
+    function add(el) {
+        /*$("#id").val("");
+        $("#empCode").val("");
+        $("#empName").val("");
+        $("#fatherName").val("");
+        $("#motherName").val("");
+        $("#typeId").select2("val", "");
+        $("#designationId").select2("val", "");
+
+        $('#teaching_status').prop('checked', true);
+        $('#teachingStatus').val('Y');
+        $('.check-ac-status').text('YES');
+
+        $("#orderNo").val("");
+        $("#nationalId").val("");
+        $("#gender").select2("val", "");
+        $("#maritalStatus").select2("val", "");
+        $("#spouseName").val("");
+        $("#bloodGroup").select2("val", "");
+        $("#religionId").select2("val", "");
+        $("#dob").val("");
+        $("#joiningDate").val("");
+        $("#presentAddress").val("");
+        $("#permanentAddress").val("");
+        $("#contactNo1").val("");
+        $("#contactNo2").val("");
+        $("#email").val("");
+        $("#picture").val("");
+        $('#activity_status').prop('checked', true);
+        $('#status').val('Y');
+        $('.check-status').text('Active');*/
+
+        $("#studentModal").modal();
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert").empty().addClass("hidden");
+        $(".alert-code").empty().addClass("hidden");
+    }
+
+    function convertMmDate(date){
+        let d = new Date(date);
+        let m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        let curr_date = d.getDate();
+        let curr_month = d.getMonth();
+        let curr_year = d.getFullYear();
+
+        let formatDate = curr_date + "-" + m_names[parseInt(curr_month)] + "-" + curr_year;
+
+        return formatDate;
+    }
+    /**************************Start of Row Edit Function******************************/
+
+    function edit(el) {
+        let id = $(el).closest("tr").find("#row_id").val();
+        let empCode = $(el).closest("tr").find("#row_emp_code").val();
+        let empName = $(el).closest("tr").find("#row_emp_name").val();
+        let fatherName = $(el).closest("tr").find("#row_father_name").val();
+        let motherName = $(el).closest("tr").find("#row_mother_name").val();
+        let typeId = $(el).closest('tr').find("#row_type_id").val();
+        let designationId = $(el).closest('tr').find("#row_designation_id").val();
+        let teachingStatus = $(el).closest('tr').find("#row_teaching_status").val();
+        let orderNo = $(el).closest('tr').find("#row_order_no").val();
+        let nationalId = $(el).closest('tr').find("#row_national_id").val();
+        let gender = $(el).closest('tr').find("#row_gender").val();
+        let maritalStatus = $(el).closest('tr').find("#row_marital_status").val();
+        let spouseName = $(el).closest('tr').find("#row_spouse_name").val();
+        let bloodGroup = $(el).closest('tr').find("#row_blood_group").val();
+        let religionId = $(el).closest('tr').find("#row_religion_id").val();
+        let dob = $(el).closest('tr').find("#row_dob").val();
+        let joiningDate = $(el).closest('tr').find("#row_joining_date").val();
+        let presentAddress = $(el).closest('tr').find("#row_present_address").val();
+        let permanentAddress = $(el).closest('tr').find("#row_permanent_address").val();
+        let contactNo1 = $(el).closest('tr').find("#row_contactNo1").val();
+        let contactNo2 = $(el).closest('tr').find("#row_contactNo2").val();
+        let email = $(el).closest('tr').find("#row_email").val();
+        let picture = $(el).closest('tr').find("#row_picture").val();
+        let status = $(el).closest('tr').find("#row_status").val();
+
+        $("#id").val(id);
+        $("#empCode").val(empCode);
+        $("#empName").val(empName);
+        $("#fatherName").val(fatherName);
+        $("#motherName").val(motherName);
+        $("#typeId").select2("val", typeId);
+        $("#designationId").select2("val",designationId);
+
+        if(teachingStatus == 'Y'){
+            $('#teaching_status').prop('checked', true);
+            $('#teachingStatus').val('Y');
+            $('.check-teaching-status').text('YES');
+        }else{
+            $('#teaching_status').prop('checked', false);
+            $('#teachingStatus').val('N');
+            $('.check-teaching-status').text('NO');
+        }
+
+        $("#orderNo").val(orderNo);
+        $("#nationalId").val(nationalId);
+        $("#gender").select2("val", gender);
+        $("#maritalStatus").select2("val",maritalStatus);
+        $("#spouseName").val(spouseName);
+        $("#bloodGroup").select2("val", bloodGroup);
+        $("#religionId").select2("val", religionId);
+        $("#dob").val(dob);
+        $("#joiningDate").val(joiningDate);
+        $("#presentAddress").val(presentAddress);
+        $("#permanentAddress").val(permanentAddress);
+        $("#contactNo1").val(contactNo1);
+        $("#contactNo2").val(contactNo2);
+        $("#email").val(email);
+        $("#picture").val(picture);
+
+
+        if(picture !=null && picture.length !=0){
+            $('.image-upload-wrap').hide();
+            $(".file-upload-image").attr('src', 'data:image/png;base64,'+picture+'');
+            $('.file-upload-content').show();
+        }
+
+        if(status == 'Y'){
+            $('#activity_status').prop('checked', true);
+            $('#status').val('Y');
+            $('.check-status').text('Active');
+        }else{
+            $('#activity_status').prop('checked', false);
+            $('#status').val('N');
+            $('.check-status').text('Inactive');
+        }
+
+        $("#studentModal").modal('show');
+        $(".modal-backdrop.fade.in").off("click");
+        $(".modal").off("keydown");
+        $(".alert-code").empty().addClass("hidden");
+    };
+
+    $("#studentInfoForm").submit(function(event){
+        event.preventDefault();
+        let formData = $("#studentInfoForm").serialize();
+
+        if($(".alert-code").hasClass('hidden')){
+            $.ajax({
+                url : "student/saveOrUpdate",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    $("#studentModal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $("#view_page").html(data);
+                    sweetAlert("Saved!", "Your data has been Saved.", "success", 1000, false);
+                },
+                error: function(){
+                    sweetAlert("Failed!", "Something went wrong.", "fail", 1000, false);
+                }
+            });
+        }else{
+            sweetAlert("Failed!", "Please remove all error, then submit again.", "warning", 1000, false);
+        }
+    });
+    function view(el) {
+        let id = $(el).closest("tr").find("#row_id").val();
+        $.ajax({
+            async : false,
+            url : "student/" + id ,
+            success : function(data) {
+                $('#studentViewInfoModal').modal('show').find('.modal-content').html(data);
+                $(".modal-backdrop.fade.in").off("click");
+                $(".modal").off("keydown");
+                $(".md").css("display", "none");
+
+            }
+        });
+    }
+    function del(el) {
+        let id = $(el).closest('tr').find("#row_id").val();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel please!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type : "GET",
+                    url : "student/delete/" + id ,
+                    success : function(data) {
+                        $("#view_page").html(data);
+                        sweetAlert("Deleted!", "Deleted Successfully", "success", 1000, false);
+                    },
+                    error: function(){
+                        sweetAlert("Failed!", "Something going wrong.", "fail", 1000, false);
+                    }
+                });
+            } else {
+                sweetAlert("Cancelled", "Your data is safe :)", "error", 0, false);
+            }
+        });
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0] ) {
+
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+
+                if(input.files[0].size <= 1024*100){
+                $('.image-upload-wrap').hide();
+
+
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+                    const base64String = reader.result
+                        .replace('data:', '')
+                        .replace(/^.+,/, '');
+                    $('#picture').val(base64String);
+                }else{
+                  alert('Image should be within 100 KB.');
+                }
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+        $("#picture").val("");
+    }
+    /*$('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });*/
+
+
+</script>
+
+
+
+</html>

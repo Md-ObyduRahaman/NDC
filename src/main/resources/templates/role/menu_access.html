@@ -1,0 +1,378 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div class="container-fluid">
+  <div class="block-header">
+    <span style="text-shadow: 2px 2px 2px #aaa;">Menu Access to Role</span>
+
+  </div>
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="body">
+          <div class="row">
+            <div class="col-md-6">
+              <span><b>Role :</b></span>
+              <select id="roleId" class="form-control show-tick">
+                <option value="none">---Select Role---</option>
+                <option th:each="role : ${roles}" th:value="${role.id}"
+                        th:text="${role.roleName}"></option>
+              </select>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5 role-table" align="left">
+              <div class="font-underline" style="color:#007AFF; font-size: 18px;">
+                Assigned Menu List
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <table class="table table-bordered table-striped table-hover" id="tbl-assigned-menu-list">
+                    <thead>
+                    <tr>
+                      <th class="align-left">Module Name</th>
+                      <th class="align-left">Menu Name</th>
+                      <!--<th class="align-left">Create</th>
+                      <th class="align-left">Edit</th>
+                      <th class="align-left">View</th>
+                      <th class="align-left">Delete</th>-->
+                    </tr>
+                    </thead>
+                    <tbody id="tbl-assigned-menu-list-tbody">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="row display-flex ">
+                <div style="width: 50px; margin: auto;" class="button-group">
+                  <button type="button" onclick="addMenu()" class="btn btn-sm arrow bg-green waves-effect">
+                    <i class="material-icons">subdirectory_arrow_left</i>
+                  </button>
+                  <button type="button" onclick="removeMenu()" class="btn btn-sm arrow bg-red waves-effect">
+                    <i class="material-icons">subdirectory_arrow_right</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-5 priv-table" align="right">
+              <div class="font-underline" style="color:#007AFF; font-size: 18px;" align="left">
+                Unassigned Menu List
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <table class="table table-bordered table-striped table-hover" id="tbl-unassigned-menu-list">
+                    <thead>
+                    <tr>
+                      <th class="align-left">Module Name</th>
+                      <th class="align-left">Menu Name</th>
+                      <!--<th class="align-left">Create</th>
+                      <th class="align-left">Edit</th>
+                      <th class="align-left">View</th>
+                      <th class="align-left">Delete</th>-->
+                    </tr>
+                    </thead>
+                    <tbody id="tbl-unassigned-menu-list-tbody">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .arrow {
+    background: #fff;
+    color: #007AFF;
+    border-color: #008;
+    border-radius: 5px;
+    /* width: 45px;
+    height: 35px; */
+    margin-top: 10px;
+  }
+
+  .duo {
+    background: #fff;
+    border-color: #DC143C;
+    border-radius: 5px;
+    color: #DC143C;
+  }
+
+  .display-flex {
+    display: flex;
+    /* border: 1px solid #ddd; */
+    padding: 10px 0px 12px 0px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 117px;
+  }
+
+  .dataTables_filter input {
+    width: 150px !important;
+  }
+
+  .sel-rpriv{
+    border: 1px solid #fffefe !important;
+    background-color: lightpink !important;
+  }
+
+  .sel-priv{
+    border: 1px solid #fffefe !important;
+    background-color: darkseagreen !important;
+  }
+
+  select.required-company {
+    border-right-color: #f00 !important;
+    border-right-width: 2px !important;
+  }
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    padding-right:0px !important;
+    margin-right:0px !important;
+  }
+
+  body.modal-open {
+    overflow: auto;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+  function chngLang(el){
+    var link = $(el).attr('id');
+    $.ajax({
+      async : false,
+      url : link ,
+      success : function(result) {
+        $("#view_page").html(result);
+      },
+      error: function(){
+        console.log("this employee has no user id.");
+      }
+    });
+  }
+
+  var aTable = $('#tbl-assigned-menu-list').DataTable({
+    ordering : false,
+    "oLanguage" : {
+      "sLengthMenu" : "Show _MENU_ Rows",
+      "sSearch" : "",
+      "sSearchWidth" : "300px",
+      "sSearchPlaceholder": "Search records ....",
+      "sEmptyTable": "No assigned menu available",
+      "oPaginate" : {
+        "sPrevious" : "<span class='fa fa-chevron-left'></span>",
+        "sNext" : "<span class='fa fa-chevron-right'></span>"
+      }
+    },
+  });
+
+  var eTable = $('#tbl-unassigned-menu-list').DataTable({
+    ordering : false,
+    "oLanguage" : {
+      "sLengthMenu" : "Show _MENU_ Rows",
+      "sSearch" : "",
+      "sSearchWidth" : "300px",
+      "sSearchPlaceholder": "Search records ....",
+      "sEmptyTable": "No menu available",
+      "oPaginate" : {
+        "sPrevious" : "<span class='fa fa-chevron-left'></span>",
+        "sNext" : "<span class='fa fa-chevron-right'></span>"
+      }
+    },
+  });
+
+  $('#tbl-unassigned-menu-list_length').hide();
+
+  $('#tbl-assigned-menu-list_length').hide();
+
+  $("#roleId").on('change', function() {
+    var roleId = $("#roleId option:selected").val();
+    if(roleId == 'none'){
+      $("#tbl-assigned-menu-list tbody").empty();
+      $("#tbl-unassigned-menu-list tbody").empty();
+    }else{
+      getAssignedMenus(roleId);
+      getUnassignedMenus(roleId);
+    }
+  });
+
+  function getAssignedMenus(roleId) {
+    $.ajax({
+      type : "GET",
+      url : "/role/assigned-menu-list/" + roleId ,
+      dataType : 'json',
+      success: function (data) {
+
+        aTable.rows().remove().draw();
+
+        let menuList = data.length;
+        if (menuList > 0) {
+          for (let i = 0; i < data.length; i++) {
+            let id = data[i].id || "";
+            let module_name = data[i].moduleName || "";
+            let menu_name = data[i].menuName || "";
+
+            let html = '' + menu_name
+                    + '<input type="hidden" id="id" name="id" class="menu_id" value="' + id + '"/>';
+            let rowNode = aTable.row.add([module_name, html]).draw(false).node();
+            $(rowNode).find(":eq(0)").css({"text-align": "left"});
+          }
+        } else {
+          $("#tbl-assigned-menu-list tbody").empty();
+        }
+
+      }
+    });
+  }
+
+  function getUnassignedMenus(roleId) {
+
+    $.ajax({
+      type: "GET",
+      url: "/role/unassigned-menu-list/" + roleId,
+      dataType: 'json',
+      success: function (data) {
+
+        eTable.rows().remove().draw();
+
+        let menuList = data.length;
+        if (menuList > 0) {
+          for (let i = 0; i < data.length; i++) {
+            let id = data[i].id || "";
+            let module_name = data[i].moduleName || "";
+            let menu_name = data[i].menuName || "";
+
+            let html = '' + menu_name
+                    + '<input type="hidden" id="id" name="id" class="menu_id" value="' + id + '"/>';
+            let rowNode = eTable.row.add([module_name, html]).draw(false).node();
+            $(rowNode).find(":eq(0)").css({"text-align": "left"});
+          }
+        } else {
+          $("#tbl-unassigned-menu-list tbody").empty();
+        }
+
+      }
+    });
+  }
+
+
+  $("#tbl-unassigned-menu-list").on('click', 'tr', function () {
+    if ($(this).closest('tr').find("td").hasClass("sel-priv")) {
+      $(this).closest('tr').removeClass("tr-priv");
+      $(this).closest('tr').find("td").removeClass("sel-priv");
+    } else {
+      $(this).closest('tr').addClass("tr-priv");
+      $(this).closest('tr').find("td").addClass("sel-priv");
+    }
+  });
+
+  $("#tbl-assigned-menu-list").on('click', 'tr', function () {
+    if($(this).closest('tr').find("td").hasClass("sel-rpriv")){
+      $(this).closest('tr').removeClass("tr-rpriv");
+      $(this).closest('tr').find("td").removeClass("sel-rpriv");
+    }else{
+      $(this).closest('tr').addClass("tr-rpriv");
+      $(this).closest('tr').find("td").addClass("sel-rpriv");
+    }
+  });
+  function addMenu() {
+    let addItem = $(".tr-priv");
+
+    $.each(addItem, function(i, item){
+      let row = $(item);
+      let menuId = row.find("td:eq(1) .menu_id").val() || "";
+      let moduleName = row.find("td:eq(0)").text() || "";
+      let menuName = row.find("td:eq(1)").text() || "";
+
+      let html = '' + menuName
+              + '<input type="hidden" id="menu_id" name="menu_id" class="menu_id" value="' + menuId  + '"/>';
+      let rowNode = aTable.row.add( [moduleName,html] ).draw( false ).node();
+      aTable.order([0, 'asc']).draw();
+      aTable.page('first').draw(false);
+      $(rowNode).find(":eq(0)").css({"text-align": "left"});
+
+      eTable.row( item ).remove().draw();
+
+      addRoleMenu(menuId);
+    });
+
+  }
+
+  function addRoleMenu(menuId){
+    let roleId = $("#roleId option:selected").val();
+    $.ajax({
+      type : "POST",
+      url : "/role/save-menu/"+menuId+"/"+roleId,
+      success : function() {
+        console.log("save success");
+      },
+      error: function(){
+        console.log("this employee has no user id.");
+      }
+    });
+  }
+
+  function removeMenu() {
+    let items = $(".tr-rpriv");
+    $.each(items, function(i, item){
+      let row = $(item);
+
+      let menuId = row.find("td:eq(1) .menu_id").val() || "";
+      let moduleName = row.find("td:eq(0)").text() || "";
+      let menuName = row.find("td:eq(1)").text() || "";
+
+      let html= '' + menuName
+              + '<input type="hidden" id="menu_id" name="menu_id" class="menu_id" value="' + menuId  + '"/>';
+      let rowNode = eTable.row.add( [moduleName,html] ).draw( false ).node();
+      $(rowNode).find(":eq(0)").css({"text-align": "left"});
+
+      aTable
+              .row( item )
+              .remove()
+              .draw();
+      removeRoleMenu(menuId);
+    });
+  }
+
+
+
+  function removeRoleMenu(menuId){
+    let roleId = $("#roleId option:selected").val();
+
+
+    $.ajax({
+      type : "POST",
+      url : "/role/remove-menu/"+menuId+"/"+roleId,
+      success : function() {
+        console.log("save success");
+      },
+      error: function(){
+        console.log("this employee has no user id.");
+      }
+    });
+  }
+
+
+</script>
+
+
+
+</html>

@@ -1,0 +1,204 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+
+    <div class="modal-header bg-blue-grey">
+        <button type="button" class="mod-cl close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title align-center" id="defaultModalLabel">EMPLOYEE INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+            <div class="alert-code alert-block alert-danger hidden"></div><br>
+            <input type="hidden" id="id" name="id" value=""/>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <span><b>EMPLOYEE ID :</b></span>
+                    <div class="form-group">
+                        [[${employee.empCode}]]
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>EMPLOYEE NAME :</b></span>
+                    <div class="form-group">
+                        [[${employee.empName}]]
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>FATHER NAME :</b></span>
+                    <div class="form-group">
+                        [[${employee.fatherName}]]
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>MOTHER NAME :</b></span>
+                    <div class="form-group">
+                        [[${employee.motherName}]]
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <span><b>EMPLOYEE TYPE :</b></span>
+                    <div class="form-group">
+                        [[${employee.typeName}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>DESIGNATION NAME :</b></span>
+                    <div class="form-group">
+                        [[${employee.designationName}]]
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>TEACHING STATUS :</b></span>
+                    <div class="form-group">
+                        <span th:if="${employee.teachingStatus == 'Y'}">YES</span>
+                        <span th:if="${employee.teachingStatus == 'N'}">NO</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>DISPLAY ORDER :</b></span>
+                    <div class="form-group">
+                        [[${employee.orderNo}]]
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <span><b>NATIONAL ID :</b></span>
+                    <div class="form-group">
+                        [[${employee.nationalId}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>GENDER:</b></span>
+                    <div class="form-group">
+                        <span th:if="${employee.gender == 1}">Male</span>
+                        <span th:if="${employee.gender == 2}">Female</span>
+                        <span th:if="${employee.gender == 3}">Other</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>MARITAL STATUS :</b></span>
+                    <div class="form-group">
+                        <span th:if="${employee.maritalStatus == 1}">Unmarried</span>
+                        <span th:if="${employee.maritalStatus == 2}">Married</span>
+                        <span th:if="${employee.maritalStatus == 3}">Widow</span>
+                        <span th:if="${employee.maritalStatus == 4}">Widower</span>
+                        <span th:if="${employee.maritalStatus == 5}">Divorced</span>
+                        <span th:if="${employee.maritalStatus == 6}">Separated</span>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>SPOUSE NAME :</b></span>
+                    <div class="form-group">
+                        [[${employee.spouseName}]]
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <span><b>BLOOD GROUP:</b></span>
+                    <div class="form-group">
+                        [[${employee.bloodGroup}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>RELIGION:</b></span>
+                    <div class="form-group">
+                        [[${employee.religionName}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>DATE OF BIRTH :</b></span>
+                    <div class="form-group">
+                        <span th:text="${#dates.format(employee.dob, 'dd-MMM-yyyy')}"></span>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>JOINING DATE :</b></span>
+                    <div class="form-group">
+                        <span th:text="${#dates.format(employee.joiningDate, 'dd-MMM-yyyy')}"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <span><b>PRESENT ADDRESS</b></span>
+                    <div class="form-group">
+                        [[${employee.presentAddress}]]
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span><b>PERMANENT ADDRESS</b></span>
+                    <div class="form-group">
+                        [[${employee.permanentAddress}]]
+
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <span><b>PRIMARY CONTACT:</b></span>
+                    <div class="form-group">
+                        [[${employee.contactNo1}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>EMERGENCY CONTACT:</b></span>
+                    <div class="form-group">
+                        [[${employee.contactNo2}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>EMAIL :</b></span>
+                    <div class="form-group">
+                        [[${employee.email}]]
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span><b>ACTIVITY STATUS</b></span>
+                    <div class="form-group">
+                        <span th:if="${employee.status == 'Y'}">Active</span>
+                        <span th:if="${employee.status == 'N'}">Inactive</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-md-12">
+                <div class="form-group">
+                    <img class="form-control-image" th:src="@{'data:image/jpeg;base64,'+${employee.picture}}" id='img-upload' height="150px" width="150px" alt="No image"
+                         onerror="this.src='image/default-image.png';"/>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+        <!--<div class="modal-footer" style="background-color: #ced9dc;">
+            <button type="submit" id="saveBtn" class="btn bg-green btn-sm waves-effect pull-right m-r-10">
+                <i class="material-icons">save</i>
+                <span>SAVE</span>
+            </button>
+        </div>-->
+
+
+
+</html>
